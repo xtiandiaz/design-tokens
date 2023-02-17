@@ -9,10 +9,6 @@ extension Color {
 
     public static let systemBackground = Color(uiColor: .systemBackground)
 
-    public static let white = Color(uiColor: .white)
-
-    public static let black = Color(uiColor: .black)
-
     public static let jinjang = Color(uiColor: .jinjang)
 
     public static let dawn = Color(uiColor: .dawn)
@@ -58,12 +54,6 @@ extension UIColor {
 
     /// Light-mode: #ffffff, dark-mode: #000000
     public static let systemBackground = UIColor(lightMode: UIColor(red: 1, green: 1, blue: 1, alpha: 1), darkMode: UIColor(red: 0, green: 0, blue: 0, alpha: 1))
-
-    /// Light-mode: #ffffff, dark-mode: #ffffff
-    public static let white = UIColor(lightMode: UIColor(red: 1, green: 1, blue: 1, alpha: 1), darkMode: UIColor(red: 1, green: 1, blue: 1, alpha: 1))
-
-    /// Light-mode: #000000, dark-mode: #000000
-    public static let black = UIColor(lightMode: UIColor(red: 0, green: 0, blue: 0, alpha: 1), darkMode: UIColor(red: 0, green: 0, blue: 0, alpha: 1))
 
     /// Light-mode: #262f40, dark-mode: #cfd6e5
     public static let jinjang = UIColor(lightMode: UIColor(red: 0.14999999105930328, green: 0.18333333730697632, blue: 0.25, alpha: 1), darkMode: UIColor(red: 0.8100000023841858, green: 0.8400000333786011, blue: 0.8999999761581421, alpha: 1))
