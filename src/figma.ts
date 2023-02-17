@@ -1,7 +1,7 @@
 import * as Figma from 'figma-js'
 import dotenv from 'dotenv'
 
-import { Color, ThemeKey, Theme, ThemedDesignTokens, DesignTokens } from './types.js'
+import { Color, Theme, ThemedTokens, DesignTokens } from './types.js'
 import sortBy from 'lodash'
 
 dotenv.config()
@@ -10,36 +10,19 @@ const figma = Figma.Client({
     personalAccessToken: process.env.FIGMA_ACCESS_TOKEN
 })
 
-interface Source {
-    fileId: string
-    themeKey?: ThemeKey
+const themeSources: Record<Theme, string> = {
+    light: '2ngEslhcEbOrKpywQNH1PU',
+    dark: 'U6Z4zJzenb99Y0GWXOUcJS'
 }
-
-const sources: Source[] = [
-    {
-        fileId: '2ngEslhcEbOrKpywQNH1PU',
-        themeKey: ThemeKey.Light
-    },
-    {
-        fileId: 'U6Z4zJzenb99Y0GWXOUcJS',
-        themeKey: ThemeKey.Dark
-    }
-]
 
 function getColors(page: Figma.Canvas): Color[] {
     const colorNodes: Figma.Rectangle[] = page.children.filter((node) => 
-        node.type == 'RECTANGLE'
+        node.type == 'RECTANGLE' && node.fills[0].color !== undefined
     ) as Figma.Rectangle[]
     
     return colorNodes.map((node) => {
         const name = node.name
-        const fill = node.fills[0]
-        
-        if (fill.color === undefined) {
-            return null
-        }
-        
-        const color = fill.color
+        const color = node.fills[0].color!
         
         return {
             name: name,
@@ -53,10 +36,10 @@ function getColors(page: Figma.Canvas): Color[] {
 }
 
 export async function exportDesignTokens(): Promise<DesignTokens> {
-    let themedTokensMap = new Map<ThemeKey, ThemedDesignTokens>()
+    let themedTokensMap = new Map<Theme, ThemedTokens>()
     
-    for(const source of sources) {
-        const file = await figma.file(source.fileId)    
+    for(const theme of Object.values(Theme)) {
+        const file = await figma.file(themeSources[theme])
         const pages = file.data.document.children as Figma.Canvas[]
         
         function getPage(name: string): Figma.Canvas | undefined {
@@ -65,18 +48,14 @@ export async function exportDesignTokens(): Promise<DesignTokens> {
         
         const colors = getColors(getPage('Colors')!)
         
-        if (source.themeKey === undefined) {
-            continue
-        }
-        
-        themedTokensMap.set(source.themeKey!, {
+        themedTokensMap.set(theme, {
+            theme,
             colors: colors
         })
     }
     
     return {
-        light: themedTokensMap.get(ThemeKey.Light)!,
-        dark: themedTokensMap.get(ThemeKey.Dark)!,
+        themed: Array.from(themedTokensMap.values()),
         textStyles: []
     }
 }

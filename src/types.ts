@@ -1,9 +1,19 @@
+export enum Theme {
+    Light = 'light',
+    Dark = 'dark'
+}
+
 export interface Color {
     name: string
     r: number
     g: number
     b: number
     a: number
+}
+
+export interface AdaptiveColor {
+    lightMode: Color
+    darkMode: Color
 }
 
 export interface TextStyle {
@@ -13,22 +23,12 @@ export interface TextStyle {
     fontSize: number
 }
 
-export enum ThemeKey {
-    Light = 'light',
-    Dark = 'dark'
-}
-
-export interface Theme {
-    key: ThemeKey
-    colors: Color[]
-}
-
-export interface ThemedDesignTokens {
+export interface ThemedTokens {
+    theme: Theme
     colors: Color[]
 }
 
 export interface DesignTokens {
-    light: ThemedDesignTokens
-    dark: ThemedDesignTokens
+    themed: ThemedTokens[]
     textStyles: TextStyle[]
 }
