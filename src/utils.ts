@@ -1,3 +1,4 @@
+import { camelCase } from 'change-case'
 import { Color } from './types.js'
 
 export const colorComponentToHex = (component: number) => {
@@ -8,3 +9,6 @@ export const colorComponentToHex = (component: number) => {
 
 export const rgbToHex = (color: Color) =>
     `#${colorComponentToHex(color.r)}${colorComponentToHex(color.g)}${colorComponentToHex(color.b)}`
+
+export const propCase = (str: string) =>
+    camelCase(str).replace(/_/g, s => "")

@@ -52,6 +52,7 @@ function getTextStyles(page: Figma.Canvas): TextStyle[] {
             return {
                 name: n.name,
                 fontFamily: n.style.fontFamily,
+                fontPostScriptName: n.style.fontPostScriptName,
                 fontWeight: n.style.fontWeight,
                 fontSize: n.style.fontSize
             }

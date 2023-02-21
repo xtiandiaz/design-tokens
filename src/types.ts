@@ -19,6 +19,7 @@ export interface AdaptiveColor {
 export interface TextStyle {
     name: string
     fontFamily: string
+    fontPostScriptName: string
     fontWeight: number
     fontSize: number
 }

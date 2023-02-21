@@ -1,28 +1,23 @@
-import { camelCase } from 'change-case'
-
 import * as Utils from './utils.js'
 import { Color, AdaptiveColor, TextStyle } from './types.js'
 
-export const uiColorTemplate = (color: Color) => `UIColor(red: ${color.r}, green: ${color.g}, blue: ${color.b}, alpha: ${color.a})`
-export const colorTemplate = (propName: string) => `
+const uiColorTemplate = (color: Color) => `UIColor(red: ${color.r}, green: ${color.g}, blue: ${color.b}, alpha: ${color.a})`
+const colorTemplate = (propName: string) => `
     public static let ${propName} = Color(uiColor: .${propName})`
 
-export const simpleUIColorTemplate = (color: Color) => `
+const simpleUIColorTemplate = (color: Color) => `
     /// ${Utils.rgbToHex(color)}
-    public static let ${camelCase(color.name)} = UIColor(red: ${color.r}, green: ${color.g}, blue: ${color.b}, alpha: ${color.a})`
-
-export const simpleColorTemplate = (propName: string) => `
-    public static let ${propName} = ${colorTemplate(propName)}`
+    public static let ${Utils.propCase(color.name)} = UIColor(red: ${color.r}, green: ${color.g}, blue: ${color.b}, alpha: ${color.a})`
   
-export const adaptiveUIColorTemplate = (color: AdaptiveColor) => `
+const adaptiveUIColorTemplate = (color: AdaptiveColor) => `
     /// Light-mode: ${Utils.rgbToHex(color.lightMode)}, dark-mode: ${Utils.rgbToHex(color.darkMode)}
-    public static let ${camelCase(color.lightMode.name)} = UIColor(lightMode: ${uiColorTemplate(color.lightMode)}, darkMode: ${uiColorTemplate(color.darkMode)})`
+    public static let ${Utils.propCase(color.lightMode.name)} = UIColor(lightMode: ${uiColorTemplate(color.lightMode)}, darkMode: ${uiColorTemplate(color.darkMode)})`
 
 export const colorsTemplate = (simpleColors: Color[], adaptiveColors: AdaptiveColor[]) => `import SwiftUI
 import UIKit
 
 extension Color {
-    ${adaptiveColors.map(c => colorTemplate(camelCase(c.lightMode.name))).join('\n')}
+    ${adaptiveColors.map(c => colorTemplate(Utils.propCase(c.lightMode.name))).join('\n')}
 }
 
 extension UIColor {
@@ -46,13 +41,26 @@ extension UIColor {
     }
 }`
 
-export const textStyleTemplate = (style: TextStyle) => `
+const textStyleTemplate = (style: TextStyle) => `
     /// ${style.fontFamily}, ${style.fontSize}, ${style.fontWeight}
-    case ${camelCase(style.name)}`
+    case ${Utils.propCase(style.name)}`
     
-export const textStylesTemplate = (styles: TextStyle[]) => `import SwiftUI
-import UIKit
-
-public enum TextStyle {
+const caseReturnTemplate = (_case: string, _return: string): string => `
+        case .${Utils.propCase(_case)}:
+            return ${_return}`
+    
+export const textStylesTemplate = (styles: TextStyle[]) => `public enum TextStyle {
     ${styles.map(s => textStyleTemplate(s)).join('\n')}
+    
+    public var fontSize: CGFloat {
+        switch self {
+            ${styles.map(s => caseReturnTemplate(s.name, `${s.fontSize}`)).join('\n')}
+        }
+    }
+    
+    public var fontName: String {
+        switch self {
+            ${styles.map(s => caseReturnTemplate(s.name, `"${s.fontPostScriptName}"`)).join('\n')}
+        }
+    }
 }`

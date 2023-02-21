@@ -1,10 +1,6 @@
-import { writeFileSync } from 'fs';
-import { colorsTemplate } from './templates.js';
-import { DesignTokens } from './types.js';
-import { Color, AdaptiveColor } from './types.js'
-import * as Utils from './utils.js'
-
-import { Theme } from './types.js'
+import { writeFileSync } from 'fs'
+import { colorsTemplate, textStylesTemplate } from './templates.js'
+import { Theme, Color, AdaptiveColor, DesignTokens } from './types.js'
 
 export default function generateCode(path: string, tokens: DesignTokens) {
     const themedColors = Object.fromEntries(tokens.themed.map(t => {
@@ -22,4 +18,5 @@ export default function generateCode(path: string, tokens: DesignTokens) {
     })
     
     writeFileSync(`${path}/Colors.swift`, colorsTemplate(simpleColors, adaptiveColors))
+    writeFileSync(`${path}/TextStyles.swift`, textStylesTemplate(tokens.textStyles))
 }
