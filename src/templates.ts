@@ -1,7 +1,7 @@
 import { camelCase } from 'change-case'
 
 import * as Utils from './utils.js'
-import { Color, AdaptiveColor } from './types.js'
+import { Color, AdaptiveColor, TextStyle } from './types.js'
 
 export const uiColorTemplate = (color: Color) => `UIColor(red: ${color.r}, green: ${color.g}, blue: ${color.b}, alpha: ${color.a})`
 export const colorTemplate = (propName: string) => `
@@ -44,4 +44,15 @@ extension UIColor {
             }
         }
     }
+}`
+
+export const textStyleTemplate = (style: TextStyle) => `
+    /// ${style.fontFamily}, ${style.fontSize}, ${style.fontWeight}
+    case ${camelCase(style.name)}`
+    
+export const textStylesTemplate = (styles: TextStyle[]) => `import SwiftUI
+import UIKit
+
+public enum TextStyle {
+    ${styles.map(s => textStyleTemplate(s)).join('\n')}
 }`
