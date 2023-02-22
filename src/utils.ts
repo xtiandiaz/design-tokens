@@ -34,6 +34,6 @@ export const fontDesign = (name: string) => {
     } else if (name.includes('Serif')) {
         return 'serif'
     } else {
-        return '`default`'
+        return 'default'
     }
 }
