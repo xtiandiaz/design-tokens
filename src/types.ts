@@ -22,6 +22,7 @@ export interface TextStyle {
     fontPostScriptName: string
     fontWeight: number
     fontSize: number
+    letterSpacing: number
 }
 
 export interface ThemedTokens {

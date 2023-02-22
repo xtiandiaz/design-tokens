@@ -3,115 +3,115 @@ import UIKit
 
 public enum TextStyle {
     
-    /// SF Pro, 34, semibold
+    /// SF Pro, 34, Semibold
     case largeTitle
 
-    /// SF Pro, 34, bold
+    /// SF Pro, 34, Bold
     case largeTitleBolder
 
-    /// SF Pro Rounded, 34, semibold
+    /// SF Pro Rounded, 34, Semibold
     case largeTitleRounded
 
-    /// SF Pro Rounded, 34, bold
+    /// SF Pro Rounded, 34, Bold
     case largeTitleRoundedBolder
 
-    /// New York, 34, bold
+    /// New York, 34, Bold
     case largeTitleSerif
 
-    /// SF Pro, 28, semibold
+    /// SF Pro, 28, Semibold
     case title1
 
-    /// SF Pro, 28, bold
+    /// SF Pro, 28, Bold
     case title1Bolder
 
-    /// SF Pro Rounded, 28, semibold
+    /// SF Pro Rounded, 28, Semibold
     case title1Rounded
 
-    /// SF Pro Rounded, 28, bold
+    /// SF Pro Rounded, 28, Bold
     case title1RoundedBolder
 
-    /// New York, 28, bold
+    /// New York, 28, Bold
     case title1Serif
 
-    /// SF Pro, 22, semibold
+    /// SF Pro, 22, Semibold
     case title2
 
-    /// SF Pro, 22, bold
+    /// SF Pro, 22, Bold
     case title2Bolder
 
-    /// SF Pro Rounded, 22, semibold
+    /// SF Pro Rounded, 22, Semibold
     case title2Rounded
 
-    /// SF Pro Rounded, 22, bold
+    /// SF Pro Rounded, 22, Bold
     case title2RoundedBolder
 
-    /// New York, 22, bold
+    /// New York, 22, Bold
     case title2Serif
 
-    /// SF Pro, 20, semibold
+    /// SF Pro, 20, Semibold
     case title3
 
-    /// SF Pro, 20, bold
+    /// SF Pro, 20, Bold
     case title3Bolder
 
-    /// SF Pro Rounded, 20, semibold
+    /// SF Pro Rounded, 20, Semibold
     case title3Rounded
 
-    /// SF Pro Rounded, 20, bold
+    /// SF Pro Rounded, 20, Bold
     case title3RoundedBolder
 
-    /// New York, 20, bold
+    /// New York, 20, Bold
     case title3Serif
 
-    /// SF Pro, 17, semibold
+    /// SF Pro, 17, Semibold
     case headline
 
-    /// SF Pro, 17, bold
+    /// SF Pro, 17, Bold
     case headlineBolder
 
-    /// SF Pro Rounded, 17, semibold
+    /// SF Pro Rounded, 17, Semibold
     case headlineRounded
 
-    /// SF Pro Rounded, 17, bold
+    /// SF Pro Rounded, 17, Bold
     case headlineRoundedBolder
 
-    /// New York, 17, bold
+    /// New York, 17, Bold
     case headlineSerif
 
-    /// SF Pro, 17, regular
+    /// SF Pro, 17, Regular
     case body
 
-    /// SF Pro, 16, regular
+    /// SF Pro, 16, Regular
     case callout
 
-    /// SF Pro, 15, semibold
+    /// SF Pro, 15, Semibold
     case subhead
 
-    /// SF Pro, 15, bold
+    /// SF Pro, 15, Bold
     case subheadBolder
 
-    /// SF Pro Rounded, 15, semibold
+    /// SF Pro Rounded, 15, Semibold
     case subheadRounded
 
-    /// SF Pro Rounded, 15, bold
+    /// SF Pro Rounded, 15, Bold
     case subheadRoundedBolder
 
-    /// New York, 15, bold
+    /// New York, 15, Bold
     case subheadSerif
 
-    /// SF Pro, 13, regular
+    /// SF Pro, 13, Regular
     case footnote
 
-    /// SF Pro, 13, bold
+    /// SF Pro, 13, Bold
     case accessory
 
-    /// SF Pro, 12, medium
+    /// SF Pro, 12, Medium
     case caption1
 
-    /// SF Pro, 12, bold
+    /// SF Pro, 12, Bold
     case caption1Bolder
 
-    /// SF Pro, 11, medium
+    /// SF Pro, 11, Medium
     case caption2
     
     public var suiFontWeight: Font.Weight {
@@ -691,6 +691,122 @@ public enum TextStyle {
 
         case .caption2:
             return 11
+        }
+    }
+    
+    public var letterSpacing: CGFloat {
+        switch self {
+            
+        case .largeTitle:
+            return 0
+
+        case .largeTitleBolder:
+            return 0
+
+        case .largeTitleRounded:
+            return 0
+
+        case .largeTitleRoundedBolder:
+            return 0
+
+        case .largeTitleSerif:
+            return 0
+
+        case .title1:
+            return 0
+
+        case .title1Bolder:
+            return 0
+
+        case .title1Rounded:
+            return 0
+
+        case .title1RoundedBolder:
+            return 0
+
+        case .title1Serif:
+            return 0
+
+        case .title2:
+            return 0
+
+        case .title2Bolder:
+            return 0
+
+        case .title2Rounded:
+            return 0
+
+        case .title2RoundedBolder:
+            return 0
+
+        case .title2Serif:
+            return 0
+
+        case .title3:
+            return 0
+
+        case .title3Bolder:
+            return 0
+
+        case .title3Rounded:
+            return 0
+
+        case .title3RoundedBolder:
+            return 0
+
+        case .title3Serif:
+            return 0
+
+        case .headline:
+            return 0
+
+        case .headlineBolder:
+            return 0
+
+        case .headlineRounded:
+            return 0
+
+        case .headlineRoundedBolder:
+            return 0
+
+        case .headlineSerif:
+            return 0
+
+        case .body:
+            return 0
+
+        case .callout:
+            return 0
+
+        case .subhead:
+            return 0
+
+        case .subheadBolder:
+            return 0
+
+        case .subheadRounded:
+            return 0
+
+        case .subheadRoundedBolder:
+            return 0
+
+        case .subheadSerif:
+            return 0
+
+        case .footnote:
+            return 0
+
+        case .accessory:
+            return 0
+
+        case .caption1:
+            return 0.96
+
+        case .caption1Bolder:
+            return 0.96
+
+        case .caption2:
+            return 0
         }
     }
 }

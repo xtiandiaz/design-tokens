@@ -43,7 +43,7 @@ extension UIColor {
 }`
 
 const textStyleTemplate = (style: TextStyle) => `
-    /// ${style.fontFamily}, ${style.fontSize}, ${capitalCase(Utils.semanticWeight(style.fontWeight))}
+    /// ${style.fontFamily}, ${style.fontSize} pt, ${capitalCase(Utils.semanticWeight(style.fontWeight))}
     case ${Utils.propCase(style.name)}`
     
 const caseReturnTemplate = (_case: string, _return: string): string => `
@@ -83,6 +83,12 @@ public enum TextStyle {
     public var fontSize: CGFloat {
         switch self {
             ${styles.map(s => caseReturnTemplate(s.name, `${s.fontSize}`)).join('\n')}
+        }
+    }
+    
+    public var letterSpacing: CGFloat {
+        switch self {
+            ${styles.map(s => caseReturnTemplate(s.name, `${s.letterSpacing}`)).join('\n')}
         }
     }
 }`

@@ -2,7 +2,6 @@ import * as Figma from 'figma-js'
 import dotenv from 'dotenv'
 
 import { Color, Theme, ThemedTokens, DesignTokens, TextStyle } from './types.js'
-// import { sortBy } from 'lodash'
 
 dotenv.config()
 
@@ -25,44 +24,38 @@ function getColors(page: Figma.Canvas): Color[] {
         node.type == 'RECTANGLE' && node.fills[0].color !== undefined
     ) as Figma.Rectangle[]
     
-    // return sortBy(
-        return colorNodes.map((node) => {
-            const name = node.name
-            const color = node.fills[0].color!
-            
-            return {
-                name: name,
-                r: color.r,
-                g: color.g,
-                b: color.b,
-                a: color.a
-            }
-        })
-        .filter((color) => color != null) as Color[]
-    //     'name'
-    // )
+    return colorNodes.map((node) => {
+        const name = node.name
+        const color = node.fills[0].color!
+        
+        return {
+            name: name,
+            r: color.r,
+            g: color.g,
+            b: color.b,
+            a: color.a
+        }
+    })
+    .filter((color) => color != null) as Color[]
 }
 
 function getTextStyles(page: Figma.Canvas): TextStyle[] {
     const container = page.children[0] as Figma.Frame
     const textNodes: Figma.Text[] = container.children as Figma.Text[]
     
-    // return sortBy(
     return textNodes.map((n) => {
-            return {
-                name: n.name,
-                fontFamily: n.style.fontFamily,
-                fontPostScriptName: n.style.fontPostScriptName,
-                fontWeight: n.style.fontWeight,
-                fontSize: n.style.fontSize
-            }
-        })
-    //     'name'
-    // )
+        return {
+            name: n.name,
+            fontFamily: n.style.fontFamily,
+            fontPostScriptName: n.style.fontPostScriptName,
+            fontWeight: n.style.fontWeight,
+            fontSize: n.style.fontSize,
+            letterSpacing: n.style.letterSpacing
+        }
+    })
 }
 
 export async function exportDesignTokens(): Promise<DesignTokens> {
-    
     let themedTokensMap = new Map<Theme, ThemedTokens>()
     
     for (const theme of Object.values(Theme)) {
