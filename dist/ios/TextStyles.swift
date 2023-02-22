@@ -3,115 +3,112 @@ import UIKit
 
 public enum TextStyle {
     
-    /// SF Pro, 34, Semibold
+    /// SF Pro, 34 pt, Semibold
     case largeTitle
 
-    /// SF Pro, 34, Bold
+    /// SF Pro, 34 pt, Bold
     case largeTitleBolder
 
-    /// SF Pro Rounded, 34, Semibold
+    /// SF Pro Rounded, 34 pt, Semibold
     case largeTitleRounded
 
-    /// SF Pro Rounded, 34, Bold
+    /// SF Pro Rounded, 34 pt, Bold
     case largeTitleRoundedBolder
 
-    /// New York, 34, Bold
+    /// New York, 34 pt, Bold
     case largeTitleSerif
 
-    /// SF Pro, 28, Semibold
+    /// SF Pro, 28 pt, Semibold
     case title1
 
-    /// SF Pro, 28, Bold
+    /// SF Pro, 28 pt, Bold
     case title1Bolder
 
-    /// SF Pro Rounded, 28, Semibold
+    /// SF Pro Rounded, 28 pt, Semibold
     case title1Rounded
 
-    /// SF Pro Rounded, 28, Bold
+    /// SF Pro Rounded, 28 pt, Bold
     case title1RoundedBolder
 
-    /// New York, 28, Bold
+    /// New York, 28 pt, Bold
     case title1Serif
 
-    /// SF Pro, 22, Semibold
+    /// SF Pro, 22 pt, Semibold
     case title2
 
-    /// SF Pro, 22, Bold
+    /// SF Pro, 22 pt, Bold
     case title2Bolder
 
-    /// SF Pro Rounded, 22, Semibold
+    /// SF Pro Rounded, 22 pt, Semibold
     case title2Rounded
 
-    /// SF Pro Rounded, 22, Bold
+    /// SF Pro Rounded, 22 pt, Bold
     case title2RoundedBolder
 
-    /// New York, 22, Bold
+    /// New York, 22 pt, Bold
     case title2Serif
 
-    /// SF Pro, 20, Semibold
+    /// SF Pro, 20 pt, Semibold
     case title3
 
-    /// SF Pro, 20, Bold
+    /// SF Pro, 20 pt, Bold
     case title3Bolder
 
-    /// SF Pro Rounded, 20, Semibold
+    /// SF Pro Rounded, 20 pt, Semibold
     case title3Rounded
 
-    /// SF Pro Rounded, 20, Bold
+    /// SF Pro Rounded, 20 pt, Bold
     case title3RoundedBolder
 
-    /// New York, 20, Bold
+    /// New York, 20 pt, Bold
     case title3Serif
 
-    /// SF Pro, 17, Semibold
+    /// SF Pro, 17 pt, Semibold
     case headline
 
-    /// SF Pro, 17, Bold
+    /// SF Pro, 17 pt, Bold
     case headlineBolder
 
-    /// SF Pro Rounded, 17, Semibold
+    /// SF Pro Rounded, 17 pt, Semibold
     case headlineRounded
 
-    /// SF Pro Rounded, 17, Bold
+    /// SF Pro Rounded, 17 pt, Bold
     case headlineRoundedBolder
 
-    /// New York, 17, Bold
+    /// New York, 17 pt, Bold
     case headlineSerif
 
-    /// SF Pro, 17, Regular
+    /// SF Pro, 17 pt, Regular
     case body
 
-    /// SF Pro, 16, Regular
+    /// SF Pro, 16 pt, Regular
     case callout
 
-    /// SF Pro, 15, Semibold
+    /// SF Pro, 15 pt, Semibold
     case subhead
 
-    /// SF Pro, 15, Bold
+    /// SF Pro, 15 pt, Bold
     case subheadBolder
 
-    /// SF Pro Rounded, 15, Semibold
+    /// SF Pro Rounded, 15 pt, Semibold
     case subheadRounded
 
-    /// SF Pro Rounded, 15, Bold
+    /// SF Pro Rounded, 15 pt, Bold
     case subheadRoundedBolder
 
-    /// New York, 15, Bold
+    /// New York, 15 pt, Bold
     case subheadSerif
 
-    /// SF Pro, 13, Regular
+    /// SF Pro, 13 pt, Regular
     case footnote
 
-    /// SF Pro, 13, Bold
-    case accessory
-
-    /// SF Pro, 12, Medium
+    /// SF Pro, 12 pt, Medium
     case caption1
 
-    /// SF Pro, 12, Bold
+    /// SF Pro, 12 pt, Bold
     case caption1Bolder
 
-    /// SF Pro, 11, Medium
+    /// SF Pro, 11 pt, Medium
     case caption2
     
     public var suiFontWeight: Font.Weight {
@@ -215,9 +212,6 @@ public enum TextStyle {
 
         case .footnote:
             return .regular
-
-        case .accessory:
-            return .bold
 
         case .caption1:
             return .medium
@@ -332,9 +326,6 @@ public enum TextStyle {
         case .footnote:
             return .regular
 
-        case .accessory:
-            return .bold
-
         case .caption1:
             return .medium
 
@@ -446,9 +437,6 @@ public enum TextStyle {
             return .serif
 
         case .footnote:
-            return .`default`
-
-        case .accessory:
             return .`default`
 
         case .caption1:
@@ -564,9 +552,6 @@ public enum TextStyle {
         case .footnote:
             return .`default`
 
-        case .accessory:
-            return .`default`
-
         case .caption1:
             return .`default`
 
@@ -680,9 +665,6 @@ public enum TextStyle {
         case .footnote:
             return 13
 
-        case .accessory:
-            return 13
-
         case .caption1:
             return 12
 
@@ -794,9 +776,6 @@ public enum TextStyle {
             return 0
 
         case .footnote:
-            return 0
-
-        case .accessory:
             return 0
 
         case .caption1:
