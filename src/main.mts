@@ -1,11 +1,22 @@
 import fs from 'fs'
 import ora from 'ora'
-import generateCode from './code-generator.js'
-
-import { exportDesignTokens } from './figma.js'
+import { CodeGenerator, DesignTokens } from './types'
+import { WebGenerator } from '@generators/index'
+import { exportDesignTokens } from './figma'
 
 const distPath = './dist'
-const codePath = `${distPath}/ios`
+
+interface Platform {
+    key: string
+    codeGenerator: CodeGenerator
+}
+
+const platforms: [Platform] = [
+    {
+        key: "web",
+        codeGenerator: new WebGenerator()
+    }
+]
 
 async function main() {
     const spinner = ora().start()
@@ -13,16 +24,21 @@ async function main() {
     spinner.text = "Exporting Design Tokens..."
     
     const tokens = await exportDesignTokens()
+    fs.writeFileSync(`${distPath}/Tokens.json`, JSON.stringify(tokens, null, 4))
+    // const tokens = JSON.parse(fs.readFileSync(`${distPath}/Tokens.json`).toString()) as DesignTokens
     
-    fs.writeFileSync(`${distPath}/Tokens.json`, JSON.stringify(tokens, null, 2))
-    
-    fs.rmdirSync(codePath, { recursive: true })
-    fs.mkdirSync(codePath, { recursive: true })
-    generateCode(codePath, tokens)
+    platforms.forEach((p) => {
+        const codePath = `${distPath}/${p.key}`
+        if (fs.existsSync(codePath)) {
+            fs.rmSync(codePath, { recursive: true })
+        }
+        fs.mkdirSync(codePath, { recursive: true })
+        p.codeGenerator.generateCode(codePath, tokens)
+    })
     
     spinner.stop()
     
-    console.log('Done.')
+    console.log('Done!')
 }
 
 main()

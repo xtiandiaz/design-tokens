@@ -1,7 +1,7 @@
 import * as Figma from 'figma-js'
 import dotenv from 'dotenv'
-
-import { Color, Theme, ThemedTokens, DesignTokens, TextStyle } from './types.js'
+import { Color, Scheme, DesignTokens, TextStyle } from './types.js'
+import { hexColorCode } from './utils.js'
 
 dotenv.config()
 
@@ -9,11 +9,7 @@ const figma = Figma.Client({
     personalAccessToken: process.env.FIGMA_ACCESS_TOKEN
 })
 
-const commonSource = '2djm4eAbMYvfLqQnO8lq6E'
-const themeSources: Record<Theme, string> = {
-    light: '2ngEslhcEbOrKpywQNH1PU',
-    dark: 'U6Z4zJzenb99Y0GWXOUcJS'
-}
+const commonSource = 'WUrutabd5gfdgcTm0OOghB'
 
 function getPage(name: string, pages: Figma.Canvas[]): Figma.Canvas | undefined {
     return pages.find((page) => page.name === name)
@@ -25,11 +21,17 @@ function getColors(page: Figma.Canvas): Color[] {
     ) as Figma.Rectangle[]
     
     return colorNodes.map((node) => {
-        const name = node.name
+        const namingRegExp = new RegExp(/\[([Ll]ight|[Dd]ark)\] ?([\w ]+)/g)
+        const nameParts = [...namingRegExp.exec(node.name)!]
+        const scheme = <Scheme> nameParts[1].toLowerCase()
+        const colorName = nameParts[2].toLowerCase()
         const color = node.fills[0].color!
+        const hexCode = hexColorCode(color.r, color.g, color.b)
         
         return {
-            name: name,
+            scheme: scheme,
+            name: colorName,
+            hexCode: hexCode,
             r: color.r,
             g: color.g,
             b: color.b,
@@ -56,24 +58,17 @@ function getTextStyles(page: Figma.Canvas): TextStyle[] {
 }
 
 export async function exportDesignTokens(): Promise<DesignTokens> {
-    let themedTokensMap = new Map<Theme, ThemedTokens>()
+    // let themedTokensMap = new Map<Theme, ThemedTokens>()
+    const file = await figma.file(commonSource)
+    const pages = file.data.document.children as Figma.Canvas[]
+    const colors = getColors(getPage('Colors', pages)!)
     
-    for (const theme of Object.values(Theme)) {
-        const file = await figma.file(themeSources[theme])
-        const pages = file.data.document.children as Figma.Canvas[]
-        const colors = getColors(getPage('Colors', pages)!)
-        
-        themedTokensMap.set(theme, {
-            theme,
-            colors: colors
-        })
-    }
-    
-    const commons = (await figma.file(commonSource)).data.document.children as Figma.Canvas[]
-    const textStyles = getTextStyles(getPage('Typography', commons)!)
+    // const commons = (await figma.file(commonSource)).data.document.children as Figma.Canvas[]
+    // const textStyles = getTextStyles(getPage('Typography', commons)!)
     
     return {
-        themed: Array.from(themedTokensMap.values()),
-        textStyles: textStyles
+        colors: colors,
+        // themed: Array.from(themedTokensMap.values()),
+        textStyles: []
     }
 }

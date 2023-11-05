@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "ES2015",
     "module": "ESNext",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
-    "lib": ["ESNext", "DOM"]
+    "paths": {
+      "@generators/*": ["./src/code-generators/*"],
+    }
   },
-  "include": ["src/*.ts", "src/*.mts"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/*.mts"],
+  "exclude": ["node_modules"],
 }

@@ -3,17 +3,19 @@ export enum Theme {
     Dark = 'dark'
 }
 
+export enum Scheme {
+    Light = 'light',
+    Dark = 'dark'
+}
+
 export interface Color {
     name: string
+    scheme: Scheme
+    hexCode: string
     r: number
     g: number
     b: number
     a: number
-}
-
-export interface AdaptiveColor {
-    lightMode: Color
-    darkMode: Color
 }
 
 export interface TextStyle {
@@ -25,12 +27,12 @@ export interface TextStyle {
     letterSpacing: number
 }
 
-export interface ThemedTokens {
-    theme: Theme
+export interface DesignTokens {
+    // themed: ThemedTokens[]
     colors: Color[]
+    textStyles: TextStyle[]
 }
 
-export interface DesignTokens {
-    themed: ThemedTokens[]
-    textStyles: TextStyle[]
+export interface CodeGenerator {    
+    generateCode(path: string, tokens: DesignTokens): void
 }
