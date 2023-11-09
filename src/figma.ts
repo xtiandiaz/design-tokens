@@ -1,15 +1,13 @@
 import * as Figma from 'figma-js'
 import dotenv from 'dotenv'
-import { Color, Scheme, DesignTokens, TextStyle } from './types.js'
-import { hexColorCode } from './utils.js'
+import { Color, Scheme, DesignTokens, TextStyle } from './types'
+import * as utils from './utils/web-utils'
 
 dotenv.config()
 
 const figma = Figma.Client({
     personalAccessToken: process.env.FIGMA_ACCESS_TOKEN
 })
-
-const commonSource = 'WUrutabd5gfdgcTm0OOghB'
 
 function getPage(name: string, pages: Figma.Canvas[]): Figma.Canvas | undefined {
     return pages.find((page) => page.name === name)
@@ -26,7 +24,7 @@ function getColors(page: Figma.Canvas): Color[] {
         const scheme = <Scheme> nameParts[1].toLowerCase()
         const colorName = nameParts[2].toLowerCase()
         const color = node.fills[0].color!
-        const hexCode = hexColorCode(color.r, color.g, color.b)
+        const hexCode = utils.hexColorCode(color.r, color.g, color.b)
         
         return {
             scheme: scheme,
@@ -41,34 +39,37 @@ function getColors(page: Figma.Canvas): Color[] {
     .filter((color) => color != null) as Color[]
 }
 
-function getTextStyles(page: Figma.Canvas): TextStyle[] {
-    const container = page.children[0] as Figma.Frame
-    const textNodes: Figma.Text[] = container.children as Figma.Text[]
+function getTypography(page: Figma.Canvas): TextStyle[] {
+    const textNodes: Figma.Text[] = page.children as Figma.Text[]
     
     return textNodes.map((n) => {
+        const figmaFontFamily = n.style.fontFamily
+        const fontWeight = n.style.fontWeight
+        const isItalic = n.style.italic ?? false
+        
         return {
-            name: n.name,
-            fontFamily: n.style.fontFamily,
-            fontPostScriptName: n.style.fontPostScriptName,
-            fontWeight: n.style.fontWeight,
+            key: n.name.toLowerCase(),
+            fontFamily: utils.fontFamily(figmaFontFamily, fontWeight, isItalic),
+            fontPostScriptName: utils.fontPostScriptName(figmaFontFamily, fontWeight, isItalic),
+            fontWeight,
             fontSize: n.style.fontSize,
-            letterSpacing: n.style.letterSpacing
+            letterSpacing: n.style.letterSpacing,
+            lineHeight: n.style.lineHeightPercent,
+            textCase: n.style.textCase,
+            isItalic: isItalic
         }
     })
 }
 
 export async function exportDesignTokens(): Promise<DesignTokens> {
-    // let themedTokensMap = new Map<Theme, ThemedTokens>()
-    const file = await figma.file(commonSource)
+    const file = await figma.file('WUrutabd5gfdgcTm0OOghB')
     const pages = file.data.document.children as Figma.Canvas[]
-    const colors = getColors(getPage('Colors', pages)!)
     
-    // const commons = (await figma.file(commonSource)).data.document.children as Figma.Canvas[]
-    // const textStyles = getTextStyles(getPage('Typography', commons)!)
+    const colors = getColors(getPage('Colors', pages)!)
+    const textStyles = getTypography(getPage('Typography', pages)!)
     
     return {
         colors: colors,
-        // themed: Array.from(themedTokensMap.values()),
-        textStyles: []
+        typography: textStyles
     }
 }

@@ -7,7 +7,7 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "paths": {
-      "@generators/*": ["./src/code-generators/*"],
+      "@generators/*": ["./src/assets-generators/*"],
     }
   },
   "include": ["src/**/*.ts", "src/*.mts"],

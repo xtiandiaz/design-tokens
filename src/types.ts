@@ -18,21 +18,34 @@ export interface Color {
     a: number
 }
 
+export interface Font {
+    fileName: string
+    data: Buffer
+}
+
+export interface FontFace {
+    family: string
+    fileName: string
+}
+
 export interface TextStyle {
-    name: string
+    key: string
     fontFamily: string
     fontPostScriptName: string
     fontWeight: number
     fontSize: number
     letterSpacing: number
+    lineHeight: number
+    textCase?: string
+    isItalic: boolean
 }
 
 export interface DesignTokens {
     // themed: ThemedTokens[]
     colors: Color[]
-    textStyles: TextStyle[]
+    typography: TextStyle[]
 }
 
-export interface CodeGenerator {    
-    generateCode(path: string, tokens: DesignTokens): void
+export interface Resources {
+    fonts: Font[]
 }

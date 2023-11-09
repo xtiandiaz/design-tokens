@@ -1,4 +1,5 @@
-import { Color } from '../types'
+import { Color, TextStyle, FontFace } from '../types'
+import * as utils from '../utils/web-utils'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, camelCase, capitalCase } from 'change-case'
 
@@ -43,4 +44,66 @@ ${colors.map(c => color(c)).join('\n')}
     return `${Object.entries(groupedColors)
         .map(([scheme, colors]) => schemeColors(scheme, colors))
         .join('\n\n')}`
+}
+
+// $heading-font: '${headingFont}', sans-serif;
+const typographyVars = (headingFont: string, bodyFont: string, emojiFont: string) =>
+`$body-font: '${bodyFont}', sans-serif;
+$emoji-font: '${emojiFont}', sans-serif;
+`
+
+const fontFace = (face: FontFace, path: string) => 
+`@font-face {
+    font-family: '${face.family}';
+    src: url('${path}/${face.fileName}') format('truetype');
+}
+`
+
+const elementStyling = (style: TextStyle, asClass: boolean) => 
+`${asClass ? '.' : ''}${style.key} {
+    font-family: '${style.fontFamily}', sans-serif;
+    font-size: ${utils.toEm(style.fontSize)};
+    font-weight: ${style.fontWeight};
+    letter-spacing: ${utils.toEm(style.letterSpacing)};
+    line-height: ${Math.ceil(style.lineHeight)}%;
+    text-transform: ${utils.textTransform(style.textCase)};
+}
+`
+
+const weightStyling = (style: TextStyle) =>
+`${style.key} {
+    font-family: '${style.fontFamily}', sans-serif;
+    font-weight: ${style.fontWeight};
+}
+`
+
+const italicStyling = (style: TextStyle, asClass: boolean) =>
+`${asClass ? '.' : ''}${style.key} {
+    font-family: '${style.fontFamily}', sans-serif;
+    font-style: italic;
+}
+`
+
+export function typographySCSS(textStyles: TextStyle[], fontsPath: string): string {
+    const elementStyleKeys = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body']
+    const weightStyleKeys = ['strong']
+    const classStyleKeys = ['footnote', 'caption', 'emoji']
+    const italicStyleKeys = ['italic']
+
+    const elementStyles = textStyles.filter(ts => elementStyleKeys.includes(ts.key))
+    const weightStyles = textStyles.filter(ts => weightStyleKeys.includes(ts.key))
+    const classStyles = textStyles.filter(ts => classStyleKeys.includes(ts.key))
+    const italicStyles = textStyles.filter(ts => italicStyleKeys.includes(ts.key))
+    
+    const headingFont = textStyles.find(ts => ts.key == 'h1')!.fontFamily
+    const bodyFont = textStyles.find(ts => ts.key == 'body')!.fontFamily
+    const emojiFont = textStyles.find(ts => ts.key == 'emoji')!.fontFamily
+    
+    return `${typographyVars(headingFont, bodyFont, emojiFont)}
+${utils.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
+${elementStyles.map(es => elementStyling(es, false)).join('\n')}
+${weightStyles.map(ws => weightStyling(ws)).join('\n')}
+${italicStyles.map(is => italicStyling(is, true)).join('\n')}
+${classStyles.map(cs => elementStyling(cs, true)).join('\n')}
+`
 }
