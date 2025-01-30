@@ -45,7 +45,8 @@ ${colors.map(c => color(c)).join('\n')}
 
   return `${warningComment}${Object.entries(groupedColors)
     .map(([scheme, colors]) => schemeColors(scheme, colors))
-    .join('\n\n')}`
+    .join('\n\n')}
+`
 }
 
 // const typographyVars = (headingFont: string, bodyFont: string) =>
