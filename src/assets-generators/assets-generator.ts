@@ -5,16 +5,12 @@ import { exit } from 'process'
 export default abstract class AssetsGenerator {
   abstract generateCode(tokens: DesignTokens, path: string): void
   
-  prepareAssets(tokens: DesignTokens, path: string): Assets {
-    const fonts = this.prepareFonts(tokens.typography, path)
-    
-    return {
+  generateAssets(tokens: DesignTokens, resourcesPath: string, destinationPath: string): void {
+    const fonts = this.prepareFonts(tokens.typography, resourcesPath)
+    const assets: Assets = {
       fonts
     }
-  }
-  
-  generateAssets(assets: Assets, path: string): void {
-    this.generateFonts(assets.fonts, `${path}/fonts`)
+    this.generateFonts(assets.fonts, `${destinationPath}/fonts`)
   }
   
   private prepareFonts(textStyles: TextStyle[], path: string): Font[] {

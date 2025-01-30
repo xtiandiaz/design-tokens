@@ -37,8 +37,7 @@ async function main() {
     fs.mkdirSync(pPath, { recursive: true })
     
     p.generator.generateCode(tokens, pPath)
-    const resources = p.generator.prepareAssets(tokens, resourcesPath)
-    p.generator.generateAssets(resources, `${pPath}/assets`)
+    p.generator.generateAssets(tokens, resourcesPath, `${pPath}/assets`)
   }
   
   spinner.stop()
