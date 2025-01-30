@@ -7,14 +7,14 @@ const warningComment = '/* File automatically generated; DO NOT edit! */\n\n'
 
 export const schemingSCSS = `${warningComment}@use 'color';
 
-@mixin scheme($property, $color) {
-  $lightSchemeColors: map-get(colors.$schemedColors, 'light');
-  $darkSchemeColors: map-get(colors.$schemedColors, 'dark');
+@mixin scheme($attribute, $color) {
+  $lightSchemeColors: map-get(color.$schemedColors, 'light');
+  $darkSchemeColors: map-get(color.$schemedColors, 'dark');
   
-  #{$property}: map-get($lightSchemeColors, $color);
+  #{$attribute}: map-get($lightSchemeColors, $color);
   
   @media (prefers-color-scheme: dark) {
-    #{$property}: map-get($darkSchemeColors, $color);
+    #{$attribute}: map-get($darkSchemeColors, $color);
   }
 };
 `
