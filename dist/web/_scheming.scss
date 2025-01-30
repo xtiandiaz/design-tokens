@@ -1,12 +1,12 @@
 @use 'colors';
 
 @mixin scheme($property, $color) {
-    $lightSchemeColors: map-get(colors.$schemedColors, 'light');
-    $darkSchemeColors: map-get(colors.$schemedColors, 'dark');
-    
-    #{$property}: map-get($lightSchemeColors, $color);
-    
-    @media (prefers-color-scheme: dark) {
-        #{$property}: map-get($darkSchemeColors, $color);
-    }
+  $lightSchemeColors: map-get(colors.$schemedColors, 'light');
+  $darkSchemeColors: map-get(colors.$schemedColors, 'dark');
+  
+  #{$property}: map-get($lightSchemeColors, $color);
+  
+  @media (prefers-color-scheme: dark) {
+    #{$property}: map-get($darkSchemeColors, $color);
+  }
 };

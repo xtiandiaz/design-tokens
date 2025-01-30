@@ -1,138 +1,120 @@
-$body-font: 'Inter Regular', sans-serif;
-$emoji-font: 'Noto Color Emoji Regular', sans-serif;
-
 @font-face {
-    font-family: 'Noto Color Emoji Regular';
-    src: url('./resources/fonts/NotoColorEmoji-Regular.ttf') format('truetype');
+  font-family: 'Inter SemiBold';
+  src: url('./resources/fonts/Inter-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Poppins SemiBold';
-    src: url('./resources/fonts/Poppins-SemiBold.ttf') format('truetype');
+  font-family: 'Inter Regular';
+  src: url('./resources/fonts/Inter-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Inter Regular';
-    src: url('./resources/fonts/Inter-Regular.ttf') format('truetype');
+  font-family: 'Inter Italic';
+  src: url('./resources/fonts/Inter-Italic.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Inter SemiBold';
-    src: url('./resources/fonts/Inter-SemiBold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Inter Italic';
-    src: url('./resources/fonts/Inter-Italic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Poppins Medium';
-    src: url('./resources/fonts/Poppins-Medium.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Poppins Regular';
-    src: url('./resources/fonts/Poppins-Regular.ttf') format('truetype');
-}
-
-body {
-    font-family: 'Inter Regular', sans-serif;
-    font-size: 1.000em;
-    font-weight: 400;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
-}
-
-h6 {
-    font-family: 'Poppins SemiBold', sans-serif;
-    font-size: 1.000em;
-    font-weight: 600;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
-}
-
-h5 {
-    font-family: 'Poppins SemiBold', sans-serif;
-    font-size: 1.125em;
-    font-weight: 600;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
-}
-
-h4 {
-    font-family: 'Poppins SemiBold', sans-serif;
-    font-size: 1.250em;
-    font-weight: 600;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
-}
-
-h3 {
-    font-family: 'Poppins SemiBold', sans-serif;
-    font-size: 1.500em;
-    font-weight: 600;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
-}
-
-h2 {
-    font-family: 'Poppins Medium', sans-serif;
-    font-size: 2.000em;
-    font-weight: 500;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
+  font-family: 'Inter Medium';
+  src: url('./resources/fonts/Inter-Medium.ttf') format('truetype');
 }
 
 h1 {
-    font-family: 'Poppins Regular', sans-serif;
-    font-size: 3.000em;
-    font-weight: 400;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
+  font-family: 'Inter SemiBold', sans-serif;
+  font-size: 3.000em;
+  font-weight: 600;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h2 {
+  font-family: 'Inter SemiBold', sans-serif;
+  font-size: 2.500em;
+  font-weight: 600;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h3 {
+  font-family: 'Inter SemiBold', sans-serif;
+  font-size: 2.000em;
+  font-weight: 600;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h4 {
+  font-family: 'Inter SemiBold', sans-serif;
+  font-size: 1.750em;
+  font-weight: 600;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h5 {
+  font-family: 'Inter SemiBold', sans-serif;
+  font-size: 1.500em;
+  font-weight: 600;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h6 {
+  font-family: 'Inter SemiBold', sans-serif;
+  font-size: 1.250em;
+  font-weight: 600;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+body {
+  font-family: 'Inter Regular', sans-serif;
+  font-size: 1.000em;
+  font-weight: 400;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
 }
 
 strong {
-    font-family: 'Inter SemiBold', sans-serif;
-    font-weight: 600;
+  font-family: 'Inter SemiBold', sans-serif;
+  font-weight: 600;
 }
 
 .italic {
-    font-family: 'Inter Italic', sans-serif;
-    font-style: italic;
-}
-
-.emoji {
-    font-family: 'Noto Color Emoji Regular', sans-serif;
-    font-size: 0.750em;
-    font-weight: 400;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
-}
-
-.caption {
-    font-family: 'Poppins SemiBold', sans-serif;
-    font-size: 0.750em;
-    font-weight: 600;
-    letter-spacing: 0.075em;
-    line-height: 100%;
-    text-transform: uppercase;
+  font-family: 'Inter Italic', sans-serif;
+  font-style: italic;
 }
 
 .footnote {
-    font-family: 'Inter Regular', sans-serif;
-    font-size: 0.813em;
-    font-weight: 400;
-    letter-spacing: 0.000em;
-    line-height: 100%;
-    text-transform: none;
+  font-family: 'Inter Regular', sans-serif;
+  font-size: 0.813em;
+  font-weight: 400;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+.caption {
+  font-family: 'Inter Medium', sans-serif;
+  font-size: 0.750em;
+  font-weight: 500;
+  letter-spacing: 0.000em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+.caption .all-caps {
+  font-family: 'Inter Medium', sans-serif;
+  font-size: 0.750em;
+  font-weight: 500;
+  letter-spacing: 0.038em;
+  line-height: 100%;
+  text-transform: uppercase;
 }
 
