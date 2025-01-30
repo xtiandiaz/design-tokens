@@ -5,7 +5,7 @@ import { kebabCase, camelCase, capitalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */\n\n'
 
-export const schemingSCSS = `${warningComment}@use 'colors';
+export const schemingSCSS = `${warningComment}@use 'color';
 
 @mixin scheme($property, $color) {
   $lightSchemeColors: map-get(colors.$schemedColors, 'light');
