@@ -3,7 +3,9 @@ import * as utils from '../utils/web-utils'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, camelCase, capitalCase } from 'change-case'
 
-export const schemingSCSS = `@use 'colors';
+const warningComment = '/* File automatically generated; DO NOT edit! */\n\n'
+
+export const schemingSCSS = `${warningComment}@use 'colors';
 
 @mixin scheme($property, $color) {
   $lightSchemeColors: map-get(colors.$schemedColors, 'light');
@@ -19,13 +21,13 @@ export const schemingSCSS = `@use 'colors';
 
 export function schemedColorsSCSS(colors: Color[]): string {
   const groupedColors = groupBy(colors, (c) => c.scheme)
-  const color = (color: Color) => `        '${kebabCase(color.name)}': #${color.hexCode},`
+  const color = (color: Color) => `    '${kebabCase(color.name)}': #${color.hexCode},`
   const schemeColors = (scheme: string, colors: Color[]) => 
 `  '${scheme}': (
 ${colors.map(c => color(c)).join('\n')}
   ),`
     
-  return `$schemedColors: (
+  return `${warningComment}$schemedColors: (
 ${Object.entries(groupedColors)
   .map(([scheme, colors]) => schemeColors(scheme, colors))
   .join('\n')}
@@ -37,7 +39,7 @@ export function schemedColorsTS(colors: Color[]): string {
   const groupedColors = groupBy(colors, (c) => c.scheme)
   const color = (color: Color) => `   ${camelCase(color.name)} = 0x${color.hexCode},`
   const schemeColors = (scheme: string, colors: Color[]) => 
-`export enum ${capitalCase(scheme)}SchemeColor {
+`${warningComment}export enum ${capitalCase(scheme)}SchemeColor {
 ${colors.map(c => color(c)).join('\n')}
 }`
 
@@ -100,7 +102,7 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
   // const bodyFont = textStyles.find(ts => ts.key == 'body')!.fontFamily
   // ${typographyVars(headingFont, bodyFont)}
   
-  return `${utils.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
+  return `${warningComment}${utils.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
 ${elementStyles.map(es => elementStyling(es, false)).join('\n')}
 ${weightStyles.map(ws => weightStyling(ws)).join('\n')}
 ${italicStyles.map(is => italicStyling(is, true)).join('\n')}

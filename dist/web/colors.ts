@@ -1,3 +1,5 @@
+/* File automatically generated; DO NOT edit! */
+
 export enum DarkSchemeColor {
    yinyang = 0xE0E4EB,
    indigo = 0x667FFF,
@@ -18,6 +20,8 @@ export enum DarkSchemeColor {
    secondaryBackground = 0x0A0C0F,
    background = 0x1F242E,
 }
+
+/* File automatically generated; DO NOT edit! */
 
 export enum LightSchemeColor {
    yinyang = 0x29303D,
