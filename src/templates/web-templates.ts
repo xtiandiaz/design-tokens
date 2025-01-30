@@ -37,13 +37,13 @@ ${Object.entries(groupedColors)
 
 export function schemedColorsTS(colors: Color[]): string {
   const groupedColors = groupBy(colors, (c) => c.scheme)
-  const color = (color: Color) => `   ${camelCase(color.name)} = 0x${color.hexCode},`
+  const color = (color: Color) => `  ${camelCase(color.name)} = 0x${color.hexCode},`
   const schemeColors = (scheme: string, colors: Color[]) => 
-`${warningComment}export enum ${capitalCase(scheme)}SchemeColor {
+`export enum ${capitalCase(scheme)}SchemeColor {
 ${colors.map(c => color(c)).join('\n')}
 }`
 
-  return `${Object.entries(groupedColors)
+  return `${warningComment}${Object.entries(groupedColors)
     .map(([scheme, colors]) => schemeColors(scheme, colors))
     .join('\n\n')}`
 }
