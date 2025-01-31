@@ -1,20 +1,22 @@
 import { Color, TextStyle, FontFace } from '../types'
 import * as utils from '../utils/web-utils'
 import groupBy from 'lodash/groupBy'
-import { kebabCase, camelCase, pascalCase } from 'change-case'
+import { kebabCase, pascalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */'
 
-export const schemingSCSS = `${warningComment}@use 'color';
+export const mixinsSCSS = `${warningComment}
 
-@mixin scheme($attribute, $color) {
+@use 'color';
+
+@mixin colorAttribute($attributeName, $colorKey) {
   $lightSchemeColors: map-get(color.$schemeColors, 'light');
   $darkSchemeColors: map-get(color.$schemeColors, 'dark');
   
-  #{$attribute}: map-get($lightSchemeColors, $color);
+  #{$attributeName}: map-get($lightSchemeColors, $colorKey);
   
   @media (prefers-color-scheme: dark) {
-    #{$attribute}: map-get($darkSchemeColors, $color);
+    #{$attributeName}: map-get($darkSchemeColors, $colorKey);
   }
 };
 `
