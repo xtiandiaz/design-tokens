@@ -34,7 +34,7 @@ export function fontFaces(textStyles: TextStyle[]): FontFace[] {
   ).map(ts => {
     return {
       family: ts.fontFamily,
-      fileName: `${ts.fontPostScriptName}.ttf`
+      fileName: `${ts.fontPostScriptName}.woff2`
     }
   })
 }
