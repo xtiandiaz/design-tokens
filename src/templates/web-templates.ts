@@ -50,7 +50,7 @@ export enum ColorKey {
 ${groupedColors['light'].map(c => `  ${pascalCase(c.name)},`).join('\n')}
 }
 
-export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
+export const valueForScheme = (scheme: ColorScheme, colorKey: ColorKey): number => {
   switch(scheme) {
   ${Object.keys(groupedColors)
     .map(sk => {
@@ -65,13 +65,15 @@ ${groupedColors[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: retur
 }
 
 const mediaQueryToMatch = '(prefers-color-scheme: dark)'
-const colorSchemeIfMatches = (matches: boolean) => matches ? ColorScheme.Dark : ColorScheme.Light
+const colorScheme = (matchesQuery: boolean) => matchesQuery ? ColorScheme.Dark : ColorScheme.Light
 
-export let colorScheme: ColorScheme = colorSchemeIfMatches(window.matchMedia(mediaQueryToMatch).matches)
+export let currentColorScheme: ColorScheme = colorScheme(window.matchMedia(mediaQueryToMatch).matches)
 
 window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
-   colorScheme = colorSchemeIfMatches(e.matches)
+   currentColorScheme = colorScheme(e.matches)
 })
+   
+export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
 `
 }
 
