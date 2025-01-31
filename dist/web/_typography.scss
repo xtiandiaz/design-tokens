@@ -2,22 +2,22 @@
   
 @font-face {
   font-family: 'Inter Medium';
-  src: url('./resources/fonts/Inter-Medium.woff2') format('woff2');
+  src: local('Inter Medium'), url('./resources/fonts/Inter-Medium.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Regular';
-  src: url('./resources/fonts/Inter-Regular.woff2') format('woff2');
+  src: local('Inter Regular'), url('./resources/fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Italic';
-  src: url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+  src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter SemiBold';
-  src: url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
+  src: local('Inter SemiBold'), url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
 h1 {
