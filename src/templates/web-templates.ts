@@ -87,7 +87,7 @@ export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
 const fontFace = (face: FontFace, path: string) => 
 `@font-face {
   font-family: '${face.family}';
-  src: url('${path}/${face.fileName}') format('truetype');
+  src: url('${path}/${face.fileName}') format('woff2');
 }
 `
 
