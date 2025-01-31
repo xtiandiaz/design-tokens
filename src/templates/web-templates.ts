@@ -1,15 +1,15 @@
 import { Color, TextStyle, FontFace } from '../types'
 import * as utils from '../utils/web-utils'
 import groupBy from 'lodash/groupBy'
-import { kebabCase, camelCase, capitalCase } from 'change-case'
+import { kebabCase, camelCase, pascalCase } from 'change-case'
 
-const warningComment = '/* File automatically generated; DO NOT edit! */\n\n'
+const warningComment = '/* File automatically generated; DO NOT edit! */'
 
 export const schemingSCSS = `${warningComment}@use 'color';
 
 @mixin scheme($attribute, $color) {
-  $lightSchemeColors: map-get(color.$schemedColors, 'light');
-  $darkSchemeColors: map-get(color.$schemedColors, 'dark');
+  $lightSchemeColors: map-get(color.$schemeColors, 'light');
+  $darkSchemeColors: map-get(color.$schemeColors, 'dark');
   
   #{$attribute}: map-get($lightSchemeColors, $color);
   
@@ -26,8 +26,10 @@ export function schemedColorsSCSS(colors: Color[]): string {
 `  '${scheme}': (
 ${colors.map(c => color(c)).join('\n')}
   ),`
-    
-  return `${warningComment}$schemedColors: (
+  
+  return `${warningComment}
+
+$schemeColors: (
 ${Object.entries(groupedColors)
   .map(([scheme, colors]) => schemeColors(scheme, colors))
   .join('\n')}
@@ -37,15 +39,39 @@ ${Object.entries(groupedColors)
 
 export function schemedColorsTS(colors: Color[]): string {
   const groupedColors = groupBy(colors, (c) => c.scheme)
-  const color = (color: Color) => `  ${camelCase(color.name)} = 0x${color.hexCode},`
-  const schemeColors = (scheme: string, colors: Color[]) => 
-`export enum ${capitalCase(scheme)}SchemeColor {
-${colors.map(c => color(c)).join('\n')}
-}`
 
-  return `${warningComment}${Object.entries(groupedColors)
-    .map(([scheme, colors]) => schemeColors(scheme, colors))
-    .join('\n\n')}
+  return `${warningComment}
+
+export enum ColorScheme {
+${Object.keys(groupedColors).map(sk => `  ${pascalCase(sk)},`).join('\n')}
+}
+
+export enum ColorKey {
+${groupedColors['light'].map(c => `  ${pascalCase(c.name)},`).join('\n')}
+}
+
+export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
+  switch(scheme) {
+  ${Object.keys(groupedColors)
+    .map(sk => {
+      return `  case ColorScheme.${pascalCase(sk)}:
+      switch(colorKey) {
+${groupedColors[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: return 0x${c.hexCode}`).join('\n')} 
+      }
+    `
+    })
+    .join('')}
+  }
+}
+
+const mediaQueryToMatch = '(prefers-color-scheme: dark)'
+const colorSchemeIfMatches = (matches: boolean) => matches ? ColorScheme.Dark : ColorScheme.Light
+
+export let colorScheme: ColorScheme = colorSchemeIfMatches(window.matchMedia(mediaQueryToMatch).matches)
+
+window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
+   colorScheme = colorSchemeIfMatches(e.matches)
+})
 `
 }
 
@@ -103,7 +129,9 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
   // const bodyFont = textStyles.find(ts => ts.key == 'body')!.fontFamily
   // ${typographyVars(headingFont, bodyFont)}
   
-  return `${warningComment}${utils.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
+  return `${warningComment}
+  
+${utils.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
 ${elementStyles.map(es => elementStyling(es, false)).join('\n')}
 ${weightStyles.map(ws => weightStyling(ws)).join('\n')}
 ${italicStyles.map(is => italicStyling(is, true)).join('\n')}
