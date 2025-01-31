@@ -1,7 +1,7 @@
 import { Color, TextStyle, FontFace } from '../types'
 import * as utils from '../utils/web-utils'
 import groupBy from 'lodash/groupBy'
-import { kebabCase, pascalCase } from 'change-case'
+import { kebabCase, pascalCase, capitalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */'
 
@@ -87,7 +87,7 @@ export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
 const fontFace = (face: FontFace, path: string) => 
 `@font-face {
   font-family: '${face.family}';
-  src: local('${face.family}'), url('${path}/${face.fileName}') format('woff2');
+  src: local('${capitalCase(face.family)}'), url('${path}/${face.fileName}') format('woff2');
 }
 `
 
