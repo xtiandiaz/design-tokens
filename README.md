@@ -21,7 +21,7 @@ These are my only focus nowadays, and will keep on refining them and adding more
 
 ## Licenses
 
-As of the custom design tokens and their generators, use at your own wish and risk under the [MIT License]("./LICENSE").
+As of the custom design tokens and their generators, use at your own wish and risk under the [MIT License](LICENSE).
 
 ### Resources
 
