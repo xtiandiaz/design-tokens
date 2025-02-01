@@ -65,6 +65,6 @@ export function textTransform(textCase?: string): string {
 }
 
 export const classCase = (input: string, shouldPrefix: boolean = true) => {
-  const convertedText = input.toLowerCase().replace(/ /g, _ => ' .')
+  const convertedText = input.toLowerCase().replace(/ /g, _ => '.')
   return shouldPrefix ? `.${convertedText}` : convertedText
 }

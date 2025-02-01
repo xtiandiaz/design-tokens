@@ -49,7 +49,7 @@ h1 {
   text-transform: none;
 }
 
-h1 .serif {
+h1.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 4.5em;
   font-weight: 500;
@@ -67,7 +67,7 @@ h2 {
   text-transform: none;
 }
 
-h2 .serif {
+h2.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 4em;
   font-weight: 500;
@@ -85,7 +85,7 @@ h3 {
   text-transform: none;
 }
 
-h3 .serif {
+h3.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 3.5em;
   font-weight: 500;
@@ -103,7 +103,7 @@ h4 {
   text-transform: none;
 }
 
-h4 .serif {
+h4.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 3em;
   font-weight: 500;
@@ -121,7 +121,7 @@ h5 {
   text-transform: none;
 }
 
-h5 .serif {
+h5.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 2.5em;
   font-weight: 500;
@@ -139,7 +139,7 @@ h6 {
   text-transform: none;
 }
 
-h6 .serif {
+h6.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 2em;
   font-weight: 500;
@@ -157,7 +157,7 @@ body {
   text-transform: none;
 }
 
-body .serif {
+body.serif {
   font-family: 'Crimson Pro Regular', sans-serif;
   font-size: 1.25em;
   font-weight: 400;
@@ -175,7 +175,7 @@ strong {
   text-transform: none;
 }
 
-strong .serif {
+strong.serif {
   font-family: 'Crimson Pro SemiBold', sans-serif;
   font-size: 1.25em;
   font-weight: 600;
@@ -193,7 +193,7 @@ strong .serif {
   text-transform: none;
 }
 
-.italic .serif {
+.italic.serif {
   font-family: 'Crimson Pro Italic', sans-serif;
   font-size: 1.25em;
   font-weight: 400;
@@ -220,7 +220,7 @@ strong .serif {
   text-transform: none;
 }
 
-.caption .all-caps {
+.caption.all-caps {
   font-family: 'Inter Medium', sans-serif;
   font-size: 0.75em;
   font-weight: 500;
