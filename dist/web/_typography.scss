@@ -157,15 +157,6 @@ body {
   text-transform: none;
 }
 
-body.serif {
-  font-family: 'Crimson Pro Regular', sans-serif;
-  font-size: 1.25em;
-  font-weight: 400;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
-}
-
 strong {
   font-family: 'Inter SemiBold', sans-serif;
   font-size: 1em;
@@ -195,6 +186,15 @@ strong.serif {
 
 .italic.serif {
   font-family: 'Crimson Pro Italic', sans-serif;
+  font-size: 1.25em;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+.serif {
+  font-family: 'Crimson Pro Regular', sans-serif;
   font-size: 1.25em;
   font-weight: 400;
   letter-spacing: 0em;

@@ -115,9 +115,10 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
     { key: 'h4', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
     { key: 'h5', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
     { key: 'h6', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
-    { key: 'body', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'body', variants: [], selectorType: TextStyleSelectorType.Element },
     { key: 'strong', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
     { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class },
+    { key: 'serif', variants: [], selectorType: TextStyleSelectorType.Class },
     { key: 'footnote', variants: [], selectorType: TextStyleSelectorType.Class },
     { key: 'caption', variants: ['all-caps'], selectorType: TextStyleSelectorType.Class },
   ]
@@ -131,12 +132,12 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
   
   for (const target of targetRules) {
     for (const variant of ['', ...target.variants]) {
-      const targetKey = variant.length > 0 ? `${target.key} ${variant}` : target.key
-      const textStyle = textStyles.find(ts => ts.key === targetKey)
+      const styleKey = variant.length > 0 ? `${target.key} ${variant}` : target.key
+      const textStyle = textStyles.find(ts => ts.key === styleKey)
       if (textStyle === undefined) 
         continue
       
-      const selector = UTILS.classCase(targetKey, target.selectorType === TextStyleSelectorType.Class)
+      const selector = UTILS.classCase(styleKey, target.selectorType === TextStyleSelectorType.Class)
       rules.push({ selector: selector, textStyle: textStyle})
     }
   }
