@@ -1,5 +1,5 @@
+import * as UTILS from '../utils/web-utils'
 import { Color, TextStyle, FontFace } from '../types'
-import * as utils from '../utils/web-utils'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, pascalCase, capitalCase } from 'change-case'
 
@@ -79,11 +79,6 @@ export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
 `
 }
 
-// const typographyVars = (headingFont: string, bodyFont: string) =>
-// `$heading-font: '${headingFont}', sans-serif;
-// $body-font: '${bodyFont}', sans-serif;
-// `
-
 const fontFace = (face: FontFace, path: string) => 
 `@font-face {
   font-family: '${face.family}';
@@ -91,54 +86,64 @@ const fontFace = (face: FontFace, path: string) =>
 }
 `
 
-const elementStyling = (style: TextStyle, asClass: boolean) => 
-`${asClass ? `.${utils.classifyKey(style.key)}` : style.key} {
-  font-family: '${style.fontFamily}', sans-serif;
-  font-size: ${utils.toEm(style.fontSize)};
-  font-weight: ${style.fontWeight};
-  letter-spacing: ${utils.toEm(style.letterSpacing)};
-  line-height: ${Math.ceil(style.lineHeight)}%;
-  text-transform: ${utils.textTransform(style.textCase)};
-}
-`
-
-const weightStyling = (style: TextStyle) =>
-`${style.key} {
-  font-family: '${style.fontFamily}', sans-serif;
-  font-weight: ${style.fontWeight};
-}
-`
-
-const italicStyling = (style: TextStyle, asClass: boolean) =>
-`${asClass ? '.' : ''}${style.key} {
-  font-family: '${style.fontFamily}', sans-serif;
-  font-style: italic;
+const textStyleRule = (selector: string, textStyle: TextStyle) => 
+`${selector} {
+  font-family: '${textStyle.fontFamily}', sans-serif;
+  font-size: ${UTILS.toEm(textStyle.fontSize)};
+  font-weight: ${textStyle.fontWeight};
+  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};
+  line-height: ${Math.ceil(textStyle.lineHeight)}%;
+  text-transform: ${UTILS.textTransform(textStyle.textCase)};
 }
 `
 
 export function typographySCSS(textStyles: TextStyle[], fontsPath: string): string {
-  const elementStyleKeys = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body']
-  const weightStyleKeys = ['strong']
-  const italicStyleKeys = ['italic']
-  const classStyleKeys = ['footnote', 'caption']
+  enum TextStyleSelectorType {
+    Element,
+    Class
+  }
+  type TargetTextStyleRule = {
+    key: string
+    variants: string[]
+    selectorType: TextStyleSelectorType
+  }
   
-  const tsKeyIcludesDesiredKey = (ts: TextStyle, dKeys: string[]) => dKeys.find((dk) => ts.key.includes(dk)) != null
-
-  const elementStyles = textStyles.filter(ts => elementStyleKeys.includes(ts.key))
-  const weightStyles = textStyles.filter(ts => weightStyleKeys.includes(ts.key))
-  const italicStyles = textStyles.filter(ts => italicStyleKeys.includes(ts.key))
-  const classStyles = textStyles.filter(ts => tsKeyIcludesDesiredKey(ts, classStyleKeys))
+  const targetRules: TargetTextStyleRule[] = [
+    { key: 'h1', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h2', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h3', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h4', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h5', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h6', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'body', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'strong', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class },
+    { key: 'footnote', variants: [], selectorType: TextStyleSelectorType.Class },
+    { key: 'caption', variants: ['all-caps'], selectorType: TextStyleSelectorType.Class },
+  ]
   
-  // const headingFont = textStyles.find(ts => ts.key == 'h1')!.fontFamily
-  // const bodyFont = textStyles.find(ts => ts.key == 'body')!.fontFamily
-  // ${typographyVars(headingFont, bodyFont)}
+  type TextStyleRule = {
+    selector: string
+    textStyle: TextStyle
+  }
+  
+  const rules: TextStyleRule[] = []
+  
+  for (const target of targetRules) {
+    for (const variant of ['', ...target.variants]) {
+      const targetKey = variant.length > 0 ? `${target.key} ${variant}` : target.key
+      const textStyle = textStyles.find(ts => ts.key === targetKey)
+      if (textStyle === undefined) 
+        continue
+      
+      const selector = UTILS.classCase(targetKey, target.selectorType === TextStyleSelectorType.Class)
+      rules.push({ selector: selector, textStyle: textStyle})
+    }
+  }
   
   return `${warningComment}
-  
-${utils.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
-${elementStyles.map(es => elementStyling(es, false)).join('\n')}
-${weightStyles.map(ws => weightStyling(ws)).join('\n')}
-${italicStyles.map(is => italicStyling(is, true)).join('\n')}
-${classStyles.map(cs => elementStyling(cs, true)).join('\n')}
+
+${UTILS.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
+${rules.map(r => `${textStyleRule(r.selector, r.textStyle)}`).join('\n')}
 `
 }

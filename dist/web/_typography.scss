@@ -1,8 +1,13 @@
 /* File automatically generated; DO NOT edit! */
-  
+
 @font-face {
   font-family: 'Inter Medium';
   src: local('Inter Medium'), url('./resources/fonts/Inter-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Crimson Pro Medium';
+  src: local('Crimson Pro Medium'), url('./resources/fonts/CrimsonPro-Medium.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,8 +16,18 @@
 }
 
 @font-face {
+  font-family: 'Crimson Pro Regular';
+  src: local('Crimson Pro Regular'), url('./resources/fonts/CrimsonPro-Regular.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Inter Italic';
   src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Crimson Pro Italic';
+  src: local('Crimson Pro Italic'), url('./resources/fonts/CrimsonPro-Italic.woff2') format('woff2');
 }
 
 @font-face {
@@ -20,102 +35,196 @@
   src: local('Inter Semi Bold'), url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
+@font-face {
+  font-family: 'Crimson Pro SemiBold';
+  src: local('Crimson Pro Semi Bold'), url('./resources/fonts/CrimsonPro-SemiBold.woff2') format('woff2');
+}
+
 h1 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 4.000em;
+  font-size: 4em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h1 .serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 4.5em;
+  font-weight: 500;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 h2 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 3.500em;
+  font-size: 3.5em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h2 .serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 4em;
+  font-weight: 500;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 h3 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 3.000em;
+  font-size: 3em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h3 .serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 3.5em;
+  font-weight: 500;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 h4 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 2.500em;
+  font-size: 2.5em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h4 .serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 3em;
+  font-weight: 500;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 h5 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 2.000em;
+  font-size: 2em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h5 .serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 2.5em;
+  font-weight: 500;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 h6 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 1.500em;
+  font-size: 1.5em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+h6 .serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 2em;
+  font-weight: 500;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 body {
   font-family: 'Inter Regular', sans-serif;
-  font-size: 1.000em;
+  font-size: 1em;
   font-weight: 400;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+body .serif {
+  font-family: 'Crimson Pro Regular', sans-serif;
+  font-size: 1.25em;
+  font-weight: 400;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 strong {
   font-family: 'Inter SemiBold', sans-serif;
+  font-size: 1em;
   font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+strong .serif {
+  font-family: 'Crimson Pro SemiBold', sans-serif;
+  font-size: 1.25em;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
 }
 
 .italic {
   font-family: 'Inter Italic', sans-serif;
-  font-style: italic;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
+}
+
+.italic .serif {
+  font-family: 'Crimson Pro Italic', sans-serif;
+  font-size: 1.25em;
+  font-weight: 400;
+  letter-spacing: 0em;
+  line-height: 100%;
+  text-transform: none;
 }
 
 .footnote {
   font-family: 'Inter Regular', sans-serif;
-  font-size: 0.813em;
+  font-size: 0.8125em;
   font-weight: 400;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 .caption {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 0.750em;
+  font-size: 0.75em;
   font-weight: 500;
-  letter-spacing: 0.000em;
+  letter-spacing: 0em;
   line-height: 100%;
   text-transform: none;
 }
 
 .caption .all-caps {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 0.750em;
+  font-size: 0.75em;
   font-weight: 500;
-  letter-spacing: 0.038em;
+  letter-spacing: 0.07500000000000001em;
   line-height: 100%;
   text-transform: uppercase;
 }
