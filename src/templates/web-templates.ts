@@ -1,22 +1,27 @@
 import * as UTILS from '../utils/web-utils'
 import { Color, TextStyle, FontFace } from '../types'
 import groupBy from 'lodash/groupBy'
-import { kebabCase, pascalCase, capitalCase } from 'change-case'
+import { kebabCase, pascalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */'
 
 export const mixinsSCSS = `${warningComment}
 
 @use 'color';
+@use 'sass:map';
 
-@mixin colorAttribute($attributeName, $colorKey) {
-  $lightSchemeColors: map-get(color.$schemeColors, 'light');
-  $darkSchemeColors: map-get(color.$schemeColors, 'dark');
+@mixin color-attributes($map) {
+  $light-scheme-colors: map.get(color.$scheme-colors, 'light');
+  $dark-scheme-colors: map.get(color.$scheme-colors, 'dark');
   
-  #{$attributeName}: map-get($lightSchemeColors, $colorKey);
+  @each $attribute-name, $color-key in $map {
+    #{$attribute-name}: map.get($light-scheme-colors, $color-key);
+  }
   
   @media (prefers-color-scheme: dark) {
-    #{$attributeName}: map-get($darkSchemeColors, $colorKey);
+    @each $attribute-name, $color-key in $map {
+      #{$attribute-name}: map.get($dark-scheme-colors, $color-key);
+    }
   }
 };
 `
@@ -31,7 +36,7 @@ ${colors.map(c => color(c)).join('\n')}
   
   return `${warningComment}
 
-$schemeColors: (
+$scheme-colors: (
 ${Object.entries(groupedColors)
   .map(([scheme, colors]) => schemeColors(scheme, colors))
   .join('\n')}
