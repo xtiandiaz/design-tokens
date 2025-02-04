@@ -130,7 +130,7 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
     { key: 'h5', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
     { key: 'h6', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
     { key: 'body', variants: [], selectorType: TextStyleSelectorType.Element },
-    { key: 'strong', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'strong', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
     { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class },
     { key: 'serif', variants: [], selectorType: TextStyleSelectorType.Class },
     { key: 'footnote', variants: [], selectorType: TextStyleSelectorType.Class },
