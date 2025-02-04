@@ -76,6 +76,7 @@ window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
 })
    
 export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
+export const valueString = (key: ColorKey) => \u0060\u0024{value(key).toString(16)}\u0060
 `
 }
 
