@@ -6,6 +6,11 @@
 }
 
 @font-face {
+  font-family: 'Inter Italic';
+  src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Crimson Pro Medium';
   src: local('Crimson Pro Medium'), url('./resources/fonts/CrimsonPro-Medium.woff2') format('woff2');
 }
@@ -18,11 +23,6 @@
 @font-face {
   font-family: 'Crimson Pro Regular';
   src: local('Crimson Pro Regular'), url('./resources/fonts/CrimsonPro-Regular.woff2') format('woff2');
-}
-
-@font-face {
-  font-family: 'Inter Italic';
-  src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
@@ -40,139 +40,126 @@
   src: local('Crimson Pro SemiBold'), url('./resources/fonts/CrimsonPro-SemiBold.woff2') format('woff2');
 }
 
-h1 {
+h1, .h1 {
   font-family: 'Inter Medium', sans-serif;
   font-size: 4em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h1.serif {
+h1.serif, .h1.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 4.5em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
 }
 
-h2 {
+h1.italic, .h1.italic {
+  font-family: 'Inter Italic', sans-serif;
+}
+
+h2, .h2 {
   font-family: 'Inter Medium', sans-serif;
   font-size: 3.5em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h2.serif {
+h2.serif, .h2.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 4em;
+}
+
+h2.italic, .h2.italic {
+  font-family: 'Inter Italic', sans-serif;
+}
+
+h3.serif, .h3.serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 3.5em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h3 {
-  font-family: 'Inter Medium', sans-serif;
+h3.italic, .h3.italic {
+  font-family: 'Inter Italic', sans-serif;
   font-size: 3em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h3.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 3.5em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
-}
-
-h4 {
+h4, .h4 {
   font-family: 'Inter Medium', sans-serif;
   font-size: 2.5em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h4.serif {
+h4.serif, .h4.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 3em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
 }
 
-h5 {
+h4.italic, .h4.italic {
+  font-family: 'Inter Italic', sans-serif;
+}
+
+h5, .h5 {
   font-family: 'Inter Medium', sans-serif;
   font-size: 2em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h5.serif {
+h5.serif, .h5.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 2.5em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
 }
 
-h6 {
+h5.italic, .h5.italic {
+  font-family: 'Inter Italic', sans-serif;
+}
+
+h6, .h6 {
   font-family: 'Inter Medium', sans-serif;
   font-size: 1.5em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-h6.serif {
+h6.serif, .h6.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 2em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
 }
 
-body {
+h6.italic, .h6.italic {
+  font-family: 'Inter Italic', sans-serif;
+}
+
+body, .body {
   font-family: 'Inter Regular', sans-serif;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-strong {
+strong, .strong {
   font-family: 'Inter SemiBold', sans-serif;
   font-size: 1em;
   font-weight: 600;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
-strong.serif {
+strong.serif, .strong.serif {
   font-family: 'Crimson Pro SemiBold', sans-serif;
   font-size: 1.25em;
-  font-weight: 600;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
 }
 
 .italic {
@@ -181,16 +168,11 @@ strong.serif {
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
 .italic.serif {
   font-family: 'Crimson Pro Italic', sans-serif;
   font-size: 1.25em;
-  font-weight: 400;
-  letter-spacing: 0em;
-  line-height: 100%;
-  text-transform: none;
 }
 
 .serif {
@@ -199,7 +181,6 @@ strong.serif {
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
 .footnote {
@@ -208,7 +189,6 @@ strong.serif {
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
 .caption {
@@ -217,15 +197,10 @@ strong.serif {
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
-  text-transform: none;
 }
 
 .caption.all-caps {
-  font-family: 'Inter Medium', sans-serif;
-  font-size: 0.75em;
-  font-weight: 500;
   letter-spacing: 0.07500000000000001em;
-  line-height: 100%;
   text-transform: uppercase;
 }
 

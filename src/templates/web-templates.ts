@@ -87,16 +87,29 @@ const fontFace = (face: FontFace, path: string) =>
 }
 `
 
-const textStyleRule = (selector: string, textStyle: TextStyle) => 
-`${selector} {
-  font-family: '${textStyle.fontFamily}', sans-serif;
-  font-size: ${UTILS.toEm(textStyle.fontSize)};
-  font-weight: ${textStyle.fontWeight};
-  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};
-  line-height: ${Math.ceil(textStyle.lineHeight)}%;
-  text-transform: ${UTILS.textTransform(textStyle.textCase)};
+const textStyleRule = (selector: string, textStyle: TextStyle, exclusiveTextStyle?: TextStyle) => {
+  let rule = `${selector} {\n`
+  if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
+    rule += `  font-family: '${textStyle.fontFamily}', sans-serif;\n`
+  }
+  if (textStyle.fontSize !== exclusiveTextStyle?.fontSize) {
+    rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+  }
+  if (textStyle.fontWeight !== exclusiveTextStyle?.fontWeight) {
+    rule += `  font-weight: ${textStyle.fontWeight};\n`
+  }
+  if (textStyle.letterSpacing !== exclusiveTextStyle?.letterSpacing) {
+    rule += `  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};\n`
+  }
+  if (textStyle.lineHeight !== exclusiveTextStyle?.lineHeight) {
+    rule += `  line-height: ${Math.ceil(textStyle.lineHeight)}%;\n`
+  }
+  if (textStyle.textCase !== exclusiveTextStyle?.textCase) {
+    rule += `  text-transform: ${UTILS.textTransform(textStyle.textCase)};\n`
+  }
+  rule += `}\n`
+  return rule
 }
-`
 
 export function typographySCSS(textStyles: TextStyle[], fontsPath: string): string {
   enum TextStyleSelectorType {
@@ -110,12 +123,12 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
   }
   
   const targetRules: TargetTextStyleRule[] = [
-    { key: 'h1', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h2', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h3', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h4', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h5', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h6', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h1', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h2', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h3', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h4', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h5', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
+    { key: 'h6', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
     { key: 'body', variants: [], selectorType: TextStyleSelectorType.Element },
     { key: 'strong', variants: ['serif'], selectorType: TextStyleSelectorType.Element },
     { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class },
@@ -127,25 +140,39 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
   type TextStyleRule = {
     selector: string
     textStyle: TextStyle
+    exclusiveTextStyle?: TextStyle
   }
   
   const rules: TextStyleRule[] = []
   
   for (const target of targetRules) {
-    for (const variant of ['', ...target.variants]) {
-      const styleKey = variant.length > 0 ? `${target.key} ${variant}` : target.key
+    for (const variant of [undefined, ...target.variants]) {
+      const styleKey = variant !== undefined ? `${target.key} ${variant}` : target.key
       const textStyle = textStyles.find(ts => ts.key === styleKey)
-      if (textStyle === undefined) 
+      if (textStyle === undefined){
         continue
-      
-      const selector = UTILS.classCase(styleKey, target.selectorType === TextStyleSelectorType.Class)
-      rules.push({ selector: selector, textStyle: textStyle})
+      }
+      const partialSelector = variant !== undefined ? `${target.key}.${variant}` : target.key
+      let selector: string
+      switch (target.selectorType) {
+        case TextStyleSelectorType.Class:
+          selector = `.${partialSelector}`
+          break
+        case TextStyleSelectorType.Element:
+          selector = `${partialSelector}, .${partialSelector}`
+          break
+      }
+      rules.push({ 
+        selector: selector, 
+        textStyle: textStyle, 
+        exclusiveTextStyle: variant !== undefined ? textStyles.find(ts => ts.key === target.key) : undefined
+      })
     }
   }
   
   return `${warningComment}
 
 ${UTILS.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
-${rules.map(r => `${textStyleRule(r.selector, r.textStyle)}`).join('\n')}
+${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.exclusiveTextStyle)}`).join('\n')}
 `
 }
