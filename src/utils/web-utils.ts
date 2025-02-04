@@ -40,11 +40,15 @@ export function fontFaces(textStyles: TextStyle[]): FontFace[] {
 }
 
 export function fontFamily(figmaFamilyName: string, weight: number, isItalic: boolean): string {
-  return `${capitalCase(figmaFamilyName)} ${isItalic ? 'Italic' : pascalCase(semanticWeight(weight))}`
+  const ffn = capitalCase(figmaFamilyName)
+  const sw = semanticWeight(weight)
+  return `${ffn}${sw === 'Regular' && isItalic ? '' : ` ${sw}`}${isItalic ? ' Italic' : ''}`
 }
 
 export function fontPostScriptName(figmaFamilyName: string, weight: number, isItalic: boolean): string {
-  return `${pascalCase(figmaFamilyName)}-${isItalic ? 'Italic' : pascalCase(semanticWeight(weight))}`
+  const ffn = capitalCase(figmaFamilyName).replace(/ /g, '')
+  const sw = semanticWeight(weight)
+  return `${ffn}-${sw === 'Regular' && isItalic ? '' : sw}${isItalic ? 'Italic' : ''}`
 }
 
 export function toEm(fontSizePtPx: number): string {

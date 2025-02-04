@@ -6,8 +6,8 @@
 }
 
 @font-face {
-  font-family: 'Inter Italic';
-  src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+  font-family: 'Inter Medium Italic';
+  src: local('Inter Medium Italic'), url('./resources/fonts/Inter-MediumItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -26,6 +26,11 @@
 }
 
 @font-face {
+  font-family: 'Inter Italic';
+  src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Crimson Pro Italic';
   src: local('Crimson Pro Italic'), url('./resources/fonts/CrimsonPro-Italic.woff2') format('woff2');
 }
@@ -33,6 +38,11 @@
 @font-face {
   font-family: 'Inter SemiBold';
   src: local('Inter SemiBold'), url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter SemiBold Italic';
+  src: local('Inter SemiBold Italic'), url('./resources/fonts/Inter-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -54,7 +64,7 @@ h1.serif, .h1.serif {
 }
 
 h1.italic, .h1.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h2, .h2 {
@@ -71,7 +81,7 @@ h2.serif, .h2.serif {
 }
 
 h2.italic, .h2.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h3.serif, .h3.serif {
@@ -83,7 +93,7 @@ h3.serif, .h3.serif {
 }
 
 h3.italic, .h3.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Medium Italic', sans-serif;
   font-size: 3em;
   font-weight: 500;
   letter-spacing: 0em;
@@ -104,7 +114,7 @@ h4.serif, .h4.serif {
 }
 
 h4.italic, .h4.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h5, .h5 {
@@ -121,7 +131,7 @@ h5.serif, .h5.serif {
 }
 
 h5.italic, .h5.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h6, .h6 {
@@ -138,7 +148,7 @@ h6.serif, .h6.serif {
 }
 
 h6.italic, .h6.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 body, .body {
@@ -163,7 +173,7 @@ strong.serif, .strong.serif {
 }
 
 strong.italic, .strong.italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter SemiBold Italic', sans-serif;
 }
 
 .italic {
