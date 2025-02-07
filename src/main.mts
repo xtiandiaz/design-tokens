@@ -1,8 +1,8 @@
 import FS from 'fs'
 import ORA from 'ora'
 import { DesignTokens } from './types'
-import AssetGenerator from './asset-generators/asset-generator'
-import WebGenerator from './asset-generators/web-generator'
+import AssetGenerator from './generators/asset-generator'
+import WebGenerator from './generators/web-generator'
 import { exportDesignTokens } from './figma'
 
 const distPath = './dist'

@@ -45,7 +45,10 @@ export default abstract class AssetGenerator {
     
     for await (const token of tokens) {
       const svgResponse = await fetch(token.url)
-      const svgString = await svgResponse.text()
+      const svgString = (await svgResponse.text())
+        .replace(/(width|height)=\"\d+\"\ ?/g, '')
+        .replace(/fill=\"\S+\"/g, 'fill="currentColor"')
+      
       await FS.promises.writeFile(`${writePath}/${token.key}.svg`, svgString)
     }
   }
