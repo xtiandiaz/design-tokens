@@ -40,3 +40,8 @@ export interface DesignTokens {
   typography: TextStyleToken[]
   iconography: IconToken[]
 }
+
+export interface EncodedSvgTemplate {
+  key: string
+  template: string
+}

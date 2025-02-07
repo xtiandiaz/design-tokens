@@ -1,12 +1,12 @@
 import * as UTILS from '../utils/web-utils'
-import { ColorToken, TextStyleToken, FontFace } from '../types'
+import { ColorToken, TextStyleToken, FontFace, IconToken, EncodedSvgTemplate } from '../types'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, pascalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */'
 
-export function paletteSCSS(tokens: ColorToken[]): string {
-  const groupedTokens = groupBy(tokens, t => t.scheme)
+export function paletteSCSS(colorTokens: ColorToken[]): string {
+  const groupedTokens = groupBy(colorTokens, t => t.scheme)
   const schemeColors = (schemeName: string, colors: ColorToken[]) => 
 `$${schemeName}-scheme-colors: (
 ${colors.map(c => `  '${kebabCase(c.name)}': #${c.hexCode},`).join('\n')}
@@ -34,8 +34,8 @@ ${schemeColors('dark', groupedTokens['dark'])}
 `
 }
 
-export function paletteTS(tokens: ColorToken[]): string {
-  const groupedTokens = groupBy(tokens, (c) => c.scheme)
+export function paletteTS(colorTokens: ColorToken[]): string {
+  const groupedTokens = groupBy(colorTokens, (c) => c.scheme)
 
   return `${warningComment}
 
@@ -105,7 +105,7 @@ const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTex
   return rule
 }
 
-export function typographySCSS(textStyles: TextStyleToken[], fontsPath: string): string {
+export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: string): string {
   enum TextStyleSelectorType {
     Element,
     Class
@@ -142,7 +142,7 @@ export function typographySCSS(textStyles: TextStyleToken[], fontsPath: string):
   for (const target of targetRules) {
     for (const variant of [undefined, ...target.variants]) {
       const styleKey = variant !== undefined ? `${target.key} ${variant}` : target.key
-      const textStyle = textStyles.find(ts => ts.key === styleKey)
+      const textStyle = textStyleTokens.find(ts => ts.key === styleKey)
       if (textStyle === undefined){
         continue
       }
@@ -159,14 +159,53 @@ export function typographySCSS(textStyles: TextStyleToken[], fontsPath: string):
       rules.push({ 
         selector: selector, 
         textStyle: textStyle, 
-        exclusiveTextStyle: variant !== undefined ? textStyles.find(ts => ts.key === target.key) : undefined
+        exclusiveTextStyle: variant !== undefined ? textStyleTokens.find(ts => ts.key === target.key) : undefined
       })
     }
   }
   
   return `${warningComment}
 
-${UTILS.fontFaces(textStyles).map(f => fontFace(f, fontsPath)).join('\n')}
+${UTILS.fontFaces(textStyleTokens).map(f => fontFace(f, fontsPath)).join('\n')}
 ${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.exclusiveTextStyle)}`).join('\n')}
 `
+}
+
+export function iconographySCSS(encodedSvgTemplates: EncodedSvgTemplate[]): string {
+  return `${warningComment}
+  
+@use 'sass:string';
+@use 'sass:map';
+@use 'sass:list';
+@use 'palette';
+
+@function colored-encoded-icon($icon-key, $color-key, $color-map) {
+  $color-string: '%23' + string.slice(#{map.get($color-map, $color-key)}, 2);
+  
+${encodedSvgTemplates.map((template, index) => {
+  return `${index > 0 ? '  } @else if' : '  @if'} $icon-key == '${template.key}' {
+    @return '${template.template.replace(/currentColor/g, '#{$color-string}')}';`
+  }).join('\n')}
+  }
+};
+
+@mixin colored-icon-content-attribute($icon-key, $color-key) {
+  $scheme-colored-encoded-icons: (
+    colored-encoded-icon($icon-key, $color-key, palette.$light-scheme-colors),
+    colored-encoded-icon($icon-key, $color-key, palette.$dark-scheme-colors)
+  );
+  
+  content: url("data:image/svg+xml, #{list.nth($scheme-colored-encoded-icons, 1)}");
+  
+  @media (prefers-color-scheme: dark) {
+    content: url("data:image/svg+xml, #{list.nth($scheme-colored-encoded-icons, 2)}");
+  }
+};
+  
+.icon {
+  display: block;
+  width: ${UTILS.toEm(24)};
+  height: ${UTILS.toEm(24)};
+}
+  `
 }

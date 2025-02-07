@@ -11,10 +11,7 @@ export default abstract class AssetGenerator {
   }
   
   protected abstract generatePalette(tokens: ColorToken[], path: string): void
-  
-  protected async generateIconography(tokens: IconToken[], distPath: string): Promise<void> {
-    await this._generateIcons(tokens, `${distPath}/resources`)
-  }
+  protected abstract generateIconography(tokens: IconToken[], distPath: string): Promise<void>
   
   protected generateTypography(tokens: TextStyleToken[], sourcePath: string, distPath: string): void {
     this._generateFonts(tokens, sourcePath, `${distPath}/resources`)
@@ -36,20 +33,6 @@ export default abstract class AssetGenerator {
       }
       const buffer = FS.readFileSync(`${fontResourcePath}/${fileName}`)
       FS.writeFileSync(`${writePath}/${name}`, buffer)
-    }
-  }
-  
-  private async _generateIcons(tokens: IconToken[], distPath: string): Promise<void> {
-    const writePath = `${distPath}/icons`
-    await FS.promises.mkdir(writePath, { recursive: true })
-    
-    for await (const token of tokens) {
-      const svgResponse = await fetch(token.url)
-      const svgString = (await svgResponse.text())
-        .replace(/(width|height)=\"\d+\"\ ?/g, '')
-        .replace(/fill=\"\S+\"/g, 'fill="currentColor"')
-      
-      await FS.promises.writeFile(`${writePath}/${token.key}.svg`, svgString)
     }
   }
 }
