@@ -3,7 +3,12 @@ export enum Scheme {
   Dark = 'dark'
 }
 
-export interface Color {
+export interface FontFace {
+  family: string
+  fileName: string
+}
+
+export interface ColorToken {
   name: string
   scheme: Scheme
   hexCode: string
@@ -13,17 +18,7 @@ export interface Color {
   a: number
 }
 
-export interface Font {
-  fileName: string
-  data: Buffer
-}
-
-export interface FontFace {
-  family: string
-  fileName: string
-}
-
-export interface TextStyle {
+export interface TextStyleToken {
   key: string
   fontFamily: string
   fontPostScriptName: string
@@ -35,11 +30,13 @@ export interface TextStyle {
   isItalic: boolean
 }
 
-export interface DesignTokens {
-  colors: Color[]
-  typography: TextStyle[]
+export interface IconToken {
+  key: string
+  url: string
 }
 
-export interface Assets {
-  fonts: Font[]
+export interface DesignTokens {
+  palette: ColorToken[]
+  typography: TextStyleToken[]
+  iconography: IconToken[]
 }

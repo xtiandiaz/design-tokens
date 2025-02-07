@@ -1,0 +1,57 @@
+/* File automatically generated; DO NOT edit! */
+
+@use 'sass:map';
+  
+$light-scheme-colors: (
+  'yinyang': #29303D,
+  'indigo': #3D5CF5,
+  'blue': #0B96DA,
+  'mint': #00B295,
+  'green': #4AB236,
+  'yellow': #CC9900,
+  'orange': #F26C0C,
+  'brown': #A66C42,
+  'red': #E53948,
+  'pink': #E550B4,
+  'purple': #7E47EB,
+  'accessory': #C2C9D6,
+  'tertiary-body': #A3ADC2,
+  'secondary-body': #667799,
+  'body': #29303D,
+  'tertiary-background': #E0E4EB,
+  'secondary-background': #F0F1F5,
+  'background': #FFFFFF,
+);
+
+$dark-scheme-colors: (
+  'yinyang': #E0E4EB,
+  'indigo': #667FFF,
+  'blue': #42C4F0,
+  'mint': #06E0BB,
+  'green': #66CC52,
+  'yellow': #E8BA30,
+  'orange': #FF8833,
+  'brown': #D99A6C,
+  'red': #FF4D5B,
+  'pink': #F261C2,
+  'purple': #AD73FF,
+  'accessory': #5C6B8A,
+  'tertiary-body': #7585A3,
+  'secondary-body': #A3ADC2,
+  'body': #F0F1F5,
+  'tertiary-background': #000000,
+  'secondary-background': #0A0C0F,
+  'background': #1F242E,
+);
+
+@mixin color-attributes($map) {
+  @each $attribute-name, $color-key in $map {
+    #{$attribute-name}: map.get($light-scheme-colors, $color-key);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    @each $attribute-name, $color-key in $map {
+      #{$attribute-name}: map.get($dark-scheme-colors, $color-key);
+    }
+  }
+};

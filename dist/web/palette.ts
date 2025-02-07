@@ -26,7 +26,7 @@ export enum ColorKey {
   Background,
 }
 
-export const valueForScheme = (scheme: ColorScheme, colorKey: ColorKey): number => {
+export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
   switch(scheme) {
     case ColorScheme.Dark:
       switch(colorKey) {
@@ -83,5 +83,4 @@ window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
    currentColorScheme = colorScheme(e.matches)
 })
    
-export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
-export const valueString = (key: ColorKey) => `${value(key).toString(16)}`
+export const color = (key: ColorKey) => schemeColor(currentColorScheme, key)

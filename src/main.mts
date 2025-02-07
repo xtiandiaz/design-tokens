@@ -1,43 +1,42 @@
-import fs from 'fs'
-import ora from 'ora'
+import FS from 'fs'
+import ORA from 'ora'
 import { DesignTokens } from './types'
-import AssetsGenerator from '@generators/assets-generator'
-import WebGenerator from '@generators/web-generator'
+import AssetGenerator from './asset-generators/asset-generator'
+import WebGenerator from './asset-generators/web-generator'
 import { exportDesignTokens } from './figma'
 
 const distPath = './dist'
-const resourcesPath = './resources'
+const resourcePath = './resources'
 
-interface Platform {
+interface IPlatform {
   key: string
-  generator: AssetsGenerator
+  generator: AssetGenerator
 }
 
-const platforms: [Platform] = [{
+const platforms: [IPlatform] = [{
   key: "web",
   generator: new WebGenerator()
 }]
 
 async function main() {
-  const spinner = ora().start()
+  const spinner = ORA().start()
   
   spinner.text = "Exporting Design Tokens..."
   
   const tokensPath = `${distPath}/tokens.json`
   const tokens = await exportDesignTokens()
-  fs.writeFileSync(tokensPath, JSON.stringify(tokens, null, 2))
+  FS.writeFileSync(tokensPath, JSON.stringify(tokens, null, 2))
   // const tokens = JSON.parse(fs.readFileSync(tokensPath).toString()) as DesignTokens
   
-  for await (const p of platforms) {
-    const pPath = `${distPath}/${p.key}`
+  for await (const platform of platforms) {
+    const platformPath = `${distPath}/${platform.key}`
     
-    if (fs.existsSync(pPath)) {
-      fs.rmSync(pPath, { recursive: true })
+    if (FS.existsSync(platformPath)) {
+      FS.rmSync(platformPath, { recursive: true })
     }
-    fs.mkdirSync(pPath, { recursive: true })
+    FS.mkdirSync(platformPath, { recursive: true })
     
-    p.generator.generateCode(tokens, pPath)
-    p.generator.generateAssets(tokens, resourcesPath, `${pPath}/assets`)
+    await platform.generator.generateAssets(tokens, resourcePath, platformPath)
   }
   
   spinner.stop()

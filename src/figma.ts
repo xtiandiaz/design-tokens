@@ -1,7 +1,8 @@
 import * as Figma from 'figma-js'
 import dotenv from 'dotenv'
-import { Color, Scheme, DesignTokens, TextStyle } from './types'
+import { ColorToken, Scheme, DesignTokens, TextStyleToken, IconToken } from './types'
 import * as utils from './utils/web-utils'
+import { kebabCase } from 'change-case'
 
 dotenv.config()
 
@@ -15,7 +16,7 @@ function getPage(name: string, pages: Figma.Canvas[]): Figma.Canvas | undefined 
   return pages.find((page) => page.name === name)
 }
 
-function getColors(page: Figma.Canvas): Color[] {
+function getColors(page: Figma.Canvas): ColorToken[] {
   const colorNodes: Figma.Rectangle[] = page.children.filter((node) => 
     node.type == 'RECTANGLE' && node.fills[0].color !== undefined
   ) as Figma.Rectangle[]
@@ -38,11 +39,11 @@ function getColors(page: Figma.Canvas): Color[] {
       a: color.a
     }
   })
-  .filter((color) => color != null) as Color[]
+  .filter((color) => color != null) as ColorToken[]
 }
 
-function getTypography(page: Figma.Canvas): TextStyle[] {
-  const textNodes: Figma.Text[] = (page.children[0] as Figma.Frame).children as Figma.Text[]
+function getTypography(page: Figma.Canvas): TextStyleToken[] {
+  const textNodes = (page.children[0] as Figma.Frame).children as Figma.Text[]
   
   return textNodes.map((n) => {
     const figmaFontFamily = n.style.fontFamily
@@ -63,15 +64,35 @@ function getTypography(page: Figma.Canvas): TextStyle[] {
   })
 }
 
+async function getIcons(page: Figma.Canvas): Promise<IconToken[]> {
+  const iconIndex = Object.fromEntries(
+    (page.children as Figma.Frame[]).map(frame => [frame.id, kebabCase(frame.name)])
+  )
+  const svgImages = (await figma.fileImages(
+    fileId, 
+    {
+      ids: Object.keys(iconIndex),
+      format: 'svg',
+      use_absolute_bounds: true
+    }
+  )).data.images
+  
+  return Object.keys(svgImages).map(id => {
+    return { key: iconIndex[id], url: svgImages[id]}
+  })
+}
+
 export async function exportDesignTokens(): Promise<DesignTokens> {
   const file = await figma.file(fileId)
   const pages = file.data.document.children as Figma.Canvas[]
   
   const colors = getColors(getPage('Colors', pages)!)
   const textStyles = getTypography(getPage('Typography', pages)!)
+  const icons = await getIcons(getPage('Icons', pages)!)
   
   return {
-    colors: colors,
-    typography: textStyles
+    palette: colors,
+    typography: textStyles,
+    iconography: icons
   }
 }

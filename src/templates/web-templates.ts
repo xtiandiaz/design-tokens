@@ -1,19 +1,26 @@
 import * as UTILS from '../utils/web-utils'
-import { Color, TextStyle, FontFace } from '../types'
+import { ColorToken, TextStyleToken, FontFace } from '../types'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, pascalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */'
 
-export const mixinsSCSS = `${warningComment}
+export function paletteSCSS(tokens: ColorToken[]): string {
+  const groupedTokens = groupBy(tokens, t => t.scheme)
+  const schemeColors = (schemeName: string, colors: ColorToken[]) => 
+`$${schemeName}-scheme-colors: (
+${colors.map(c => `  '${kebabCase(c.name)}': #${c.hexCode},`).join('\n')}
+);`
+  
+  return `${warningComment}
 
-@use 'color';
 @use 'sass:map';
+  
+${schemeColors('light', groupedTokens['light'])}
+
+${schemeColors('dark', groupedTokens['dark'])}
 
 @mixin color-attributes($map) {
-  $light-scheme-colors: map.get(color.$scheme-colors, 'light');
-  $dark-scheme-colors: map.get(color.$scheme-colors, 'dark');
-  
   @each $attribute-name, $color-key in $map {
     #{$attribute-name}: map.get($light-scheme-colors, $color-key);
   }
@@ -25,45 +32,28 @@ export const mixinsSCSS = `${warningComment}
   }
 };
 `
-
-export function schemedColorsSCSS(colors: Color[]): string {
-  const groupedColors = groupBy(colors, (c) => c.scheme)
-  const color = (color: Color) => `    '${kebabCase(color.name)}': #${color.hexCode},`
-  const schemeColors = (scheme: string, colors: Color[]) => 
-`  '${scheme}': (
-${colors.map(c => color(c)).join('\n')}
-  ),`
-  
-  return `${warningComment}
-
-$scheme-colors: (
-${Object.entries(groupedColors)
-  .map(([scheme, colors]) => schemeColors(scheme, colors))
-  .join('\n')}
-);
-`
 }
 
-export function schemedColorsTS(colors: Color[]): string {
-  const groupedColors = groupBy(colors, (c) => c.scheme)
+export function paletteTS(tokens: ColorToken[]): string {
+  const groupedTokens = groupBy(tokens, (c) => c.scheme)
 
   return `${warningComment}
 
 export enum ColorScheme {
-${Object.keys(groupedColors).map(sk => `  ${pascalCase(sk)},`).join('\n')}
+${Object.keys(groupedTokens).map(sk => `  ${pascalCase(sk)},`).join('\n')}
 }
 
 export enum ColorKey {
-${groupedColors['light'].map(c => `  ${pascalCase(c.name)},`).join('\n')}
+${groupedTokens['light'].map(c => `  ${pascalCase(c.name)},`).join('\n')}
 }
 
-export const valueForScheme = (scheme: ColorScheme, colorKey: ColorKey): number => {
+export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
   switch(scheme) {
-  ${Object.keys(groupedColors)
+  ${Object.keys(groupedTokens)
     .map(sk => {
       return `  case ColorScheme.${pascalCase(sk)}:
       switch(colorKey) {
-${groupedColors[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: return 0x${c.hexCode}`).join('\n')} 
+${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: return 0x${c.hexCode}`).join('\n')} 
       }
     `
     })
@@ -80,8 +70,7 @@ window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
    currentColorScheme = colorScheme(e.matches)
 })
    
-export const value = (key: ColorKey) => valueForScheme(currentColorScheme, key)
-export const valueString = (key: ColorKey) => \u0060\u0024{value(key).toString(16)}\u0060
+export const color = (key: ColorKey) => schemeColor(currentColorScheme, key)
 `
 }
 
@@ -92,7 +81,7 @@ const fontFace = (face: FontFace, path: string) =>
 }
 `
 
-const textStyleRule = (selector: string, textStyle: TextStyle, exclusiveTextStyle?: TextStyle) => {
+const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTextStyle?: TextStyleToken) => {
   let rule = `${selector} {\n`
   if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
     rule += `  font-family: '${textStyle.fontFamily}', sans-serif;\n`
@@ -116,7 +105,7 @@ const textStyleRule = (selector: string, textStyle: TextStyle, exclusiveTextStyl
   return rule
 }
 
-export function typographySCSS(textStyles: TextStyle[], fontsPath: string): string {
+export function typographySCSS(textStyles: TextStyleToken[], fontsPath: string): string {
   enum TextStyleSelectorType {
     Element,
     Class
@@ -144,8 +133,8 @@ export function typographySCSS(textStyles: TextStyle[], fontsPath: string): stri
   
   type TextStyleRule = {
     selector: string
-    textStyle: TextStyle
-    exclusiveTextStyle?: TextStyle
+    textStyle: TextStyleToken
+    exclusiveTextStyle?: TextStyleToken
   }
   
   const rules: TextStyleRule[] = []

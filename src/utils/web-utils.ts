@@ -1,5 +1,5 @@
-import { FontFace, TextStyle } from '../types'
-import { pascalCase, capitalCase, dotCase } from 'change-case'
+import { FontFace, TextStyleToken } from '../types'
+import { capitalCase } from 'change-case'
 
 export function colorComponentToHexString(component: number): string {
   const hex = Math.round(component * 255).toString(16)
@@ -28,7 +28,7 @@ function semanticWeight(weight: number): string {
   }
 }
 
-export function fontFaces(textStyles: TextStyle[]): FontFace[] {
+export function fontFaces(textStyles: TextStyleToken[]): FontFace[] {
   return textStyles.filter(
     (ts, i, arr) => arr.findIndex(t => t.fontFamily === ts.fontFamily) === i
   ).map(ts => {
