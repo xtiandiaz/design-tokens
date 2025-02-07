@@ -207,5 +207,5 @@ ${encodedSvgTemplates.map((template, index) => {
   width: ${UTILS.toEm(24)};
   height: ${UTILS.toEm(24)};
 }
-  `
+`
 }

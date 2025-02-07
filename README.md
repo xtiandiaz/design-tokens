@@ -14,10 +14,9 @@ For now, it is only aimed at the Web platform. Feel free to fork and extend to y
 ## Web Design Tokens
 
 These are my only focus nowadays, and will keep on refining them and adding more as I progress in parallel with apps built on Vue. These Web Design Tokens include:
-1. A `_color.scss` partial sheet with colors categorized and ready to use on both color schemes (light and dark).
+1. A `_palette.scss` partial sheet with colors categorized and ready to use on both color schemes (light and dark).
 1. A `_typography.scss` partial sheet with text styles; all of their attributes declared either within element or class selectors. Moreover, their font faces declared and their corresponding files copied and stored as assets.
-1. Other partial sheets, mixins, and utilities written in SCSS.
-1. Custom icons exported as SVGs and as an icon font (WIP).
+1. A `_iconography.scss` partial sheet including SCSS functions, mixins and a few style rules to color and include SVG icons easily via CSS.
 
 ## Licenses
 
@@ -25,5 +24,5 @@ As of the custom design tokens and their generators, use at your own wish and ri
 
 ### Resources
 
-* (Inter Font)[https://github.com/rsms/inter/?tab=OFL-1.1-1-ov-file]
-* (Crimson Pro Font)[https://github.com/Fonthausen/CrimsonPro?tab=OFL-1.1-1-ov-file]
+* [Inter Font](https://github.com/rsms/inter/?tab=OFL-1.1-1-ov-file)
+* [Crimson Pro Font](https://github.com/Fonthausen/CrimsonPro?tab=OFL-1.1-1-ov-file)
