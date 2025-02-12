@@ -187,6 +187,7 @@ ${encodedSvgTemplates.map((template, index) => {
     @return '${template.template.replace(/currentColor/g, '#{$color-string}')}';`
   }).join('\n')}
   }
+  @return 'not-found';
 };
 
 @mixin colored-icon-content-attribute($icon-key, $color-key) {
