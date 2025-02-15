@@ -77,9 +77,9 @@ async function getIcons(page: Figma.Canvas): Promise<IconToken[]> {
     }
   )).data.images
   
-  return Object.keys(svgImages).map(id => {
-    return { key: iconIndex[id], url: svgImages[id]}
-  })
+  return Object.keys(svgImages)
+    .map(id => { return { key: iconIndex[id], url: svgImages[id]} })
+    .sort((a, b) => a.key.localeCompare(b.key))
 }
 
 export async function exportDesignTokens(): Promise<DesignTokens> {
