@@ -20,15 +20,17 @@ ${schemeColors('light', groupedTokens['light'])}
 
 ${schemeColors('dark', groupedTokens['dark'])}
 
-@mixin color-attributes($map) {
-  @each $attribute-name, $color-key in $map {
-    #{$attribute-name}: map.get($light-scheme-colors, $color-key);
-  }
+@mixin color-attribute($attribute, $color-key, $alpha:1) {
+  #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
   
   @media (prefers-color-scheme: dark) {
-    @each $attribute-name, $color-key in $map {
-      #{$attribute-name}: map.get($dark-scheme-colors, $color-key);
-    }
+    #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+  }
+};
+
+@mixin color-attributes($map, $alpha:1) {
+  @each $attribute, $color-key in $map {
+    @include color-attribute($attribute, $color-key, $alpha);
   }
 };
 `
