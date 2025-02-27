@@ -49,6 +49,7 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.SecondaryBackground: return 0x0A0C0F
         case ColorKey.Background: return 0x1F242E 
       }
+      break
       case ColorScheme.Light:
       switch(colorKey) {
         case ColorKey.Yinyang: return 0x29303D
@@ -70,17 +71,7 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.SecondaryBackground: return 0xF0F1F5
         case ColorKey.Background: return 0xFFFFFF 
       }
+      break
     
   }
 }
-
-const mediaQueryToMatch = '(prefers-color-scheme: dark)'
-const colorScheme = (matchesQuery: boolean) => matchesQuery ? ColorScheme.Dark : ColorScheme.Light
-
-export let currentColorScheme: ColorScheme = colorScheme(window.matchMedia(mediaQueryToMatch).matches)
-
-window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
-   currentColorScheme = colorScheme(e.matches)
-})
-   
-export const color = (key: ColorKey) => schemeColor(currentColorScheme, key)

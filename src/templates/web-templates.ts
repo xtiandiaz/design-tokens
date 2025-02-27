@@ -55,22 +55,12 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
       switch(colorKey) {
 ${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: return 0x${c.hexCode}`).join('\n')} 
       }
+      break
     `
     })
     .join('')}
   }
 }
-
-const mediaQueryToMatch = '(prefers-color-scheme: dark)'
-const colorScheme = (matchesQuery: boolean) => matchesQuery ? ColorScheme.Dark : ColorScheme.Light
-
-export let currentColorScheme: ColorScheme = colorScheme(window.matchMedia(mediaQueryToMatch).matches)
-
-window.matchMedia(mediaQueryToMatch).addEventListener('change', e => {
-   currentColorScheme = colorScheme(e.matches)
-})
-   
-export const color = (key: ColorKey) => schemeColor(currentColorScheme, key)
 `
 }
 
