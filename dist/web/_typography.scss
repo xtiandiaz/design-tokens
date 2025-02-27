@@ -84,20 +84,21 @@ h2.italic, .h2.italic {
   font-family: 'Inter Medium Italic', sans-serif;
 }
 
-h3.serif, .h3.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 3.5em;
+h3, .h3 {
+  font-family: 'Inter Medium', sans-serif;
+  font-size: 3em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
 }
 
+h3.serif, .h3.serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 3.5em;
+}
+
 h3.italic, .h3.italic {
   font-family: 'Inter Medium Italic', sans-serif;
-  font-size: 3em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
 }
 
 h4, .h4 {
