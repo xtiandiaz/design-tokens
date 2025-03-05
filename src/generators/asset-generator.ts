@@ -32,7 +32,8 @@ export default abstract class AssetGenerator {
         exit(-1)
       }
       const buffer = FS.readFileSync(`${fontResourcePath}/${fileName}`)
-      FS.writeFileSync(`${writePath}/${name}`, buffer)
+      const extension = fileName.split('.')[1]
+      FS.writeFileSync(`${writePath}/${name}.${extension}`, buffer)
     }
   }
 }
