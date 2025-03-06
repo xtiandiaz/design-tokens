@@ -83,12 +83,12 @@ const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTex
   if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
     rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
   }
-  if (textStyle.fontSize !== exclusiveTextStyle?.fontSize) {
-    rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
-  }
   if (textStyle.fontWeight !== exclusiveTextStyle?.fontWeight) {
     rule += `  font-weight: ${textStyle.fontWeight};\n`
   }
+  
+  rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+  
   if (textStyle.letterSpacing !== exclusiveTextStyle?.letterSpacing) {
     rule += `  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};\n`
   }

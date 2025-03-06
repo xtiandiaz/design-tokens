@@ -47,8 +47,8 @@
 
 h1, .h1 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 3.5em;
   font-weight: 500;
+  font-size: 3.5em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -56,16 +56,18 @@ h1, .h1 {
 h1.serif, .h1.serif {
   font-family: 'Libre Baskerville Regular', serif;
   font-weight: 400;
+  font-size: 3.5em;
 }
 
 h1.italic, .h1.italic {
   font-family: 'Inter Medium Italic', sans-serif;
+  font-size: 3.5em;
 }
 
 h2, .h2 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 3em;
   font-weight: 500;
+  font-size: 3em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -73,16 +75,18 @@ h2, .h2 {
 h2.serif, .h2.serif {
   font-family: 'Libre Baskerville Regular', serif;
   font-weight: 400;
+  font-size: 3em;
 }
 
 h2.italic, .h2.italic {
   font-family: 'Inter Medium Italic', sans-serif;
+  font-size: 3em;
 }
 
 h3, .h3 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 2.5em;
   font-weight: 500;
+  font-size: 2.5em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -90,16 +94,18 @@ h3, .h3 {
 h3.serif, .h3.serif {
   font-family: 'Libre Baskerville Regular', serif;
   font-weight: 400;
+  font-size: 2.5em;
 }
 
 h3.italic, .h3.italic {
   font-family: 'Inter Medium Italic', sans-serif;
+  font-size: 2.5em;
 }
 
 h4, .h4 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 2em;
   font-weight: 500;
+  font-size: 2em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -107,16 +113,18 @@ h4, .h4 {
 h4.serif, .h4.serif {
   font-family: 'Libre Baskerville Regular', serif;
   font-weight: 400;
+  font-size: 2em;
 }
 
 h4.italic, .h4.italic {
   font-family: 'Inter Medium Italic', sans-serif;
+  font-size: 2em;
 }
 
 h5, .h5 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 1.5em;
   font-weight: 500;
+  font-size: 1.5em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -124,16 +132,18 @@ h5, .h5 {
 h5.serif, .h5.serif {
   font-family: 'Libre Baskerville Regular', serif;
   font-weight: 400;
+  font-size: 1.5em;
 }
 
 h5.italic, .h5.italic {
   font-family: 'Inter Medium Italic', sans-serif;
+  font-size: 1.5em;
 }
 
 h6, .h6 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 1.25em;
   font-weight: 500;
+  font-size: 1.25em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -141,24 +151,26 @@ h6, .h6 {
 h6.serif, .h6.serif {
   font-family: 'Libre Baskerville Regular', serif;
   font-weight: 400;
+  font-size: 1.25em;
 }
 
 h6.italic, .h6.italic {
   font-family: 'Inter Medium Italic', sans-serif;
+  font-size: 1.25em;
 }
 
 body, .body {
   font-family: 'Inter Regular', sans-serif;
-  font-size: 1em;
   font-weight: 400;
+  font-size: 1em;
   letter-spacing: 0em;
   line-height: 100%;
 }
 
 strong, .strong {
   font-family: 'Inter SemiBold', sans-serif;
-  font-size: 1em;
   font-weight: 600;
+  font-size: 1em;
   letter-spacing: 0em;
   line-height: 100%;
 }
@@ -166,49 +178,53 @@ strong, .strong {
 strong.serif, .strong.serif {
   font-family: 'Libre Baskerville Bold', serif;
   font-weight: 700;
+  font-size: 1em;
 }
 
 strong.italic, .strong.italic {
   font-family: 'Inter SemiBold Italic', sans-serif;
+  font-size: 1em;
 }
 
 .italic {
   font-family: 'Inter Italic', sans-serif;
-  font-size: 1em;
   font-weight: 400;
+  font-size: 1em;
   letter-spacing: 0em;
   line-height: 100%;
 }
 
 .italic.serif {
   font-family: 'Libre Baskerville Italic', serif;
+  font-size: 1em;
 }
 
 .serif {
   font-family: 'Libre Baskerville Regular', serif;
-  font-size: 1em;
   font-weight: 400;
+  font-size: 1em;
   letter-spacing: 0em;
   line-height: 100%;
 }
 
 .footnote {
   font-family: 'Inter Regular', sans-serif;
-  font-size: 0.8125em;
   font-weight: 400;
+  font-size: 0.8125em;
   letter-spacing: 0em;
   line-height: 100%;
 }
 
 .caption {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 0.75em;
   font-weight: 500;
+  font-size: 0.75em;
   letter-spacing: 0em;
   line-height: 100%;
 }
 
 .caption.all-caps {
+  font-size: 0.75em;
   letter-spacing: 0.07500000000000001em;
   text-transform: uppercase;
 }
