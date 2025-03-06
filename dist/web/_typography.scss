@@ -11,8 +11,8 @@
 }
 
 @font-face {
-  font-family: 'Crimson Pro Medium';
-  src: url('./fonts/CrimsonPro-Medium.woff2') format('woff2');
+  font-family: 'Libre Baskerville Regular';
+  src: url('./fonts/LibreBaskerville-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -21,18 +21,13 @@
 }
 
 @font-face {
-  font-family: 'Crimson Pro Regular';
-  src: url('./fonts/CrimsonPro-Regular.woff2') format('woff2');
-}
-
-@font-face {
   font-family: 'Inter Italic';
   src: url('./fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Crimson Pro Italic';
-  src: url('./fonts/CrimsonPro-Italic.woff2') format('woff2');
+  font-family: 'Libre Baskerville Italic';
+  src: url('./fonts/LibreBaskerville-Italic.woff2') format('woff2');
 }
 
 @font-face {
@@ -46,8 +41,8 @@
 }
 
 @font-face {
-  font-family: 'Crimson Pro SemiBold';
-  src: url('./fonts/CrimsonPro-SemiBold.woff2') format('woff2');
+  font-family: 'Libre Baskerville Bold';
+  src: url('./fonts/LibreBaskerville-Bold.woff2') format('woff2');
 }
 
 h1, .h1 {
@@ -59,8 +54,8 @@ h1, .h1 {
 }
 
 h1.serif, .h1.serif {
-  font-family: 'Crimson Pro Medium', serif;
-  font-size: 4em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: 400;
 }
 
 h1.italic, .h1.italic {
@@ -76,8 +71,8 @@ h2, .h2 {
 }
 
 h2.serif, .h2.serif {
-  font-family: 'Crimson Pro Medium', serif;
-  font-size: 3.5em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: 400;
 }
 
 h2.italic, .h2.italic {
@@ -93,8 +88,8 @@ h3, .h3 {
 }
 
 h3.serif, .h3.serif {
-  font-family: 'Crimson Pro Medium', serif;
-  font-size: 3em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: 400;
 }
 
 h3.italic, .h3.italic {
@@ -110,8 +105,8 @@ h4, .h4 {
 }
 
 h4.serif, .h4.serif {
-  font-family: 'Crimson Pro Medium', serif;
-  font-size: 2.5em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: 400;
 }
 
 h4.italic, .h4.italic {
@@ -127,8 +122,8 @@ h5, .h5 {
 }
 
 h5.serif, .h5.serif {
-  font-family: 'Crimson Pro Medium', serif;
-  font-size: 1.75em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: 400;
 }
 
 h5.italic, .h5.italic {
@@ -144,8 +139,8 @@ h6, .h6 {
 }
 
 h6.serif, .h6.serif {
-  font-family: 'Crimson Pro Medium', serif;
-  font-size: 1.5em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: 400;
 }
 
 h6.italic, .h6.italic {
@@ -169,8 +164,8 @@ strong, .strong {
 }
 
 strong.serif, .strong.serif {
-  font-family: 'Crimson Pro SemiBold', serif;
-  font-size: 1.25em;
+  font-family: 'Libre Baskerville Bold', serif;
+  font-weight: 700;
 }
 
 strong.italic, .strong.italic {
@@ -186,13 +181,12 @@ strong.italic, .strong.italic {
 }
 
 .italic.serif {
-  font-family: 'Crimson Pro Italic', serif;
-  font-size: 1.25em;
+  font-family: 'Libre Baskerville Italic', serif;
 }
 
 .serif {
-  font-family: 'Crimson Pro Regular', serif;
-  font-size: 1.25em;
+  font-family: 'Libre Baskerville Regular', serif;
+  font-size: 1em;
   font-weight: 400;
   letter-spacing: 0em;
   line-height: 100%;
