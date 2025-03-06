@@ -3,9 +3,15 @@ export enum Scheme {
   Dark = 'dark'
 }
 
+export interface FontFormat {
+  name: string
+  extension: string
+}
+
 export interface FontFace {
   family: string
   fileName: string
+  formats: FontFormat[]
 }
 
 export interface ColorToken {

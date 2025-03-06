@@ -2,57 +2,67 @@
 
 @font-face {
   font-family: 'Inter Medium';
-  src: local('Inter Medium'), url('./resources/fonts/Inter-Medium.woff2') format('woff2');
+  src: local('Inter Medium'),
+    url('./resources/fonts/Inter-Medium.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Medium Italic';
-  src: local('Inter Medium Italic'), url('./resources/fonts/Inter-MediumItalic.woff2') format('woff2');
+  src: local('Inter Medium Italic'),
+    url('./resources/fonts/Inter-MediumItalic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro Medium';
-  src: local('Crimson Pro Medium'), url('./resources/fonts/CrimsonPro-Medium.woff2') format('woff2');
+  src: local('Crimson Pro Medium'),
+    url('./resources/fonts/CrimsonPro-Medium.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Regular';
-  src: local('Inter Regular'), url('./resources/fonts/Inter-Regular.woff2') format('woff2');
+  src: local('Inter Regular'),
+    url('./resources/fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro Regular';
-  src: local('Crimson Pro Regular'), url('./resources/fonts/CrimsonPro-Regular.woff2') format('woff2');
+  src: local('Crimson Pro Regular'),
+    url('./resources/fonts/CrimsonPro-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Italic';
-  src: local('Inter Italic'), url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+  src: local('Inter Italic'),
+    url('./resources/fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro Italic';
-  src: local('Crimson Pro Italic'), url('./resources/fonts/CrimsonPro-Italic.woff2') format('woff2');
+  src: local('Crimson Pro Italic'),
+    url('./resources/fonts/CrimsonPro-Italic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter SemiBold';
-  src: local('Inter SemiBold'), url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
+  src: local('Inter SemiBold'),
+    url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter SemiBold Italic';
-  src: local('Inter SemiBold Italic'), url('./resources/fonts/Inter-SemiBoldItalic.woff2') format('woff2');
+  src: local('Inter SemiBold Italic'),
+    url('./resources/fonts/Inter-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro SemiBold';
-  src: local('Crimson Pro SemiBold'), url('./resources/fonts/CrimsonPro-SemiBold.woff2') format('woff2');
+  src: local('Crimson Pro SemiBold'),
+    url('./resources/fonts/CrimsonPro-SemiBold.woff2') format('woff2');
 }
 
 h1, .h1 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 4em;
+  font-size: 3.5em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
@@ -60,16 +70,16 @@ h1, .h1 {
 
 h1.serif, .h1.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 4.5em;
+  font-size: 4em;
 }
 
 h1.italic, .h1.italic {
-  font-family: 'Inter Medium Italic', sans-serif;
+  font-family: 'Inter Medium Italic', serif;
 }
 
 h2, .h2 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 3.5em;
+  font-size: 3em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
@@ -77,16 +87,16 @@ h2, .h2 {
 
 h2.serif, .h2.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 4em;
+  font-size: 3.5em;
 }
 
 h2.italic, .h2.italic {
-  font-family: 'Inter Medium Italic', sans-serif;
+  font-family: 'Inter Medium Italic', serif;
 }
 
 h3, .h3 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 3em;
+  font-size: 2.5em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
@@ -94,16 +104,16 @@ h3, .h3 {
 
 h3.serif, .h3.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 3.5em;
+  font-size: 3em;
 }
 
 h3.italic, .h3.italic {
-  font-family: 'Inter Medium Italic', sans-serif;
+  font-family: 'Inter Medium Italic', serif;
 }
 
 h4, .h4 {
   font-family: 'Inter Medium', sans-serif;
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: 500;
   letter-spacing: 0em;
   line-height: 100%;
@@ -111,31 +121,14 @@ h4, .h4 {
 
 h4.serif, .h4.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 3em;
-}
-
-h4.italic, .h4.italic {
-  font-family: 'Inter Medium Italic', sans-serif;
-}
-
-h5, .h5 {
-  font-family: 'Inter Medium', sans-serif;
-  font-size: 2em;
-  font-weight: 500;
-  letter-spacing: 0em;
-  line-height: 100%;
-}
-
-h5.serif, .h5.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
   font-size: 2.5em;
 }
 
-h5.italic, .h5.italic {
-  font-family: 'Inter Medium Italic', sans-serif;
+h4.italic, .h4.italic {
+  font-family: 'Inter Medium Italic', serif;
 }
 
-h6, .h6 {
+h5, .h5 {
   font-family: 'Inter Medium', sans-serif;
   font-size: 1.5em;
   font-weight: 500;
@@ -143,13 +136,30 @@ h6, .h6 {
   line-height: 100%;
 }
 
+h5.serif, .h5.serif {
+  font-family: 'Crimson Pro Medium', sans-serif;
+  font-size: 1.75em;
+}
+
+h5.italic, .h5.italic {
+  font-family: 'Inter Medium Italic', serif;
+}
+
+h6, .h6 {
+  font-family: 'Inter Medium', sans-serif;
+  font-size: 1.25em;
+  font-weight: 500;
+  letter-spacing: 0em;
+  line-height: 100%;
+}
+
 h6.serif, .h6.serif {
   font-family: 'Crimson Pro Medium', sans-serif;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 h6.italic, .h6.italic {
-  font-family: 'Inter Medium Italic', sans-serif;
+  font-family: 'Inter Medium Italic', serif;
 }
 
 body, .body {
@@ -174,11 +184,11 @@ strong.serif, .strong.serif {
 }
 
 strong.italic, .strong.italic {
-  font-family: 'Inter SemiBold Italic', sans-serif;
+  font-family: 'Inter SemiBold Italic', serif;
 }
 
 .italic {
-  font-family: 'Inter Italic', sans-serif;
+  font-family: 'Inter Italic', serif;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0em;
@@ -186,7 +196,7 @@ strong.italic, .strong.italic {
 }
 
 .italic.serif {
-  font-family: 'Crimson Pro Italic', sans-serif;
+  font-family: 'Crimson Pro Italic', serif;
   font-size: 1.25em;
 }
 

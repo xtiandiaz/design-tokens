@@ -69,14 +69,18 @@ ${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: retur
 const fontFace = (face: FontFace, path: string) => 
 `@font-face {
   font-family: '${face.family}';
-  src: local('${face.family}'), url('${path}/${face.fileName}') format('woff2');
+  src: local('${face.family}'),
+${face.formats.map((format, index) => {
+  return `    url('${path}/${face.fileName}.${format.extension}') format('${format.name}')${index === (face.formats.length - 1) ? ';' : ','}`
+}).join('\n')
+}
 }
 `
 
 const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTextStyle?: TextStyleToken) => {
   let rule = `${selector} {\n`
   if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
-    rule += `  font-family: '${textStyle.fontFamily}', sans-serif;\n`
+    rule += `  font-family: '${textStyle.fontFamily}', ${textStyle.isItalic ? 'serif' : 'sans-serif'};\n`
   }
   if (textStyle.fontSize !== exclusiveTextStyle?.fontSize) {
     rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`

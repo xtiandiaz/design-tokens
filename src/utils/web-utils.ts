@@ -1,5 +1,5 @@
 import { FontFace, TextStyleToken } from '../types'
-import { capitalCase } from 'change-case'
+import { capitalCase, pascalCase } from 'change-case'
 
 export function colorComponentToHexString(component: number): string {
   const hex = Math.round(component * 255).toString(16)
@@ -34,7 +34,10 @@ export function fontFaces(textStyles: TextStyleToken[]): FontFace[] {
   ).map(ts => {
     return {
       family: ts.fontFamily,
-      fileName: `${ts.fontPostScriptName}.woff2`
+      fileName: ts.fontPostScriptName,
+      formats: [
+        { name: 'woff2', extension: 'woff2' }
+      ]
     }
   })
 }
