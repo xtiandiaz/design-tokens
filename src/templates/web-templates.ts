@@ -69,10 +69,9 @@ ${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: retur
 const fontFace = (face: FontFace, path: string) => 
 `@font-face {
   font-family: '${face.family}';
-  src: local('${face.family}'),
-${face.formats.map((format, index) => {
-  return `    url('${path}/${face.fileName}.${format.extension}') format('${format.name}')${index === (face.formats.length - 1) ? ';' : ','}`
-}).join('\n')
+  src: ${face.formats.map((format, index) => {
+  return `url('${path}/${face.fileName}.${format.extension}') format('${format.name}')${index === (face.formats.length - 1) ? ';' : ','}`
+}).join(' ')
 }
 }
 `

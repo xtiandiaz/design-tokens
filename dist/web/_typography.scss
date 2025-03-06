@@ -2,62 +2,52 @@
 
 @font-face {
   font-family: 'Inter Medium';
-  src: local('Inter Medium'),
-    url('./resources/fonts/Inter-Medium.woff2') format('woff2');
+  src: url('./resources/fonts/Inter-Medium.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Medium Italic';
-  src: local('Inter Medium Italic'),
-    url('./resources/fonts/Inter-MediumItalic.woff2') format('woff2');
+  src: url('./resources/fonts/Inter-MediumItalic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro Medium';
-  src: local('Crimson Pro Medium'),
-    url('./resources/fonts/CrimsonPro-Medium.woff2') format('woff2');
+  src: url('./resources/fonts/CrimsonPro-Medium.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Regular';
-  src: local('Inter Regular'),
-    url('./resources/fonts/Inter-Regular.woff2') format('woff2');
+  src: url('./resources/fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro Regular';
-  src: local('Crimson Pro Regular'),
-    url('./resources/fonts/CrimsonPro-Regular.woff2') format('woff2');
+  src: url('./resources/fonts/CrimsonPro-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter Italic';
-  src: local('Inter Italic'),
-    url('./resources/fonts/Inter-Italic.woff2') format('woff2');
+  src: url('./resources/fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro Italic';
-  src: local('Crimson Pro Italic'),
-    url('./resources/fonts/CrimsonPro-Italic.woff2') format('woff2');
+  src: url('./resources/fonts/CrimsonPro-Italic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter SemiBold';
-  src: local('Inter SemiBold'),
-    url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
+  src: url('./resources/fonts/Inter-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Inter SemiBold Italic';
-  src: local('Inter SemiBold Italic'),
-    url('./resources/fonts/Inter-SemiBoldItalic.woff2') format('woff2');
+  src: url('./resources/fonts/Inter-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Crimson Pro SemiBold';
-  src: local('Crimson Pro SemiBold'),
-    url('./resources/fonts/CrimsonPro-SemiBold.woff2') format('woff2');
+  src: url('./resources/fonts/CrimsonPro-SemiBold.woff2') format('woff2');
 }
 
 h1, .h1 {
