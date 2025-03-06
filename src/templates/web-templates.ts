@@ -163,6 +163,10 @@ export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: str
   
   return `${warningComment}
 
+html {
+  font-size: ${UTILS.emPx}px;
+}
+  
 ${UTILS.fontFaces(textStyleTokens).map(f => fontFace(f, fontsPath)).join('\n')}
 ${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.exclusiveTextStyle)}`).join('\n')}
 `

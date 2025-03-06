@@ -1,6 +1,8 @@
 import { FontFace, TextStyleToken } from '../types'
 import { capitalCase, pascalCase } from 'change-case'
 
+export const emPx = 16
+
 export function colorComponentToHexString(component: number): string {
   const hex = Math.round(component * 255).toString(16)
   return hex.length == 1 ? '0' + hex : hex
@@ -55,7 +57,7 @@ export function fontPostScriptName(figmaFamilyName: string, weight: number, isIt
 }
 
 export function toEm(fontSizePtPx: number): string {
-  return `${(fontSizePtPx / 16).toString()}em`
+  return `${(fontSizePtPx / emPx).toString()}em`
 }
 
 export function textTransform(textCase?: string): string {
