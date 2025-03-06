@@ -59,12 +59,12 @@ h1, .h1 {
 }
 
 h1.serif, .h1.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
+  font-family: 'Crimson Pro Medium', serif;
   font-size: 4em;
 }
 
 h1.italic, .h1.italic {
-  font-family: 'Inter Medium Italic', serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h2, .h2 {
@@ -76,12 +76,12 @@ h2, .h2 {
 }
 
 h2.serif, .h2.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
+  font-family: 'Crimson Pro Medium', serif;
   font-size: 3.5em;
 }
 
 h2.italic, .h2.italic {
-  font-family: 'Inter Medium Italic', serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h3, .h3 {
@@ -93,12 +93,12 @@ h3, .h3 {
 }
 
 h3.serif, .h3.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
+  font-family: 'Crimson Pro Medium', serif;
   font-size: 3em;
 }
 
 h3.italic, .h3.italic {
-  font-family: 'Inter Medium Italic', serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h4, .h4 {
@@ -110,12 +110,12 @@ h4, .h4 {
 }
 
 h4.serif, .h4.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
+  font-family: 'Crimson Pro Medium', serif;
   font-size: 2.5em;
 }
 
 h4.italic, .h4.italic {
-  font-family: 'Inter Medium Italic', serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h5, .h5 {
@@ -127,12 +127,12 @@ h5, .h5 {
 }
 
 h5.serif, .h5.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
+  font-family: 'Crimson Pro Medium', serif;
   font-size: 1.75em;
 }
 
 h5.italic, .h5.italic {
-  font-family: 'Inter Medium Italic', serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 h6, .h6 {
@@ -144,12 +144,12 @@ h6, .h6 {
 }
 
 h6.serif, .h6.serif {
-  font-family: 'Crimson Pro Medium', sans-serif;
+  font-family: 'Crimson Pro Medium', serif;
   font-size: 1.5em;
 }
 
 h6.italic, .h6.italic {
-  font-family: 'Inter Medium Italic', serif;
+  font-family: 'Inter Medium Italic', sans-serif;
 }
 
 body, .body {
@@ -169,16 +169,16 @@ strong, .strong {
 }
 
 strong.serif, .strong.serif {
-  font-family: 'Crimson Pro SemiBold', sans-serif;
+  font-family: 'Crimson Pro SemiBold', serif;
   font-size: 1.25em;
 }
 
 strong.italic, .strong.italic {
-  font-family: 'Inter SemiBold Italic', serif;
+  font-family: 'Inter SemiBold Italic', sans-serif;
 }
 
 .italic {
-  font-family: 'Inter Italic', serif;
+  font-family: 'Inter Italic', sans-serif;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0em;
@@ -191,7 +191,7 @@ strong.italic, .strong.italic {
 }
 
 .serif {
-  font-family: 'Crimson Pro Regular', sans-serif;
+  font-family: 'Crimson Pro Regular', serif;
   font-size: 1.25em;
   font-weight: 400;
   letter-spacing: 0em;

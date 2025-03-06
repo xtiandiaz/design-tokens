@@ -45,10 +45,12 @@ $dark-scheme-colors: (
 );
 
 @mixin color-attribute($attribute, $color-key, $alpha:1) {
-  #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
-  
-  @media (prefers-color-scheme: dark) {
-    #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+  & {
+    #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
+    
+    @media (prefers-color-scheme: dark) {
+      #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+    }
   }
 };
 

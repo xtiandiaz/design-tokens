@@ -21,10 +21,12 @@ ${schemeColors('light', groupedTokens['light'])}
 ${schemeColors('dark', groupedTokens['dark'])}
 
 @mixin color-attribute($attribute, $color-key, $alpha:1) {
-  #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
-  
-  @media (prefers-color-scheme: dark) {
-    #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+  & {
+    #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
+    
+    @media (prefers-color-scheme: dark) {
+      #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+    }
   }
 };
 
@@ -79,7 +81,7 @@ const fontFace = (face: FontFace, path: string) =>
 const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTextStyle?: TextStyleToken) => {
   let rule = `${selector} {\n`
   if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
-    rule += `  font-family: '${textStyle.fontFamily}', ${textStyle.isItalic ? 'serif' : 'sans-serif'};\n`
+    rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
   }
   if (textStyle.fontSize !== exclusiveTextStyle?.fontSize) {
     rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
