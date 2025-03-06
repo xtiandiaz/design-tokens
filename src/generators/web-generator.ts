@@ -15,13 +15,12 @@ export default class WebGenerator extends AssetGenerator {
   
     FS.writeFileSync(
       `${distPath}/_typography.scss`, 
-      TEMPLATE.typographySCSS(tokens, './resources/fonts')
+      TEMPLATE.typographySCSS(tokens, './fonts')
     )
   }
   
   protected override async generateIconography(tokens: IconToken[], distPath: string): Promise<void> {
-    const writePath = `${distPath}/resources`
-    await FS.promises.mkdir(`${writePath}/icons`, { recursive: true })
+    await FS.promises.mkdir(`${distPath}/icons`, { recursive: true })
     
     const encodedSvgTemplates: EncodedSvgTemplate[] = []
     
@@ -31,7 +30,7 @@ export default class WebGenerator extends AssetGenerator {
         .replace(/(width|height)=\"\d+\"\ ?/g, '')
         .replace(/fill=\"\S+\"/g, 'fill="currentColor"')
       
-      await FS.promises.writeFile(`${writePath}/icons/${token.key}.svg`, svgString)
+      await FS.promises.writeFile(`${distPath}/icons/${token.key}.svg`, svgString)
       
       encodedSvgTemplates.push({
         key: token.key,

@@ -14,7 +14,7 @@ export default abstract class AssetGenerator {
   protected abstract generateIconography(tokens: IconToken[], distPath: string): Promise<void>
   
   protected generateTypography(tokens: TextStyleToken[], sourcePath: string, distPath: string): void {
-    this._generateFonts(tokens, sourcePath, `${distPath}/resources`)
+    this._generateFonts(tokens, sourcePath, distPath)
   }
   
   private _generateFonts(tokens: TextStyleToken[], sourcePath: string, distPath: string): void {
