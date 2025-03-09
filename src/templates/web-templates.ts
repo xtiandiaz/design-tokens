@@ -48,7 +48,7 @@ ${Object.keys(groupedTokens).map(sk => `  ${pascalCase(sk)},`).join('\n')}
 }
 
 export enum ColorKey {
-${groupedTokens['light'].map(c => `  ${pascalCase(c.name)},`).join('\n')}
+${groupedTokens['light'].map(c => `  ${pascalCase(c.name)} = '${kebabCase(c.name)}',`).join('\n')}
 }
 
 export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
@@ -208,6 +208,15 @@ ${encodedSvgTemplates.map((template, index) => {
   display: block;
   width: ${UTILS.toEm(24)};
   height: ${UTILS.toEm(24)};
+}
+`
+}
+
+export function iconographyTS(iconTokens: IconToken[]): string {
+  return `${warningComment}
+
+export enum IconKey {
+${iconTokens.map(t => `  ${pascalCase(t.key)} = '${kebabCase(t.key)}',`).join('\n')}
 }
 `
 }

@@ -5,18 +5,15 @@ import * as TEMPLATE from '../templates/web-templates'
 
 export default class WebGenerator extends AssetGenerator {
   
-  protected generatePalette(tokens: ColorToken[], path: string): void {
-    FS.writeFileSync(`${path}/_palette.scss`, TEMPLATE.paletteSCSS(tokens))
-    FS.writeFileSync(`${path}/palette.ts`, TEMPLATE.paletteTS(tokens))
+  protected async generatePalette(tokens: ColorToken[], path: string): Promise<void> {
+    await FS.promises.writeFile(`${path}/_palette.scss`, TEMPLATE.paletteSCSS(tokens))
+    await FS.promises.writeFile(`${path}/palette.ts`, TEMPLATE.paletteTS(tokens))
   }
   
-  protected override generateTypography(tokens: TextStyleToken[], sourcePath: string, distPath: string): void {
+  protected override async generateTypography(tokens: TextStyleToken[], sourcePath: string, distPath: string): Promise<void> {
     super.generateTypography(tokens, sourcePath, distPath)
   
-    FS.writeFileSync(
-      `${distPath}/_typography.scss`, 
-      TEMPLATE.typographySCSS(tokens, './fonts')
-    )
+    await FS.promises.writeFile(`${distPath}/_typography.scss`, TEMPLATE.typographySCSS(tokens, './fonts'))
   }
   
   protected override async generateIconography(tokens: IconToken[], distPath: string): Promise<void> {
@@ -42,5 +39,7 @@ export default class WebGenerator extends AssetGenerator {
       `${distPath}/_iconography.scss`,
       TEMPLATE.iconographySCSS(encodedSvgTemplates)
     )
+    
+    await FS.promises.writeFile(`${distPath}/iconography.ts`, TEMPLATE.iconographyTS(tokens))
   }
 }
