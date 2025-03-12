@@ -231,7 +231,7 @@ export enum IconKey {
 ${rawSvgs.map(svg => `  ${pascalCase(svg.key)} = '${kebabCase(svg.key)}',`).join('\n')}
 }
 
-export function iconSvgString(key: IconKey): string {
+export function svgIconString(key: IconKey): string {
   switch (key) {
 ${rawSvgs.map(svg => `    case IconKey.${pascalCase(svg.key)}:
       return \`${svg.value}\``).join('\n')}

@@ -65,7 +65,7 @@ export enum IconKey {
   Xmark = 'xmark',
 }
 
-export function iconSvgString(key: IconKey): string {
+export function svgIconString(key: IconKey): string {
   switch (key) {
     case IconKey.Add:
       return `<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
