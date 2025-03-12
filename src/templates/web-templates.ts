@@ -1,5 +1,5 @@
 import * as UTILS from '../utils/web-utils'
-import { ColorToken, TextStyleToken, FontFace, IconToken, EncodedSvgTemplate } from '../types'
+import { ColorToken, TextStyleToken, FontFace, IconToken, RawSvg } from '../types'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, pascalCase } from 'change-case'
 
@@ -189,7 +189,7 @@ ${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.exclusiveTextStyle)
 `
 }
 
-export function iconographySCSS(encodedSvgTemplates: EncodedSvgTemplate[]): string {
+export function iconographySCSS(svgTemplates: RawSvg[]): string {
   return `${warningComment}
   
 @use 'sass:string';
@@ -200,9 +200,10 @@ export function iconographySCSS(encodedSvgTemplates: EncodedSvgTemplate[]): stri
 @function colored-encoded-icon($icon-key, $color-key, $color-map) {
   $color-string: '%23' + string.slice(#{map.get($color-map, $color-key)}, 2);
   
-${encodedSvgTemplates.map((template, index) => {
-  return `${index > 0 ? '  } @else if' : '  @if'} $icon-key == '${template.key}' {
-    @return '${template.template.replace(/currentColor/g, '#{$color-string}')}';`
+${svgTemplates.map((rawSvg, index) => {
+  const encodedRawSvg = encodeURI(rawSvg.value)
+  return `${index > 0 ? '  } @else if' : '  @if'} $icon-key == '${rawSvg.key}' {
+    @return '${encodedRawSvg.replace(/currentColor/g, '#{$color-string}')}';`
   }).join('\n')}
   }
   @return 'not-found';
@@ -223,11 +224,18 @@ ${encodedSvgTemplates.map((template, index) => {
 `
 }
 
-export function iconographyTS(iconTokens: IconToken[]): string {
+export function iconographyTS(rawSvgs: RawSvg[]): string {
   return `${warningComment}
 
 export enum IconKey {
-${iconTokens.map(t => `  ${pascalCase(t.key)} = '${kebabCase(t.key)}',`).join('\n')}
+${rawSvgs.map(svg => `  ${pascalCase(svg.key)} = '${kebabCase(svg.key)}',`).join('\n')}
+}
+
+export function iconSvgString(key: IconKey): string {
+  switch (key) {
+${rawSvgs.map(svg => `    case IconKey.${pascalCase(svg.key)}:
+      return \`${svg.value}\``).join('\n')}
+  }
 }
 `
 }

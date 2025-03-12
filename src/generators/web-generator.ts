@@ -1,6 +1,6 @@
 import FS from 'fs'
 import AssetGenerator from './asset-generator'
-import { ColorToken, EncodedSvgTemplate, IconToken, TextStyleToken } from '../types.js'
+import { ColorToken, RawSvg, IconToken, TextStyleToken } from '../types.js'
 import * as TEMPLATE from '../templates/web-templates'
 
 export default class WebGenerator extends AssetGenerator {
@@ -19,7 +19,7 @@ export default class WebGenerator extends AssetGenerator {
   protected override async generateIconography(tokens: IconToken[], distPath: string): Promise<void> {
     await FS.promises.mkdir(`${distPath}/icons`, { recursive: true })
     
-    const encodedSvgTemplates: EncodedSvgTemplate[] = []
+    const rawSvgs: RawSvg[] = []
     
     for await (const token of tokens) {
       const svgResponse = await fetch(token.url)
@@ -29,17 +29,10 @@ export default class WebGenerator extends AssetGenerator {
       
       await FS.promises.writeFile(`${distPath}/icons/${token.key}.svg`, svgString)
       
-      encodedSvgTemplates.push({
-        key: token.key,
-        template: encodeURI(svgString)
-      })
+      rawSvgs.push({ key: token.key, value: svgString })
     }
     
-    await FS.promises.writeFile(
-      `${distPath}/_iconography.scss`,
-      TEMPLATE.iconographySCSS(encodedSvgTemplates)
-    )
-    
-    await FS.promises.writeFile(`${distPath}/iconography.ts`, TEMPLATE.iconographyTS(tokens))
+    await FS.promises.writeFile(`${distPath}/_iconography.scss`, TEMPLATE.iconographySCSS(rawSvgs))
+    await FS.promises.writeFile(`${distPath}/iconography.ts`, TEMPLATE.iconographyTS(rawSvgs))
   }
 }

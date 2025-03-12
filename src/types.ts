@@ -47,7 +47,7 @@ export interface DesignTokens {
   iconography: IconToken[]
 }
 
-export interface EncodedSvgTemplate {
+export interface RawSvg {
   key: string
-  template: string
+  value: string
 }
