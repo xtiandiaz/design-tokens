@@ -30,8 +30,8 @@ function getColors(page: Figma.Canvas): ColorToken[] {
     const hexCode = utils.hexColorCode(color.r, color.g, color.b)
     
     return {
+      key: colorName,
       scheme: scheme,
-      name: colorName,
       hexCode: hexCode,
       r: color.r,
       g: color.g,

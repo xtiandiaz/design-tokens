@@ -7,11 +7,26 @@ const warningComment = '/* File automatically generated; DO NOT edit! */'
 
 export function paletteSCSS(colorTokens: ColorToken[]): string {
   const groupedTokens = groupBy(colorTokens, t => t.scheme)
-  const schemeColors = (schemeName: string, colors: ColorToken[]) => 
+  for (const key in groupedTokens) {
+    groupedTokens[key] = groupedTokens[key].sort((a, b) => a.key.localeCompare(b.key))
+  }
+  
+  const schemeColors = (schemeName: string, tokens: ColorToken[]) => 
 `$${schemeName}-scheme-colors: (
-${colors.map(c => `  '${kebabCase(c.name)}': #${c.hexCode},`).join('\n')}
+${tokens.map(c => `  '${kebabCase(c.key)}': #${c.hexCode},`).join('\n')}
 );`
   
+  const colorClass = (tokens: ColorToken[]) => `.color {
+${tokens.map(c => {
+  const kebabKey = kebabCase(c.key)
+  return `  &.${kebabKey} {
+    @include color-attribute('color', '${kebabKey}');
+  }`
+}).join('\n')
+}
+}
+`
+ 
   return `${warningComment}
 
 @use 'sass:map';
@@ -30,11 +45,13 @@ ${schemeColors('dark', groupedTokens['dark'])}
   }
 };
 
-@mixin color-attributes($map, $alpha:1) {
-  @each $attribute, $color-key in $map {
+@mixin color-attributes($attribute-map, $alpha:1) {
+  @each $attribute, $color-key in $attribute-map {
     @include color-attribute($attribute, $color-key, $alpha);
   }
 };
+
+${colorClass(groupedTokens['light'])}
 `
 }
 
@@ -48,7 +65,7 @@ ${Object.keys(groupedTokens).map(sk => `  ${pascalCase(sk)},`).join('\n')}
 }
 
 export enum ColorKey {
-${groupedTokens['light'].map(c => `  ${pascalCase(c.name)} = '${kebabCase(c.name)}',`).join('\n')}
+${groupedTokens['light'].map(c => `  ${pascalCase(c.key)} = '${kebabCase(c.key)}',`).join('\n')}
 }
 
 export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
@@ -57,7 +74,7 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
     .map(sk => {
       return `  case ColorScheme.${pascalCase(sk)}:
       switch(colorKey) {
-${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.name)}: return 0x${c.hexCode}`).join('\n')} 
+${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.key)}: return 0x${c.hexCode}`).join('\n')} 
       }
       break
     `
@@ -203,12 +220,6 @@ ${encodedSvgTemplates.map((template, index) => {
     content: url("data:image/svg+xml, #{list.nth($scheme-colored-encoded-icons, 2)}");
   }
 };
-  
-.icon {
-  display: block;
-  width: ${UTILS.toEm(24)};
-  height: ${UTILS.toEm(24)};
-}
 `
 }
 

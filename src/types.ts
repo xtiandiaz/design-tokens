@@ -15,7 +15,7 @@ export interface FontFace {
 }
 
 export interface ColorToken {
-  name: string
+  key: string
   scheme: Scheme
   hexCode: string
   r: number

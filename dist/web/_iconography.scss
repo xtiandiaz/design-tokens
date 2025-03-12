@@ -148,9 +148,3 @@
     content: url("data:image/svg+xml, #{list.nth($scheme-colored-encoded-icons, 2)}");
   }
 };
-  
-.icon {
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-}
