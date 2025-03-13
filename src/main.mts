@@ -25,8 +25,9 @@ async function main() {
   
   const tokensPath = `${distPath}/tokens.json`
   const tokens = await exportDesignTokens()
-  FS.writeFileSync(tokensPath, JSON.stringify(tokens, null, 2))
-  // const tokens = JSON.parse(fs.readFileSync(tokensPath).toString()) as DesignTokens
+  await FS.promises.writeFile(tokensPath, JSON.stringify(tokens, null, 2))
+  // const tokensString = (await FS.promises.readFile(tokensPath)).toString()
+  // const tokens = JSON.parse(tokensString) as DesignTokens
   
   for await (const platform of platforms) {
     const platformPath = `${distPath}/${platform.key}`

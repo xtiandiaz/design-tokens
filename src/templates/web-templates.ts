@@ -232,10 +232,19 @@ ${rawSvgs.map(svg => `  ${pascalCase(svg.key)} = '${kebabCase(svg.key)}',`).join
 }
 
 export function svgIconString(key: IconKey): string {
+  let pathsString = ''
+  
   switch (key) {
-${rawSvgs.map(svg => `    case IconKey.${pascalCase(svg.key)}:
-      return \`${svg.value}\``).join('\n')}
+${rawSvgs.map(svg => {
+  const regExp = /^(?:<svg.*)\n((.?|\n)*)(?:\n<\/svg>(.?|\n)*)$/
+  const valueParts = [...regExp.exec(svg.value)!]
+  
+  return `    case IconKey.${pascalCase(svg.key)}:
+      pathsString = \`${valueParts[1]}\`
+      break`
+  }).join('\n')}
   }
-}
-`
+  
+  return \`<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">\${pathsString}</svg>\`
+}`
 }
