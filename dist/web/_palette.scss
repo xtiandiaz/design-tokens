@@ -3,10 +3,10 @@
 @use 'sass:map';
   
 $light-scheme-colors: (
-  'accessory': #C4C9D4,
+  'accessory': #A7AFBE,
   'background': #FFFFFF,
   'blue': #0B96DA,
-  'body': #2B303B,
+  'body': #21242C,
   'brown': #A66C42,
   'green': #4AB236,
   'indigo': #3D5CF5,
@@ -16,9 +16,9 @@ $light-scheme-colors: (
   'purple': #7E47EB,
   'red': #E53948,
   'secondary-background': #F0F2F4,
-  'secondary-body': #626D84,
+  'secondary-body': #576175,
   'tertiary-background': #E2E4E9,
-  'tertiary-body': #98A1B3,
+  'tertiary-body': #8A94A8,
   'yellow': #CCAA00,
   'yinyang': #29303D,
 );
@@ -27,7 +27,7 @@ $dark-scheme-colors: (
   'accessory': #676F7E,
   'background': #22252A,
   'blue': #42C4F0,
-  'body': #F1F2F4,
+  'body': #FFFFFF,
   'brown': #D99A6C,
   'green': #66CC52,
   'indigo': #7088FF,
@@ -37,7 +37,7 @@ $dark-scheme-colors: (
   'purple': #AD73FF,
   'red': #FF4D5B,
   'secondary-background': #0B0C0E,
-  'secondary-body': #ABB0BA,
+  'secondary-body': #B9BDC6,
   'tertiary-background': #000000,
   'tertiary-body': #818898,
   'yellow': #EEBD2B,

@@ -43,8 +43,8 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.Purple: return 0xAD73FF
         case ColorKey.Accessory: return 0x676F7E
         case ColorKey.TertiaryBody: return 0x818898
-        case ColorKey.SecondaryBody: return 0xABB0BA
-        case ColorKey.Body: return 0xF1F2F4
+        case ColorKey.SecondaryBody: return 0xB9BDC6
+        case ColorKey.Body: return 0xFFFFFF
         case ColorKey.TertiaryBackground: return 0x000000
         case ColorKey.SecondaryBackground: return 0x0B0C0E
         case ColorKey.Background: return 0x22252A 
@@ -63,10 +63,10 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.Red: return 0xE53948
         case ColorKey.Pink: return 0xE550B4
         case ColorKey.Purple: return 0x7E47EB
-        case ColorKey.Accessory: return 0xC4C9D4
-        case ColorKey.TertiaryBody: return 0x98A1B3
-        case ColorKey.SecondaryBody: return 0x626D84
-        case ColorKey.Body: return 0x2B303B
+        case ColorKey.Accessory: return 0xA7AFBE
+        case ColorKey.TertiaryBody: return 0x8A94A8
+        case ColorKey.SecondaryBody: return 0x576175
+        case ColorKey.Body: return 0x21242C
         case ColorKey.TertiaryBackground: return 0xE2E4E9
         case ColorKey.SecondaryBackground: return 0xF0F2F4
         case ColorKey.Background: return 0xFFFFFF 
