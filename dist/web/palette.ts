@@ -46,8 +46,8 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.SecondaryBody: return 0xB9BDC6
         case ColorKey.Body: return 0xFFFFFF
         case ColorKey.TertiaryBackground: return 0x000000
-        case ColorKey.SecondaryBackground: return 0x0B0C0E
-        case ColorKey.Background: return 0x17191C 
+        case ColorKey.SecondaryBackground: return 0x0E0F11
+        case ColorKey.Background: return 0x1C1E22 
       }
       break
       case ColorScheme.Light:
@@ -67,8 +67,8 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.TertiaryBody: return 0x8A94A8
         case ColorKey.SecondaryBody: return 0x576175
         case ColorKey.Body: return 0x21242C
-        case ColorKey.TertiaryBackground: return 0xE2E4E9
-        case ColorKey.SecondaryBackground: return 0xF0F2F4
+        case ColorKey.TertiaryBackground: return 0xDCDFE5
+        case ColorKey.SecondaryBackground: return 0xEDEFF2
         case ColorKey.Background: return 0xFFFFFF 
       }
       break
