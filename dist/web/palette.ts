@@ -31,7 +31,7 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
     case ColorScheme.Dark:
       switch(colorKey) {
         case ColorKey.Yinyang: return 0xE0E4EB
-        case ColorKey.Indigo: return 0x7088FF
+        case ColorKey.Indigo: return 0x667FFF
         case ColorKey.Blue: return 0x42C4F0
         case ColorKey.Mint: return 0x11D4B4
         case ColorKey.Green: return 0x66CC52
@@ -47,7 +47,7 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.Body: return 0xFFFFFF
         case ColorKey.TertiaryBackground: return 0x000000
         case ColorKey.SecondaryBackground: return 0x0B0C0E
-        case ColorKey.Background: return 0x22252A 
+        case ColorKey.Background: return 0x17191C 
       }
       break
       case ColorScheme.Light:
@@ -57,7 +57,7 @@ export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => 
         case ColorKey.Blue: return 0x0B96DA
         case ColorKey.Mint: return 0x00B295
         case ColorKey.Green: return 0x4AB236
-        case ColorKey.Yellow: return 0xCCAA00
+        case ColorKey.Yellow: return 0xC7A705
         case ColorKey.Orange: return 0xF26C0C
         case ColorKey.Brown: return 0xA66C42
         case ColorKey.Red: return 0xE53948
