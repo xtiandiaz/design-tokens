@@ -3,7 +3,7 @@
 @use 'sass:map';
   
 $light-scheme-colors: (
-  'accessory': #A7AFBE,
+  'accessory': #98A1B3,
   'background': #FFFFFF,
   'blue': #0B96DA,
   'body': #21242C,
@@ -16,7 +16,7 @@ $light-scheme-colors: (
   'purple': #7E47EB,
   'red': #E53948,
   'secondary-background': #EDEFF2,
-  'secondary-body': #576175,
+  'secondary-body': #626D84,
   'tertiary-background': #DCDFE5,
   'tertiary-body': #8A94A8,
   'yellow': #C7A705,
@@ -24,7 +24,7 @@ $light-scheme-colors: (
 );
 
 $dark-scheme-colors: (
-  'accessory': #676F7E,
+  'accessory': #737B8C,
   'background': #1C1E22,
   'blue': #2BBDEE,
   'body': #FFFFFF,
@@ -37,26 +37,25 @@ $dark-scheme-colors: (
   'purple': #AD73FF,
   'red': #FF4D5B,
   'secondary-background': #0E0F11,
-  'secondary-body': #B9BDC6,
+  'secondary-body': #ABB0BA,
   'tertiary-background': #000000,
   'tertiary-body': #818898,
   'yellow': #EEBD2B,
   'yinyang': #E0E4EB,
 );
 
-@mixin color-attribute($attribute, $color-key, $alpha:1) {
+@mixin color-attribute($attribute, $color, $alpha:1) {
   & {
-    #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
+    #{$attribute}: rgba(map.get($light-scheme-colors, $color), $alpha);
     
     @media (prefers-color-scheme: dark) {
-      #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+      #{$attribute}: rgba(map.get($dark-scheme-colors, $color), $alpha);
     }
   }
 };
 
 @mixin color-attributes($attribute-map, $alpha:1) {
-  @each $attribute, $color-key in $attribute-map {
-    @include color-attribute($attribute, $color-key, $alpha);
+  @each $attribute, $color in $attribute-map {
+    @include color-attribute($attribute, $color, $alpha);
   }
 };
-

@@ -1,5 +1,5 @@
 import * as UTILS from '../utils/web-utils'
-import { ColorToken, TextStyleToken, FontFace, IconToken, RawSvg } from '../types'
+import { ColorToken, TextStyleToken, FontFace, RawSvg } from '../types'
 import groupBy from 'lodash/groupBy'
 import { kebabCase, pascalCase } from 'change-case'
 
@@ -35,19 +35,19 @@ ${schemeColors('light', groupedTokens['light'])}
 
 ${schemeColors('dark', groupedTokens['dark'])}
 
-@mixin color-attribute($attribute, $color-key, $alpha:1) {
+@mixin color-attribute($attribute, $color, $alpha:1) {
   & {
-    #{$attribute}: rgba(map.get($light-scheme-colors, $color-key), $alpha);
+    #{$attribute}: rgba(map.get($light-scheme-colors, $color), $alpha);
     
     @media (prefers-color-scheme: dark) {
-      #{$attribute}: rgba(map.get($dark-scheme-colors, $color-key), $alpha);
+      #{$attribute}: rgba(map.get($dark-scheme-colors, $color), $alpha);
     }
   }
 };
 
 @mixin color-attributes($attribute-map, $alpha:1) {
-  @each $attribute, $color-key in $attribute-map {
-    @include color-attribute($attribute, $color-key, $alpha);
+  @each $attribute, $color in $attribute-map {
+    @include color-attribute($attribute, $color, $alpha);
   }
 };
 `
@@ -62,17 +62,17 @@ export enum ColorScheme {
 ${Object.keys(groupedTokens).map(sk => `  ${pascalCase(sk)},`).join('\n')}
 }
 
-export enum ColorKey {
+export enum Color {
 ${groupedTokens['light'].map(c => `  ${pascalCase(c.key)} = '${kebabCase(c.key)}',`).join('\n')}
 }
 
-export const schemeColor = (scheme: ColorScheme, colorKey: ColorKey): number => {
+export const schemeColor = (scheme: ColorScheme, color: Color): number => {
   switch(scheme) {
   ${Object.keys(groupedTokens)
     .map(sk => {
       return `  case ColorScheme.${pascalCase(sk)}:
-      switch(colorKey) {
-${groupedTokens[sk].map(c => `        case ColorKey.${pascalCase(c.key)}: return 0x${c.hexCode}`).join('\n')} 
+      switch(color) {
+${groupedTokens[sk].map(c => `        case Color.${pascalCase(c.key)}: return 0x${c.hexCode}`).join('\n')} 
       }
       break
     `
@@ -193,30 +193,25 @@ export function iconographySCSS(svgTemplates: RawSvg[]): string {
 @use 'sass:string';
 @use 'sass:map';
 @use 'sass:list';
-@use 'palette';
+@use './palette';
 
-@function colored-encoded-icon($icon-key, $color-key, $color-map) {
-  $color-string: '%23' + string.slice(#{map.get($color-map, $color-key)}, 2);
+@function colored-encoded-icon($icon, $color, $color-map) {
+  $color-string: '%23' + string.slice(#{map.get($color-map, $color)}, 2);
   
 ${svgTemplates.map((rawSvg, index) => {
   const encodedRawSvg = encodeURI(rawSvg.value)
-  return `${index > 0 ? '  } @else if' : '  @if'} $icon-key == '${rawSvg.key}' {
+  return `${index > 0 ? '  } @else if' : '  @if'} $icon == '${rawSvg.key}' {
     @return '${encodedRawSvg.replace(/currentColor/g, '#{$color-string}')}';`
   }).join('\n')}
   }
   @return 'not-found';
 };
 
-@mixin colored-icon-content-attribute($icon-key, $color-key) {
-  $scheme-colored-encoded-icons: (
-    colored-encoded-icon($icon-key, $color-key, palette.$light-scheme-colors),
-    colored-encoded-icon($icon-key, $color-key, palette.$dark-scheme-colors)
-  );
-  
-  content: url("data:image/svg+xml, #{list.nth($scheme-colored-encoded-icons, 1)}");
+@mixin colored-icon-content-attribute($icon, $color) {
+  content: url("data:image/svg+xml, #{colored-encoded-icon($icon, $color, palette.$light-scheme-colors)}");
   
   @media (prefers-color-scheme: dark) {
-    content: url("data:image/svg+xml, #{list.nth($scheme-colored-encoded-icons, 2)}");
+    content: url("data:image/svg+xml, #{colored-encoded-icon($icon, $color, palette.$dark-scheme-colors)}");
   }
 };
 `
@@ -225,19 +220,19 @@ ${svgTemplates.map((rawSvg, index) => {
 export function iconographyTS(rawSvgs: RawSvg[]): string {
   return `${warningComment}
 
-export enum IconKey {
+export enum Icon {
 ${rawSvgs.map(svg => `  ${pascalCase(svg.key)} = '${kebabCase(svg.key)}',`).join('\n')}
 }
 
-export function svgIconString(key: IconKey): string {
+export function svgIconString(icon: Icon): string {
   let pathsString = ''
   
-  switch (key) {
+  switch (icon) {
 ${rawSvgs.map(svg => {
   const regExp = /^(?:<svg.*)\n((.?|\n)*)(?:\n<\/svg>(.?|\n)*)$/
   const valueParts = [...regExp.exec(svg.value)!]
   
-  return `    case IconKey.${pascalCase(svg.key)}:
+  return `    case Icon.${pascalCase(svg.key)}:
       pathsString = \`${valueParts[1]}\`
       break`
   }).join('\n')}
