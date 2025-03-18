@@ -53,16 +53,16 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
       case ColorScheme.Light:
       switch(color) {
         case Color.Yinyang: return 0x29303D
-        case Color.Indigo: return 0x3D5CF5
+        case Color.Indigo: return 0x425FF0
         case Color.Blue: return 0x0B96DA
         case Color.Mint: return 0x04AE92
         case Color.Green: return 0x4AB236
         case Color.Yellow: return 0xC7A705
-        case Color.Orange: return 0xF26C0C
+        case Color.Orange: return 0xEB6D13
         case Color.Brown: return 0xA66C42
-        case Color.Red: return 0xE53948
-        case Color.Pink: return 0xE550B4
-        case Color.Purple: return 0x7E47EB
+        case Color.Red: return 0xDD3C49
+        case Color.Pink: return 0xE052B1
+        case Color.Purple: return 0x7F4DE5
         case Color.Accessory: return 0x98A1B3
         case Color.TertiaryBody: return 0x8A94A8
         case Color.SecondaryBody: return 0x626D84
