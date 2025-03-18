@@ -10,7 +10,7 @@ $light-scheme-colors: (
   'brown': #A66C42,
   'green': #4AB236,
   'indigo': #3D5CF5,
-  'mint': #00B295,
+  'mint': #04AE92,
   'orange': #F26C0C,
   'pink': #E550B4,
   'purple': #7E47EB,
@@ -26,12 +26,12 @@ $light-scheme-colors: (
 $dark-scheme-colors: (
   'accessory': #676F7E,
   'background': #1C1E22,
-  'blue': #42C4F0,
+  'blue': #2BBDEE,
   'body': #FFFFFF,
   'brown': #D99A6C,
   'green': #66CC52,
   'indigo': #667FFF,
-  'mint': #11D4B4,
+  'mint': #0AC2A3,
   'orange': #FF8833,
   'pink': #F261C2,
   'purple': #AD73FF,
@@ -59,61 +59,4 @@ $dark-scheme-colors: (
     @include color-attribute($attribute, $color-key, $alpha);
   }
 };
-
-.color {
-  &.accessory {
-    @include color-attribute('color', 'accessory');
-  }
-  &.background {
-    @include color-attribute('color', 'background');
-  }
-  &.blue {
-    @include color-attribute('color', 'blue');
-  }
-  &.body {
-    @include color-attribute('color', 'body');
-  }
-  &.brown {
-    @include color-attribute('color', 'brown');
-  }
-  &.green {
-    @include color-attribute('color', 'green');
-  }
-  &.indigo {
-    @include color-attribute('color', 'indigo');
-  }
-  &.mint {
-    @include color-attribute('color', 'mint');
-  }
-  &.orange {
-    @include color-attribute('color', 'orange');
-  }
-  &.pink {
-    @include color-attribute('color', 'pink');
-  }
-  &.purple {
-    @include color-attribute('color', 'purple');
-  }
-  &.red {
-    @include color-attribute('color', 'red');
-  }
-  &.secondary-background {
-    @include color-attribute('color', 'secondary-background');
-  }
-  &.secondary-body {
-    @include color-attribute('color', 'secondary-body');
-  }
-  &.tertiary-background {
-    @include color-attribute('color', 'tertiary-background');
-  }
-  &.tertiary-body {
-    @include color-attribute('color', 'tertiary-body');
-  }
-  &.yellow {
-    @include color-attribute('color', 'yellow');
-  }
-  &.yinyang {
-    @include color-attribute('color', 'yinyang');
-  }
-}
 

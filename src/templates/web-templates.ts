@@ -50,8 +50,6 @@ ${schemeColors('dark', groupedTokens['dark'])}
     @include color-attribute($attribute, $color-key, $alpha);
   }
 };
-
-${colorClass(groupedTokens['light'])}
 `
 }
 
