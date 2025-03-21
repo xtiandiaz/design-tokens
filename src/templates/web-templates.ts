@@ -193,7 +193,7 @@ export function iconographySCSS(svgTemplates: RawSvg[]): string {
 @use 'sass:string';
 @use 'sass:map';
 @use 'sass:list';
-@use './palette';
+@use 'palette';
 
 @function colored-encoded-icon($icon, $color, $color-map) {
   $color-string: '%23' + string.slice(#{map.get($color-map, $color)}, 2);
