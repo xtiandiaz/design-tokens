@@ -41,13 +41,13 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Red: return 0xFF4D5B
         case Color.Pink: return 0xF261C2
         case Color.Purple: return 0xAD73FF
-        case Color.Accessory: return 0x737B8C
-        case Color.TertiaryBody: return 0x818898
-        case Color.SecondaryBody: return 0xABB0BA
+        case Color.Accessory: return 0x9E9B94
+        case Color.TertiaryBody: return 0xB6B4AF
+        case Color.SecondaryBody: return 0xDBD9D7
         case Color.Body: return 0xFFFFFF
-        case Color.TertiaryBackground: return 0x000000
-        case Color.SecondaryBackground: return 0x0E0F11
-        case Color.Background: return 0x1C1E22 
+        case Color.TertiaryBackground: return 0x151513
+        case Color.SecondaryBackground: return 0x252422
+        case Color.Background: return 0x363430 
       }
       break
       case ColorScheme.Light:
@@ -63,12 +63,12 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Red: return 0xDD3C49
         case Color.Pink: return 0xE052B1
         case Color.Purple: return 0x7F4DE5
-        case Color.Accessory: return 0x98A1B3
-        case Color.TertiaryBody: return 0x8A94A8
-        case Color.SecondaryBody: return 0x626D84
-        case Color.Body: return 0x21242C
-        case Color.TertiaryBackground: return 0xDCDFE5
-        case Color.SecondaryBackground: return 0xEDEFF2
+        case Color.Accessory: return 0xA39C8F
+        case Color.TertiaryBody: return 0x8C8473
+        case Color.SecondaryBody: return 0x625C50
+        case Color.Body: return 0x38352E
+        case Color.TertiaryBackground: return 0xE3E1DD
+        case Color.SecondaryBackground: return 0xF1F0EE
         case Color.Background: return 0xFFFFFF 
       }
       break
