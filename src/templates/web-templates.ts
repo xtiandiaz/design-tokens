@@ -98,9 +98,9 @@ const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTex
   if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
     rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
   }
-  if (textStyle.fontWeight !== exclusiveTextStyle?.fontWeight) {
-    rule += `  font-weight: ${textStyle.fontWeight};\n`
-  }
+  // if (textStyle.fontWeight !== exclusiveTextStyle?.fontWeight) {
+  //   rule += `  font-weight: ${textStyle.fontWeight};\n`
+  // }
   
   rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
   
@@ -110,9 +110,9 @@ const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTex
   // if (textStyle.lineHeight !== exclusiveTextStyle?.lineHeight) {
   //   rule += `  line-height: ${Math.ceil(textStyle.lineHeight)}%;\n`
   // }
-  if (textStyle.textCase !== exclusiveTextStyle?.textCase) {
-    rule += `  text-transform: ${UTILS.textTransform(textStyle.textCase)};\n`
-  }
+  // if (textStyle.textCase !== exclusiveTextStyle?.textCase) {
+  //   rule += `  text-transform: ${UTILS.textTransform(textStyle.textCase)};\n`
+  // }
   rule += `}\n`
   return rule
 }
