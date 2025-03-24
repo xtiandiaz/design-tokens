@@ -104,12 +104,12 @@ const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTex
   
   rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
   
-  if (textStyle.letterSpacing !== exclusiveTextStyle?.letterSpacing) {
-    rule += `  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};\n`
-  }
-  if (textStyle.lineHeight !== exclusiveTextStyle?.lineHeight) {
-    rule += `  line-height: ${Math.ceil(textStyle.lineHeight)}%;\n`
-  }
+  // if (textStyle.letterSpacing !== exclusiveTextStyle?.letterSpacing) {
+  //   rule += `  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};\n`
+  // }
+  // if (textStyle.lineHeight !== exclusiveTextStyle?.lineHeight) {
+  //   rule += `  line-height: ${Math.ceil(textStyle.lineHeight)}%;\n`
+  // }
   if (textStyle.textCase !== exclusiveTextStyle?.textCase) {
     rule += `  text-transform: ${UTILS.textTransform(textStyle.textCase)};\n`
   }
