@@ -99,7 +99,8 @@ const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTex
     rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
   }
   // if (textStyle.fontWeight !== exclusiveTextStyle?.fontWeight) {
-  //   rule += `  font-weight: ${textStyle.fontWeight};\n`
+    // rule += `  font-weight: ${textStyle.fontWeight};\n`
+    rule += `  font-weight: normal;\n`
   // }
   
   rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
