@@ -31,37 +31,37 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
     case ColorScheme.Dark:
       switch(color) {
         case Color.Yinyang: return 0xE0E4EB
-        case Color.Indigo: return 0x516DFB
+        case Color.Indigo: return 0x4D6AFF
         case Color.Blue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
         case Color.Green: return 0x62CB4D
         case Color.Yellow: return 0xEEBD2B
-        case Color.Orange: return 0xFA8938
-        case Color.Brown: return 0xC29270
-        case Color.Red: return 0xFB515F
+        case Color.Orange: return 0xF47B25
+        case Color.Brown: return 0xBA8C5E
+        case Color.Red: return 0xF04251
         case Color.Pink: return 0xF25ABF
-        case Color.Purple: return 0x8951FB
+        case Color.Purple: return 0x884DFF
         case Color.Accessory: return 0x9E9B94
         case Color.TertiaryBody: return 0xB6B4AF
         case Color.SecondaryBody: return 0xDBD9D7
         case Color.Body: return 0xFFFFFF
-        case Color.TertiaryBackground: return 0x151513
-        case Color.SecondaryBackground: return 0x252422
+        case Color.TertiaryBackground: return 0x10100F
+        case Color.SecondaryBackground: return 0x23221F
         case Color.Background: return 0x363430 
       }
       break
       case ColorScheme.Light:
       switch(color) {
         case Color.Yinyang: return 0x29303D
-        case Color.Indigo: return 0x4763EB
-        case Color.Blue: return 0x1194D4
-        case Color.Mint: return 0x09AA8F
-        case Color.Green: return 0x49B434
+        case Color.Indigo: return 0x4D66E5
+        case Color.Blue: return 0x1AA2E5
+        case Color.Mint: return 0x14B89C
+        case Color.Green: return 0x49B234
         case Color.Yellow: return 0xC7A705
-        case Color.Orange: return 0xEB6D13
-        case Color.Brown: return 0xA26C46
+        case Color.Orange: return 0xE56E19
+        case Color.Brown: return 0xB2804D
         case Color.Red: return 0xDD3C49
-        case Color.Pink: return 0xE052B1
+        case Color.Pink: return 0xE54DB2
         case Color.Purple: return 0x7F4DE5
         case Color.Accessory: return 0xA39C8F
         case Color.TertiaryBody: return 0x8C8473
