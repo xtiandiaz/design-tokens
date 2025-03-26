@@ -93,27 +93,23 @@ const fontFace = (face: FontFace, path: string) =>
 }
 `
 
-const textStyleRule = (selector: string, textStyle: TextStyleToken, exclusiveTextStyle?: TextStyleToken) => {
+const textStyleRule = (
+  selector: string, 
+  textStyle: TextStyleToken, 
+  ignoresFontSize: boolean, 
+  exclusiveTextStyle?: TextStyleToken
+) => {
   let rule = `${selector} {\n`
   if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
     rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
   }
-  // if (textStyle.fontWeight !== exclusiveTextStyle?.fontWeight) {
-    // rule += `  font-weight: ${textStyle.fontWeight};\n`
-    rule += `  font-weight: normal;\n`
-  // }
   
-  rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+  rule += `  font-weight: normal;\n`
   
-  // if (textStyle.letterSpacing !== exclusiveTextStyle?.letterSpacing) {
-  //   rule += `  letter-spacing: ${UTILS.toEm(textStyle.letterSpacing)};\n`
-  // }
-  // if (textStyle.lineHeight !== exclusiveTextStyle?.lineHeight) {
-  //   rule += `  line-height: ${Math.ceil(textStyle.lineHeight)}%;\n`
-  // }
-  // if (textStyle.textCase !== exclusiveTextStyle?.textCase) {
-  //   rule += `  text-transform: ${UTILS.textTransform(textStyle.textCase)};\n`
-  // }
+  if (!ignoresFontSize) {
+    rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+  }
+  
   rule += `}\n`
   return rule
 }
@@ -125,35 +121,36 @@ export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: str
   }
   type TargetTextStyleRule = {
     key: string
-    variants: string[]
-    selectorType: TextStyleSelectorType
+    variants?: string[]
+    selectorType: TextStyleSelectorType,
+    ignoresFontSize: boolean
   }
   
   const targetRules: TargetTextStyleRule[] = [
-    { key: 'h1', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h2', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h3', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h4', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h5', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'h6', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'body', variants: [], selectorType: TextStyleSelectorType.Element },
-    { key: 'strong', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element },
-    { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class },
-    { key: 'serif', variants: [], selectorType: TextStyleSelectorType.Class },
-    { key: 'footnote', variants: [], selectorType: TextStyleSelectorType.Class },
-    { key: 'caption', variants: ['all-caps'], selectorType: TextStyleSelectorType.Class },
+    { key: 'h1', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'h2', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'h3', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'h4', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'h5', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'h6', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'body', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
+    { key: 'strong', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element, ignoresFontSize: true },
+    { key: 'caption', selectorType: TextStyleSelectorType.Class, ignoresFontSize: false },
+    { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class, ignoresFontSize: true },
+    { key: 'serif', variants: [], selectorType: TextStyleSelectorType.Class, ignoresFontSize: true },
   ]
   
   type TextStyleRule = {
     selector: string
     textStyle: TextStyleToken
-    exclusiveTextStyle?: TextStyleToken
+    exclusiveTextStyle?: TextStyleToken,
+    ignoresFontSize: boolean
   }
   
   const rules: TextStyleRule[] = []
   
   for (const target of targetRules) {
-    for (const variant of [undefined, ...target.variants]) {
+    for (const variant of [undefined, ...(target.variants ?? [])]) {
       const styleKey = variant !== undefined ? `${target.key} ${variant}` : target.key
       const textStyle = textStyleTokens.find(ts => ts.key === styleKey)
       if (textStyle === undefined){
@@ -172,7 +169,8 @@ export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: str
       rules.push({ 
         selector: selector, 
         textStyle: textStyle, 
-        exclusiveTextStyle: variant !== undefined ? textStyleTokens.find(ts => ts.key === target.key) : undefined
+        exclusiveTextStyle: variant ? textStyleTokens.find(ts => ts.key === target.key) : undefined,
+        ignoresFontSize: target.ignoresFontSize
       })
     }
   }
@@ -184,7 +182,7 @@ html {
 }
   
 ${UTILS.fontFaces(textStyleTokens).map(f => fontFace(f, fontsPath)).join('\n')}
-${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.exclusiveTextStyle)}`).join('\n')}
+${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.ignoresFontSize, r.exclusiveTextStyle)}`).join('\n')}
 `
 }
 
