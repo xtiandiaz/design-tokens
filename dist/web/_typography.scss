@@ -89,42 +89,36 @@ body, .body {
 strong, .strong {
   font-family: 'Inter SemiBold', sans-serif;
   font-weight: normal;
-  font-size: 1em;
 }
 
 strong.serif, .strong.serif {
   font-family: 'Libre Baskerville Bold', serif;
   font-weight: normal;
-  font-size: 1em;
 }
 
 strong.italic, .strong.italic {
   font-family: 'Inter SemiBold Italic', sans-serif;
   font-weight: normal;
-  font-size: 1em;
-}
-
-.italic {
-  font-family: 'Inter Italic', sans-serif;
-  font-weight: normal;
-  font-size: 1em;
-}
-
-.italic.serif {
-  font-family: 'Libre Baskerville Italic', serif;
-  font-weight: normal;
-  font-size: 1em;
-}
-
-.serif {
-  font-family: 'Libre Baskerville Regular', serif;
-  font-weight: normal;
-  font-size: 1em;
 }
 
 .caption {
   font-family: 'Inter Regular', sans-serif;
   font-weight: normal;
   font-size: 0.8125em;
+}
+
+.italic {
+  font-family: 'Inter Italic', sans-serif;
+  font-weight: normal;
+}
+
+.italic.serif {
+  font-family: 'Libre Baskerville Italic', serif;
+  font-weight: normal;
+}
+
+.serif {
+  font-family: 'Libre Baskerville Regular', serif;
+  font-weight: normal;
 }
 
