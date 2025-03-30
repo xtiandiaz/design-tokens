@@ -31,7 +31,7 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
     case ColorScheme.Dark:
       switch(color) {
         case Color.Yinyang: return 0xE0E4EB
-        case Color.Indigo: return 0x4D79FF
+        case Color.Indigo: return 0x5781FF
         case Color.Blue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
         case Color.Green: return 0x62CB4D
@@ -40,7 +40,7 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Brown: return 0xBA8C5E
         case Color.Red: return 0xF04251
         case Color.Pink: return 0xF25ABF
-        case Color.Purple: return 0x974DFF
+        case Color.Purple: return 0x9D57FF
         case Color.Accessory: return 0x9E9B94
         case Color.TertiaryBody: return 0xB6B4AF
         case Color.SecondaryBody: return 0xDBD9D7
