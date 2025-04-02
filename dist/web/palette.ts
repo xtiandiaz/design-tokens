@@ -6,14 +6,14 @@ export enum ColorScheme {
 }
 
 export enum Color {
-  Yinyang = 'yinyang',
+  Sepia = 'sepia',
+  Gray = 'gray',
   Indigo = 'indigo',
   Blue = 'blue',
   Mint = 'mint',
   Green = 'green',
   Yellow = 'yellow',
   Orange = 'orange',
-  Brown = 'brown',
   Red = 'red',
   Pink = 'pink',
   Purple = 'purple',
@@ -30,14 +30,14 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
   switch(scheme) {
     case ColorScheme.Dark:
       switch(color) {
-        case Color.Yinyang: return 0xE0E4EB
+        case Color.Sepia: return 0xAF8C6A
+        case Color.Gray: return 0x8592AD
         case Color.Indigo: return 0x5781FF
         case Color.Blue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
         case Color.Green: return 0x62CB4D
         case Color.Yellow: return 0xEEBD2B
         case Color.Orange: return 0xF47B25
-        case Color.Brown: return 0xBA8C5E
         case Color.Red: return 0xF04251
         case Color.Pink: return 0xF25ABF
         case Color.Purple: return 0x9D57FF
@@ -52,14 +52,14 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
       break
       case ColorScheme.Light:
       switch(color) {
-        case Color.Yinyang: return 0x29303D
+        case Color.Sepia: return 0x957350
+        case Color.Gray: return 0x525F7A
         case Color.Indigo: return 0x4D66E5
         case Color.Blue: return 0x189CDC
         case Color.Mint: return 0x13AE95
         case Color.Green: return 0x49B234
         case Color.Yellow: return 0xC7A705
         case Color.Orange: return 0xE56E19
-        case Color.Brown: return 0xB2804D
         case Color.Red: return 0xDD3C49
         case Color.Pink: return 0xE54DB2
         case Color.Purple: return 0x7F4DE5

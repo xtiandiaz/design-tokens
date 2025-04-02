@@ -7,7 +7,7 @@ $light-scheme-colors: (
   'background': #FFFFFF,
   'blue': #189CDC,
   'body': #38352E,
-  'brown': #B2804D,
+  'gray': #525F7A,
   'green': #49B234,
   'indigo': #4D66E5,
   'mint': #13AE95,
@@ -17,10 +17,10 @@ $light-scheme-colors: (
   'red': #DD3C49,
   'secondary-background': #F1F0EE,
   'secondary-body': #625C50,
+  'sepia': #957350,
   'tertiary-background': #E3E1DD,
   'tertiary-body': #8C8473,
   'yellow': #C7A705,
-  'yinyang': #29303D,
 );
 
 $dark-scheme-colors: (
@@ -28,7 +28,7 @@ $dark-scheme-colors: (
   'background': #363430,
   'blue': #2BADEE,
   'body': #FFFFFF,
-  'brown': #BA8C5E,
+  'gray': #8592AD,
   'green': #62CB4D,
   'indigo': #5781FF,
   'mint': #0AC2A3,
@@ -38,10 +38,10 @@ $dark-scheme-colors: (
   'red': #F04251,
   'secondary-background': #23221F,
   'secondary-body': #DBD9D7,
+  'sepia': #AF8C6A,
   'tertiary-background': #10100F,
   'tertiary-body': #B6B4AF,
   'yellow': #EEBD2B,
-  'yinyang': #E0E4EB,
 );
 
 @mixin color-attribute($attribute, $color, $alpha:1) {
