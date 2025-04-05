@@ -93,88 +93,26 @@ const fontFace = (face: FontFace, path: string) =>
 }
 `
 
-const textStyleRule = (
-  selector: string, 
-  textStyle: TextStyleToken, 
-  ignoresFontSize: boolean, 
-  exclusiveTextStyle?: TextStyleToken
-) => {
-  let rule = `${selector} {\n`
-  if (textStyle.fontFamily !== exclusiveTextStyle?.fontFamily) {
-    rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
-  }
+const textStyleRule = (textStyle: TextStyleToken) => {
+  const adaptedKey = textStyle.key.replace(/[- ]/g, '.')
+  const isElement =  /^h[1-6]|body|strong/.test(adaptedKey)
+  const ignoresFontSize = /^strong|serif|italic/.test(adaptedKey)
+  const className = `.${adaptedKey}`
+  const selector = isElement ? `${adaptedKey}, ${className}` : className
   
-  rule += `  font-weight: normal;\n`
+  let rule = `${selector} {\n`
+  rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
   
   if (!ignoresFontSize) {
     rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
   }
   
   rule += `}\n`
+  
   return rule
 }
 
-export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: string): string {
-  enum TextStyleSelectorType {
-    Element,
-    Class
-  }
-  type TargetTextStyleRule = {
-    key: string
-    variants?: string[]
-    selectorType: TextStyleSelectorType,
-    ignoresFontSize: boolean
-  }
-  
-  const targetRules: TargetTextStyleRule[] = [
-    { key: 'h1', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'h2', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'h3', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'h4', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'h5', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'h6', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'body', selectorType: TextStyleSelectorType.Element, ignoresFontSize: false },
-    { key: 'strong', variants: ['serif', 'italic'], selectorType: TextStyleSelectorType.Element, ignoresFontSize: true },
-    { key: 'caption', selectorType: TextStyleSelectorType.Class, ignoresFontSize: false },
-    { key: 'italic', variants: ['serif'], selectorType: TextStyleSelectorType.Class, ignoresFontSize: true },
-    { key: 'serif', variants: [], selectorType: TextStyleSelectorType.Class, ignoresFontSize: true },
-  ]
-  
-  type TextStyleRule = {
-    selector: string
-    textStyle: TextStyleToken
-    exclusiveTextStyle?: TextStyleToken,
-    ignoresFontSize: boolean
-  }
-  
-  const rules: TextStyleRule[] = []
-  
-  for (const target of targetRules) {
-    for (const variant of [undefined, ...(target.variants ?? [])]) {
-      const styleKey = variant !== undefined ? `${target.key} ${variant}` : target.key
-      const textStyle = textStyleTokens.find(ts => ts.key === styleKey)
-      if (textStyle === undefined){
-        continue
-      }
-      const partialSelector = variant !== undefined ? `${target.key}.${variant}` : target.key
-      let selector: string
-      switch (target.selectorType) {
-        case TextStyleSelectorType.Class:
-          selector = `.${partialSelector}`
-          break
-        case TextStyleSelectorType.Element:
-          selector = `${partialSelector}, .${partialSelector}`
-          break
-      }
-      rules.push({ 
-        selector: selector, 
-        textStyle: textStyle, 
-        exclusiveTextStyle: variant ? textStyleTokens.find(ts => ts.key === target.key) : undefined,
-        ignoresFontSize: target.ignoresFontSize
-      })
-    }
-  }
-  
+export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: string): string {    
   return `${warningComment}
   
 @function em($pixels) {
@@ -188,8 +126,8 @@ html {
   font-size: ${UTILS.emPx}px;
 }
   
-${UTILS.fontFaces(textStyleTokens).map(f => fontFace(f, fontsPath)).join('\n')}
-${rules.map(r => `${textStyleRule(r.selector, r.textStyle, r.ignoresFontSize, r.exclusiveTextStyle)}`).join('\n')}
+${UTILS.fontFaces(textStyleTokens).map(tst => fontFace(tst, fontsPath)).join('\n')}
+${textStyleTokens.map(tst => `${textStyleRule(tst)}`).join('\n')}
 `
 }
 

@@ -5,9 +5,9 @@ import { exit } from 'process'
 export default abstract class AssetGenerator {
   
   public async generateAssets(tokens: DesignTokens, sourcePath: string, distPath: string): Promise<void> {
-    await this.generatePalette(tokens.palette, distPath)
+    // await this.generatePalette(tokens.palette, distPath)
     await this.generateTypography(tokens.typography, sourcePath, distPath)
-    await this.generateIconography(tokens.iconography, distPath)
+    // await this.generateIconography(tokens.iconography, distPath)
   }
   
   protected abstract generatePalette(tokens: ColorToken[], path: string): Promise<void>

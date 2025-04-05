@@ -32,10 +32,10 @@ async function main() {
   for await (const platform of platforms) {
     const platformPath = `${distPath}/${platform.key}`
     
-    if (FS.existsSync(platformPath)) {
-      FS.rmSync(platformPath, { recursive: true })
-    }
-    FS.mkdirSync(platformPath, { recursive: true })
+    // if (FS.existsSync(platformPath)) {
+    //   FS.rmSync(platformPath, { recursive: true })
+    // }
+    // FS.mkdirSync(platformPath, { recursive: true })
     
     await platform.generator.generateAssets(tokens, resourcePath, platformPath)
   }

@@ -51,7 +51,7 @@ function getTypography(page: Figma.Canvas): TextStyleToken[] {
     const isItalic = n.style.italic ?? false
     
     return {
-      key: n.name.toLowerCase(),
+      key: n.name.toLowerCase().replace(' ', '-'),
       fontFamily: utils.fontFamily(figmaFontFamily, fontWeight, isItalic),
       fontPostScriptName: utils.fontPostScriptName(figmaFontFamily, fontWeight, isItalic),
       fontWeight,
