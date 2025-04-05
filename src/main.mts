@@ -24,10 +24,10 @@ async function main() {
   spinner.text = "Exporting Design Tokens..."
   
   const tokensPath = `${distPath}/tokens.json`
-  const tokens = await exportDesignTokens()
-  await FS.promises.writeFile(tokensPath, JSON.stringify(tokens, null, 2))
-  // const tokensString = (await FS.promises.readFile(tokensPath)).toString()
-  // const tokens = JSON.parse(tokensString) as DesignTokens
+  // const tokens = await exportDesignTokens()
+  // await FS.promises.writeFile(tokensPath, JSON.stringify(tokens, null, 2))
+  const tokensString = (await FS.promises.readFile(tokensPath)).toString()
+  const tokens = JSON.parse(tokensString) as DesignTokens
   
   for await (const platform of platforms) {
     const platformPath = `${distPath}/${platform.key}`

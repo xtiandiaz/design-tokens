@@ -176,6 +176,13 @@ export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: str
   }
   
   return `${warningComment}
+  
+@function em($pixels) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px; 
+  }
+  @return #{$pixels / ${UTILS.emPx}px}em;
+}
 
 html {
   font-size: ${UTILS.emPx}px;
