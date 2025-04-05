@@ -100,8 +100,10 @@ const textStyleRule = (textStyle: TextStyleToken) => {
   const className = `.${adaptedKey}`
   const selector = isElement ? `${adaptedKey}, ${className}` : className
   
-  let rule = `${selector} {\n`
-  rule += `  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};\n`
+  let rule = `${selector} {
+  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};
+  font-weight: normal;
+`
   
   if (!ignoresFontSize) {
     rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
