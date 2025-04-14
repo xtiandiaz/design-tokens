@@ -15,7 +15,7 @@ interface IPlatform {
 
 const platforms: [IPlatform] = [{
   key: "web",
-  generator: new WebGenerator(distPath)
+  generator: new WebGenerator(`${distPath}/web`)
 }]
 
 async function main() {
@@ -24,20 +24,19 @@ async function main() {
   spinner.text = "Exporting Design Tokens..."
   
   const tokensPath = `${distPath}/tokens.json`
-  // const tokens = await exportDesignTokens()
-  // await FS.promises.writeFile(tokensPath, JSON.stringify(tokens, null, 2))
-  const tokensString = (await FS.promises.readFile(tokensPath)).toString()
-  const tokens = JSON.parse(tokensString) as DesignTokens
+  const tokens = await exportDesignTokens()
+  await FS.promises.writeFile(tokensPath, JSON.stringify(tokens, null, 2))
+  // const tokensString = (await FS.promises.readFile(tokensPath)).toString()
+  // const tokens = JSON.parse(tokensString) as DesignTokens
   
   for await (const platform of platforms) {
-    const platformPath = `${distPath}/${platform.key}`
+    const platformDistPath = platform.generator.distPath
+    if (FS.existsSync(platformDistPath)) {
+      FS.rmSync(platformDistPath, { recursive: true })
+    }
+    FS.mkdirSync(platformDistPath, { recursive: true })
     
-    // if (FS.existsSync(platformPath)) {
-    //   FS.rmSync(platformPath, { recursive: true })
-    // }
-    // FS.mkdirSync(platformPath, { recursive: true })
-    
-    await platform.generator.generateAssets(tokens, resourcePath, platformPath)
+    await platform.generator.generateAssets(tokens, resourcePath)
   }
   
   spinner.stop()

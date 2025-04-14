@@ -3,16 +3,16 @@ import { ColorToken, TextStyleToken, IconToken, DesignTokens } from '../types'
 import { exit } from 'process'
 
 export default abstract class AssetGenerator {
-  _distPath: string
+  readonly distPath: string
   
   constructor(distPath: string) {
-    this._distPath = distPath
+    this.distPath = distPath
   }
   
   public async generateAssets(tokens: DesignTokens, sourcePath: string): Promise<void> {
-    // await this.generatePalette(tokens.palette)
+    await this.generatePalette(tokens.palette)
     await this.generateTypography(tokens.typography, sourcePath)
-    // await this.generateIconography(tokens.iconography)
+    await this.generateIconography(tokens.iconography)
     await this.generateUtilities()
   }
   
@@ -29,7 +29,7 @@ export default abstract class AssetGenerator {
     const fontResourcePath = `${sourcePath}/fonts`
     const fontFiles = FS.readdirSync(fontResourcePath)
     
-    const writePath = `${this._distPath}/fonts`
+    const writePath = `${this.distPath}/fonts`
     await FS.promises.mkdir(writePath, { recursive: true })
     
     for await (const name of fontNames) {
