@@ -124,15 +124,6 @@ const textStyleRule = (textStyle: TextStyleToken) => {
 
 export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: string): string {    
   return `${warningComment}
-  
-@use 'sass:math';
-
-@function em($pixels) {
-  @if (math.is-unitless($pixels)) {
-    $pixels: $pixels * 1px; 
-  }
-  @return #{math.div($pixels, 16px)}em;
-}
 
 html {
   font-size: ${UTILS.emPx}px;
