@@ -15,7 +15,7 @@ interface IPlatform {
 
 const platforms: [IPlatform] = [{
   key: "web",
-  generator: new WebGenerator()
+  generator: new WebGenerator(distPath)
 }]
 
 async function main() {

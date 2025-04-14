@@ -5,6 +5,25 @@ import { kebabCase, pascalCase } from 'change-case'
 
 const warningComment = '/* File automatically generated; DO NOT edit! */'
 
+export const utilitiesSCSS = `${warningComment}
+
+@use 'sass:math';
+
+@function em($pixels) {
+  @if (math.is-unitless($pixels)) {
+    $pixels: $pixels * 1px; 
+  }
+  @return #{math.div($pixels, 16px)}em;
+}
+  
+@function px($ems) {
+  @if (math.is-unitless($ems)) {
+    $ems: $ems * 1em;
+  }
+  @return #{math.div($ems, 1em) * 16px};
+}
+`
+
 export function paletteSCSS(colorTokens: ColorToken[]): string {
   const groupedTokens = groupBy(colorTokens, t => t.scheme)
   for (const key in groupedTokens) {
@@ -15,17 +34,6 @@ export function paletteSCSS(colorTokens: ColorToken[]): string {
 `$${schemeName}-scheme-colors: (
 ${tokens.map(c => `  '${kebabCase(c.key)}': #${c.hexCode},`).join('\n')}
 );`
-  
-  const colorClass = (tokens: ColorToken[]) => `.color {
-${tokens.map(c => {
-  const kebabKey = kebabCase(c.key)
-  return `  &.${kebabKey} {
-    @include color-attribute('color', '${kebabKey}');
-  }`
-}).join('\n')
-}
-}
-`
  
   return `${warningComment}
 

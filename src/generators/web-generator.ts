@@ -5,19 +5,19 @@ import * as TEMPLATE from '../templates/web-templates'
 
 export default class WebGenerator extends AssetGenerator {
   
-  protected async generatePalette(tokens: ColorToken[], path: string): Promise<void> {
-    await FS.promises.writeFile(`${path}/_palette.scss`, TEMPLATE.paletteSCSS(tokens))
-    await FS.promises.writeFile(`${path}/palette.ts`, TEMPLATE.paletteTS(tokens))
+  protected async generatePalette(tokens: ColorToken[]): Promise<void> {
+    await FS.promises.writeFile(`${this._distPath}/_palette.scss`, TEMPLATE.paletteSCSS(tokens))
+    await FS.promises.writeFile(`${this._distPath}/palette.ts`, TEMPLATE.paletteTS(tokens))
   }
   
-  protected override async generateTypography(tokens: TextStyleToken[], sourcePath: string, distPath: string): Promise<void> {
-    super.generateTypography(tokens, sourcePath, distPath)
+  protected override async generateTypography(tokens: TextStyleToken[], sourcePath: string): Promise<void> {
+    super.generateTypography(tokens, sourcePath)
   
-    await FS.promises.writeFile(`${distPath}/_typography.scss`, TEMPLATE.typographySCSS(tokens, './fonts'))
+    await FS.promises.writeFile(`${this._distPath}/_typography.scss`, TEMPLATE.typographySCSS(tokens, './fonts'))
   }
   
-  protected override async generateIconography(tokens: IconToken[], distPath: string): Promise<void> {
-    await FS.promises.mkdir(`${distPath}/icons`, { recursive: true })
+  protected override async generateIconography(tokens: IconToken[]): Promise<void> {
+    await FS.promises.mkdir(`${this._distPath}/icons`, { recursive: true })
     
     const rawSvgs: RawSvg[] = []
     
@@ -27,12 +27,16 @@ export default class WebGenerator extends AssetGenerator {
         .replace(/(width|height)=\"\d+\"\ ?/g, '')
         .replace(/fill=\"\S+\"/g, 'fill="currentColor"')
       
-      await FS.promises.writeFile(`${distPath}/icons/${token.key}.svg`, svgString)
+      await FS.promises.writeFile(`${this._distPath}/icons/${token.key}.svg`, svgString)
       
       rawSvgs.push({ key: token.key, value: svgString })
     }
     
-    await FS.promises.writeFile(`${distPath}/_iconography.scss`, TEMPLATE.iconographySCSS(rawSvgs))
-    await FS.promises.writeFile(`${distPath}/iconography.ts`, TEMPLATE.iconographyTS(rawSvgs))
+    await FS.promises.writeFile(`${this._distPath}/_iconography.scss`, TEMPLATE.iconographySCSS(rawSvgs))
+    await FS.promises.writeFile(`${this._distPath}/iconography.ts`, TEMPLATE.iconographyTS(rawSvgs))
+  }
+  
+  protected override async generateUtilities(): Promise<void> {
+    await FS.promises.writeFile(`${this._distPath}/_utils.scss`, TEMPLATE.utilitiesSCSS)
   }
 }
