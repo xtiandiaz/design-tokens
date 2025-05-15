@@ -8,8 +8,8 @@ export enum ColorScheme {
 export enum Color {
   Sepia = 'sepia',
   Gray = 'gray',
-  Indigo = 'indigo',
   Blue = 'blue',
+  SkyBlue = 'sky-blue',
   Mint = 'mint',
   Green = 'green',
   Yellow = 'yellow',
@@ -32,8 +32,8 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
       switch(color) {
         case Color.Sepia: return 0xAF8C6A
         case Color.Gray: return 0x8592AD
-        case Color.Indigo: return 0x5781FF
-        case Color.Blue: return 0x2BADEE
+        case Color.Blue: return 0x5781FF
+        case Color.SkyBlue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
         case Color.Green: return 0x62CB4D
         case Color.Yellow: return 0xEEBD2B
@@ -54,8 +54,8 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
       switch(color) {
         case Color.Sepia: return 0x957350
         case Color.Gray: return 0x525F7A
-        case Color.Indigo: return 0x4D66E5
-        case Color.Blue: return 0x189CDC
+        case Color.Blue: return 0x446CE4
+        case Color.SkyBlue: return 0x189CDC
         case Color.Mint: return 0x13AE95
         case Color.Green: return 0x49B234
         case Color.Yellow: return 0xC7A705
