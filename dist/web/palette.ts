@@ -35,11 +35,11 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Blue: return 0x5781FF
         case Color.SkyBlue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
-        case Color.Green: return 0x62CB4D
+        case Color.Green: return 0x66C653
         case Color.Yellow: return 0xEEBD2B
         case Color.Orange: return 0xEF8234
         case Color.Red: return 0xF1505E
-        case Color.Pink: return 0xED5EBE
+        case Color.Pink: return 0xE963BC
         case Color.Purple: return 0xAB57FF
         case Color.Accessory: return 0x9E9B94
         case Color.TertiaryBody: return 0xB6B4AF
