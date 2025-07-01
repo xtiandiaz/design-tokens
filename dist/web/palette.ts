@@ -31,7 +31,7 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
     case ColorScheme.Dark:
       switch(color) {
         case Color.Sepia: return 0xAF8C6A
-        case Color.Gray: return 0x8592AD
+        case Color.Gray: return 0xB2BBCC
         case Color.Blue: return 0x5781FF
         case Color.SkyBlue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
@@ -41,19 +41,19 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Red: return 0xF1505E
         case Color.Pink: return 0xE963BC
         case Color.Purple: return 0xAB57FF
-        case Color.Accessory: return 0x9E9B94
-        case Color.TertiaryBody: return 0xB6B4AF
-        case Color.SecondaryBody: return 0xDBD9D7
-        case Color.Body: return 0xFFFFFF
-        case Color.TertiaryBackground: return 0x10100F
-        case Color.SecondaryBackground: return 0x23221F
+        case Color.Accessory: return 0x928E87
+        case Color.TertiaryBody: return 0xAAA7A1
+        case Color.SecondaryBody: return 0xCFCDC9
+        case Color.Body: return 0xF3F2F2
+        case Color.TertiaryBackground: return 0x0B0A0A
+        case Color.SecondaryBackground: return 0x201F1D
         case Color.Background: return 0x363430 
       }
       break
       case ColorScheme.Light:
       switch(color) {
         case Color.Sepia: return 0x957350
-        case Color.Gray: return 0x525F7A
+        case Color.Gray: return 0x667799
         case Color.Blue: return 0x3661E2
         case Color.SkyBlue: return 0x189CDC
         case Color.Mint: return 0x13AE95
