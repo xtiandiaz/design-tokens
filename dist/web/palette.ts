@@ -45,9 +45,9 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.TertiaryBody: return 0xAAA7A1
         case Color.SecondaryBody: return 0xCFCDC9
         case Color.Body: return 0xF3F2F2
-        case Color.TertiaryBackground: return 0x0B0A0A
-        case Color.SecondaryBackground: return 0x201F1D
-        case Color.Background: return 0x363430 
+        case Color.TertiaryBackground: return 0x000000
+        case Color.SecondaryBackground: return 0x151513
+        case Color.Background: return 0x2B2927 
       }
       break
       case ColorScheme.Light:
