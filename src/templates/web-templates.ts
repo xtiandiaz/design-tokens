@@ -37,25 +37,54 @@ ${tokens.map(c => `  '${kebabCase(c.key)}': #${c.hexCode},`).join('\n')}
  
   return `${warningComment}
 
+@use 'sass:color';
 @use 'sass:map';
   
 ${schemeColors('light', groupedTokens['light'])}
 
 ${schemeColors('dark', groupedTokens['dark'])}
 
-@mixin color-attribute($attribute, $color, $alpha:1) {
+@mixin _color-attribute($attribute, $light-scheme-color, $dark-scheme-color) {
   & {
-    #{$attribute}: rgba(map.get($light-scheme-colors, $color), $alpha);
+    #{$attribute}: $light-scheme-color;
     
     @media (prefers-color-scheme: dark) {
-      #{$attribute}: rgba(map.get($dark-scheme-colors, $color), $alpha);
+      #{$attribute}: $dark-scheme-color;
     }
   }
+}
+
+@mixin color-attribute($attribute, $color-key, $alpha: 1) {
+  @include _color-attribute(
+    $attribute, 
+    rgba(map.get($light-scheme-colors, $color-key), $alpha),
+    rgba(map.get($dark-scheme-colors, $color-key), $alpha)
+  );
 };
 
-@mixin color-attributes($attribute-map, $alpha:1) {
-  @each $attribute, $color in $attribute-map {
-    @include color-attribute($attribute, $color, $alpha);
+@mixin mixed-color-attribute($attribute, $color-key-from, $color-key-to, $at, $alpha: 1) {
+  $percentage: clamp(0, $at, 100);
+  
+  @include _color-attribute(
+    $attribute, 
+    color.mix(
+      rgba(map.get($light-scheme-colors, $color-key-to), $alpha),
+      rgba(map.get($light-scheme-colors, $color-key-from), $alpha),
+      $percentage,
+      $method: rgb
+    ),
+    color.mix(
+      rgba(map.get($dark-scheme-colors, $color-key-to), $alpha),
+      rgba(map.get($dark-scheme-colors, $color-key-from), $alpha),
+      $percentage,
+      $method: rgb
+    ),
+  );
+};
+
+@mixin color-attributes($attribute-map, $alpha: 1) {
+  @each $attribute, $color-key in $attribute-map {
+    @include color-attribute($attribute, $color-key, $alpha);
   }
 };
 `
