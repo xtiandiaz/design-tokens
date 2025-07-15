@@ -32,6 +32,7 @@ export default class WebGenerator extends AssetGenerator {
       rawSvgs.push({ key: token.key, value: svgString })
     }
     
+    await FS.promises.writeFile(`${this.distPath}/_iconography.scss`, TEMPLATE.iconographySCSS(rawSvgs))
     await FS.promises.writeFile(`${this.distPath}/iconography.ts`, TEMPLATE.iconographyTS(rawSvgs))
   }
   
