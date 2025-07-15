@@ -57,7 +57,7 @@ function getTypography(page: Figma.Canvas): TextStyleToken[] {
       fontWeight,
       fontSize: n.style.fontSize,
       letterSpacing: n.style.letterSpacing,
-      lineHeight: n.style.lineHeightPercent,
+      lineHeight: n.style.lineHeightPx,
       textCase: n.style.textCase,
       isItalic: isItalic
     }

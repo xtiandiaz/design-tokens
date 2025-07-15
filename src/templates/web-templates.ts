@@ -144,6 +144,7 @@ const textStyleRule = (textStyle: TextStyleToken) => {
   
   if (!ignoresFontSize) {
     rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+    rule += `  line-height: ${UTILS.toEm(textStyle.lineHeight)};\n`
   }
   
   rule += `}\n`
