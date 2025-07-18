@@ -8,12 +8,12 @@ import { exportDesignTokens } from './figma'
 const distPath = './dist'
 const resourcePath = './resources'
 
-interface IPlatform {
+interface Platform {
   key: string
   generator: AssetGenerator
 }
 
-const platforms: [IPlatform] = [{
+const platforms: [Platform] = [{
   key: "web",
   generator: new WebGenerator(`${distPath}/web`)
 }]
