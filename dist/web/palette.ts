@@ -49,19 +49,19 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Pink: return 0xE963BC
         case Color.Purple: return 0xAB57FF
         case Color.Accessory: return 0x878E92
-        case Color.AccessoryAlt: return 0xA39075
+        case Color.AccessoryAlt: return 0x988E81
         case Color.TertiaryBody: return 0xA1A7AA
-        case Color.TertiaryBodyAlt: return 0xB8A994
+        case Color.TertiaryBodyAlt: return 0xAFA79D
         case Color.SecondaryBody: return 0xC9CDCF
-        case Color.SecondaryBodyAlt: return 0xD6CEC2
+        case Color.SecondaryBodyAlt: return 0xD1CDC7
         case Color.Body: return 0xF2F2F3
-        case Color.BodyAlt: return 0xF5F3F0
+        case Color.BodyAlt: return 0xF4F2F1
         case Color.TertiaryBackground: return 0x000000
         case Color.TertiaryBackgroundAlt: return 0x000000
         case Color.SecondaryBackground: return 0x0F1010
-        case Color.SecondaryBackgroundAlt: return 0x12100C
+        case Color.SecondaryBackgroundAlt: return 0x11100E
         case Color.Background: return 0x1D1F20
-        case Color.BackgroundAlt: return 0x252018 
+        case Color.BackgroundAlt: return 0x221F1C 
       }
       break
     case ColorScheme.Light:
