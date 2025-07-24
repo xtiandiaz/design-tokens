@@ -4,10 +4,10 @@
 @use 'sass:map';
   
 $light-scheme-colors: (
-  'accessory': #A39C8F,
+  'accessory': #9E9B94,
   'background': #FFFFFF,
   'blue': #3661E2,
-  'body': #38352E,
+  'body': #363430,
   'gray': #667799,
   'green': #49B234,
   'mint': #13AE95,
@@ -15,18 +15,18 @@ $light-scheme-colors: (
   'pink': #E54DB2,
   'purple': #7F4DE5,
   'red': #DD3C49,
-  'secondary-background': #F1F0EE,
-  'secondary-body': #625C50,
+  'secondary-background': #F0F0EF,
+  'secondary-body': #5E5B55,
   'sepia': #957350,
   'sky-blue': #189CDC,
-  'tertiary-background': #E3E1DD,
-  'tertiary-body': #8C8473,
+  'tertiary-background': #E2E1DF,
+  'tertiary-body': #868279,
   'yellow': #C7A705,
 );
 
 $dark-scheme-colors: (
   'accessory': #928E87,
-  'background': #2B2927,
+  'background': #201F1D,
   'blue': #5781FF,
   'body': #F3F2F2,
   'gray': #B2BBCC,
@@ -36,7 +36,7 @@ $dark-scheme-colors: (
   'pink': #E963BC,
   'purple': #AB57FF,
   'red': #F1505E,
-  'secondary-background': #151513,
+  'secondary-background': #10100F,
   'secondary-body': #CFCDC9,
   'sepia': #AF8C6A,
   'sky-blue': #2BADEE,
