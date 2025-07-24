@@ -1,0 +1,52 @@
+@use 'sass:list';
+@use 'sass:map';
+@use './palette';
+
+@mixin linear-gradient($angle, $color-stops...) {
+  & {
+    $light-scheme-colors: ();
+    $dark-scheme-colors: ();
+    $positions: ();
+    
+    @each $color-stop in $color-stops {
+      $color-key: list.nth($color-stop, 1);
+      $alpha: list.nth($color-stop, 2);
+      $positions: list.append($positions, list.nth($color-stop, 3));
+      
+      $light-scheme-colors: list.append(
+        $light-scheme-colors, 
+        rgba(map.get(palette.$light-scheme-colors, $color-key), $alpha),
+        $separator: comma
+      );
+      $dark-scheme-colors: list.append(
+        $dark-scheme-colors, 
+        rgba(map.get(palette.$dark-scheme-colors, $color-key), $alpha),
+        $separator: comma
+      );
+    }
+    
+    background-image: linear-gradient($angle, list.zip($light-scheme-colors, $positions)...);
+    
+    @media (prefers-color-scheme: dark) {
+      background-image: linear-gradient($angle, list.zip($dark-scheme-colors, $positions)...);
+    }
+  }
+}
+
+@mixin min-size($value) {
+  min-height: $value;
+  min-width: $value;
+}
+
+@mixin position($kind, $top: null, $right: null, $bottom: null, $left: null) {
+  bottom: $bottom;
+  left: $left;
+  position: $kind;
+  right: $right;
+  top: $top;
+}
+
+@mixin size($value) {
+  height: $value;
+  width: $value;
+}

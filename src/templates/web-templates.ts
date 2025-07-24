@@ -110,10 +110,9 @@ return `    case ColorScheme.${pascalCase(sk)}:
       switch(color) {
 ${groupedTokens[sk].map(c => `        case Color.${pascalCase(c.key)}: return 0x${c.hexCode}`).join('\n')} 
       }
-      break
-    `
+      break`
     })
-    .join('')}
+    .join('\n')}
   }
 }
 `
@@ -133,22 +132,26 @@ const textStyleRule = (textStyle: TextStyleToken) => {
   const adaptedKey = textStyle.key.replace(/[- ]/g, '.')
   const isElement =  /^h[1-6]|body|strong/.test(adaptedKey)
   const ignoresFontSize = /^strong|serif|italic|handwritten/.test(adaptedKey)
-  const className = `.${adaptedKey}`
-  const selector = isElement ? `${adaptedKey}, ${className}` : className
+  const selector = (isElement ? '' : '.') + adaptedKey
   
-  let rule = `${selector} {
+  let mixin = `@mixin ${textStyle.key}() {
   font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};
   font-weight: normal;
 `
   
   if (!ignoresFontSize) {
-    rule += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
-    rule += `  line-height: ${textStyle.fontSize <= 16 ? 1.5 : 1.25};\n`
+    mixin += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+    mixin += `  line-height: ${textStyle.fontSize <= 16 ? 1.5 : 1.25};\n`
   }
   
-  rule += `}\n`
+  mixin += `}
+
+${selector} {
+  @include ${textStyle.key}();
+}
+`
   
-  return rule
+  return mixin
 }
 
 export function typographySCSS(textStyleTokens: TextStyleToken[], fontsPath: string): string {    

@@ -1,0 +1,15 @@
+@use 'sass:math';
+
+@function to-em($pixels) {
+  @if (math.is-unitless($pixels)) {
+    $pixels: $pixels * 1px; 
+  }
+  @return #{math.div($pixels, 16px)}em;
+}
+
+@function to-px($ems) {
+  @if (math.is-unitless($ems)) {
+    $ems: $ems * 1em;
+  }
+  @return #{math.div($ems, 1em) * 16px};
+}

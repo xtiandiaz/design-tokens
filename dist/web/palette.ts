@@ -64,7 +64,7 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.BackgroundAlt: return 0x252018 
       }
       break
-      case ColorScheme.Light:
+    case ColorScheme.Light:
       switch(color) {
         case Color.Sepia: return 0x8F7856
         case Color.Gray: return 0x6C7993
@@ -93,6 +93,5 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Background: return 0xFFFFFF 
       }
       break
-    
   }
 }

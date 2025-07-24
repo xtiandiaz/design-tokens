@@ -18,6 +18,12 @@ const platforms: [Platform] = [{
   generator: new WebGenerator(`${distPath}/web`)
 }]
 
+async function copyStaticPlatformResources(key: string, destPath: string) {
+  const resPath = `${resourcePath}/static/${key}`
+  
+  await FS.promises.cp(resPath, destPath, { recursive: true })
+}
+
 async function main() {
   const spinner = ORA().start()
   
@@ -37,6 +43,7 @@ async function main() {
     FS.mkdirSync(platformDistPath, { recursive: true })
     
     await platform.generator.generateAssets(tokens, resourcePath)
+    await copyStaticPlatformResources(platform.key, platformDistPath)
   }
   
   spinner.stop()
