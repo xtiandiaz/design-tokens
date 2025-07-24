@@ -31,7 +31,7 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
     case ColorScheme.Dark:
       switch(color) {
         case Color.Sepia: return 0xAF8C6A
-        case Color.Gray: return 0xB2BBCC
+        case Color.Gray: return 0xB6BCC9
         case Color.Blue: return 0x5781FF
         case Color.SkyBlue: return 0x2BADEE
         case Color.Mint: return 0x0AC2A3
@@ -41,19 +41,19 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Red: return 0xF1505E
         case Color.Pink: return 0xE963BC
         case Color.Purple: return 0xAB57FF
-        case Color.Accessory: return 0x928E87
-        case Color.TertiaryBody: return 0xAAA7A1
-        case Color.SecondaryBody: return 0xCFCDC9
-        case Color.Body: return 0xF3F2F2
+        case Color.Accessory: return 0x878E92
+        case Color.TertiaryBody: return 0xA1A7AA
+        case Color.SecondaryBody: return 0xC9CDCF
+        case Color.Body: return 0xF2F2F3
         case Color.TertiaryBackground: return 0x000000
-        case Color.SecondaryBackground: return 0x10100F
-        case Color.Background: return 0x201F1D 
+        case Color.SecondaryBackground: return 0x0F1010
+        case Color.Background: return 0x1D1F20 
       }
       break
       case ColorScheme.Light:
       switch(color) {
         case Color.Sepia: return 0x957350
-        case Color.Gray: return 0x667799
+        case Color.Gray: return 0x6C7993
         case Color.Blue: return 0x3661E2
         case Color.SkyBlue: return 0x189CDC
         case Color.Mint: return 0x13AE95
@@ -63,12 +63,12 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
         case Color.Red: return 0xDD3C49
         case Color.Pink: return 0xE54DB2
         case Color.Purple: return 0x7F4DE5
-        case Color.Accessory: return 0x9E9B94
-        case Color.TertiaryBody: return 0x868279
-        case Color.SecondaryBody: return 0x5E5B55
-        case Color.Body: return 0x363430
-        case Color.TertiaryBackground: return 0xE2E1DF
-        case Color.SecondaryBackground: return 0xF0F0EF
+        case Color.Accessory: return 0x949B9E
+        case Color.TertiaryBody: return 0x798286
+        case Color.SecondaryBody: return 0x555B5E
+        case Color.Body: return 0x303436
+        case Color.TertiaryBackground: return 0xDFE1E2
+        case Color.SecondaryBackground: return 0xEFF0F0
         case Color.Background: return 0xFFFFFF 
       }
       break
