@@ -133,7 +133,7 @@ const fontFace = (face: FontFace, path: string) =>
 const textStyleRule = (textStyle: TextStyleToken) => {
   const adaptedKey = textStyle.key.replace(/[- ]/g, '.')
   const isElement =  /^h[1-6]|body|strong/.test(adaptedKey)
-  const ignoresFontSize = /^strong|serif|italic/.test(adaptedKey)
+  const ignoresFontSize = /^strong|serif|italic|handwritten/.test(adaptedKey)
   const className = `.${adaptedKey}`
   const selector = isElement ? `${adaptedKey}, ${className}` : className
   

@@ -20,6 +20,11 @@ html {
 }
 
 @font-face {
+  font-family: 'Homemade Apple Regular';
+  src: url('./fonts/HomemadeApple-Regular.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Inter Italic';
   src: url('./fonts/Inter-Italic.woff2') format('woff2');
 }
@@ -93,15 +98,13 @@ body, .body {
   line-height: 1.5;
 }
 
-.caption {
-  font-family: 'Inter Regular', sans-serif;
-  font-weight: normal;
-  font-size: 0.8125em;
-  line-height: 1.5;
-}
-
 .serif {
   font-family: 'Libre Baskerville Regular', serif;
+  font-weight: normal;
+}
+
+.handwritten {
+  font-family: 'Homemade Apple Regular', sans-serif;
   font-weight: normal;
 }
 
@@ -128,5 +131,12 @@ strong.italic, .strong.italic {
 strong.serif, .strong.serif {
   font-family: 'Libre Baskerville Bold', serif;
   font-weight: normal;
+}
+
+.caption {
+  font-family: 'Inter Regular', sans-serif;
+  font-weight: normal;
+  font-size: 0.8125em;
+  line-height: 1.5;
 }
 

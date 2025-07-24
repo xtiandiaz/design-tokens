@@ -5,9 +5,12 @@
   
 $light-scheme-colors: (
   'accessory': #949B9E,
+  'accessory-alt': #AD9C85,
   'background': #FFFFFF,
+  'background-alt': #FFFFFF,
   'blue': #3661E2,
   'body': #303436,
+  'body-alt': #3D3529,
   'gray': #6C7993,
   'green': #49B234,
   'mint': #13AE95,
@@ -16,12 +19,16 @@ $light-scheme-colors: (
   'purple': #7F4DE5,
   'red': #DD3C49,
   'secondary-background': #EFF0F0,
+  'secondary-background-alt': #F3F0ED,
   'secondary-body': #555B5E,
-  'sepia': #957350,
+  'secondary-body-alt': #6B5C47,
+  'sepia': #8F7856,
   'sky-blue': #189CDC,
   'tertiary-background': #DFE1E2,
+  'tertiary-background-alt': #E7E1DA,
   'tertiary-body': #798286,
-  'yellow': #C7A705,
+  'tertiary-body-alt': #998466,
+  'yellow': #D1AF05,
 );
 
 $dark-scheme-colors: (
@@ -38,7 +45,7 @@ $dark-scheme-colors: (
   'red': #F1505E,
   'secondary-background': #0F1010,
   'secondary-body': #C9CDCF,
-  'sepia': #AF8C6A,
+  'sepia': #A99170,
   'sky-blue': #2BADEE,
   'tertiary-background': #000000,
   'tertiary-body': #A1A7AA,
