@@ -33,9 +33,12 @@ $light-scheme-colors: (
 
 $dark-scheme-colors: (
   'accessory': #878E92,
+  'accessory-alt': #A39075,
   'background': #1D1F20,
+  'background-alt': #252018,
   'blue': #5781FF,
   'body': #F2F2F3,
+  'body-alt': #F5F3F0,
   'gray': #B6BCC9,
   'green': #66C653,
   'mint': #0AC2A3,
@@ -44,11 +47,15 @@ $dark-scheme-colors: (
   'purple': #AB57FF,
   'red': #F1505E,
   'secondary-background': #0F1010,
+  'secondary-background-alt': #12100C,
   'secondary-body': #C9CDCF,
+  'secondary-body-alt': #D6CEC2,
   'sepia': #A99170,
   'sky-blue': #2BADEE,
   'tertiary-background': #000000,
+  'tertiary-background-alt': #000000,
   'tertiary-body': #A1A7AA,
+  'tertiary-body-alt': #B8A994,
   'yellow': #EEBD2B,
 );
 

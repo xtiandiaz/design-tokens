@@ -105,9 +105,8 @@ ${groupedTokens['light'].map(c => `  ${pascalCase(c.key)} = '${kebabCase(c.key)}
 
 export const schemeColor = (scheme: ColorScheme, color: Color): number => {
   switch(scheme) {
-  ${Object.keys(groupedTokens)
-    .map(sk => {
-      return `  case ColorScheme.${pascalCase(sk)}:
+${Object.keys(groupedTokens).map(sk => {
+return `    case ColorScheme.${pascalCase(sk)}:
       switch(color) {
 ${groupedTokens[sk].map(c => `        case Color.${pascalCase(c.key)}: return 0x${c.hexCode}`).join('\n')} 
       }
