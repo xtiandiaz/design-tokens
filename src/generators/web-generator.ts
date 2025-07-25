@@ -35,8 +35,4 @@ export default class WebGenerator extends AssetGenerator {
     await FS.promises.writeFile(`${this.distPath}/_iconography.scss`, TEMPLATE.iconographySCSS(rawSvgs))
     await FS.promises.writeFile(`${this.distPath}/iconography.ts`, TEMPLATE.iconographyTS(rawSvgs))
   }
-  
-  protected override async generateUtilities(): Promise<void> {
-    await FS.promises.writeFile(`${this.distPath}/_utils.scss`, TEMPLATE.utilitiesSCSS)
-  }
 }

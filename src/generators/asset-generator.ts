@@ -13,12 +13,10 @@ export default abstract class AssetGenerator {
     await this.generatePalette(tokens.palette)
     await this.generateTypography(tokens.typography, sourcePath)
     await this.generateIconography(tokens.iconography)
-    await this.generateUtilities()
   }
   
   protected abstract generatePalette(tokens: ColorToken[]): Promise<void>
   protected abstract generateIconography(tokens: IconToken[]): Promise<void>
-  protected abstract generateUtilities(): Promise<void>
   
   protected async generateTypography(tokens: TextStyleToken[], sourcePath: string): Promise<void> {
     await this._generateFonts(tokens, sourcePath)
