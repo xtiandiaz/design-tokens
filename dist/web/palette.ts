@@ -66,7 +66,7 @@ export const schemeColor = (scheme: ColorScheme, color: Color): number => {
       break
     case ColorScheme.Light:
       switch(color) {
-        case Color.Sepia: return 0x8F7856
+        case Color.Sepia: return 0x8F7C56
         case Color.Gray: return 0x6C7993
         case Color.Blue: return 0x3661E2
         case Color.SkyBlue: return 0x189CDC
