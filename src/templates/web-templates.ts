@@ -113,7 +113,7 @@ const textStyleRule = (textStyle: TextStyleToken) => {
   const adaptedKey = textStyle.key.replace(/[- ]/g, '.')
   const isElement =  /^h[1-6]|body|strong/.test(adaptedKey)
   const ignoresFontSize = /^strong|serif|italic|handwritten/.test(adaptedKey)
-  const selector = (isElement ? '' : '.') + adaptedKey
+  const selector = isElement ? `${adaptedKey}, .${adaptedKey}` : `.${adaptedKey}` 
   
   let mixin = `@mixin ${textStyle.key}() {
   font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};
