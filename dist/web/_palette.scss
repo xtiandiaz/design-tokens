@@ -70,7 +70,7 @@ $dark-scheme-colors: (
   }
 }
 
-@mixin color-attribute($attribute, $color-key, $inverted: false) {
+@mixin color-attribute($attribute, $color-alpha, $inverted: false) {
   $color-key: list.nth($color-alpha, 1);
   $alpha: if(length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
   
