@@ -1,6 +1,7 @@
 /* File automatically generated; DO NOT edit! */
 
 @use 'sass:color';
+@use 'sass:list';
 @use 'sass:map';
   
 $light-scheme-colors: (
@@ -59,23 +60,35 @@ $dark-scheme-colors: (
   'yellow': #EEBD2B,
 );
 
-@mixin _color-attribute($attribute, $light-scheme-color, $dark-scheme-color) {
+@mixin _color-attribute($attribute, $light-scheme-color, $dark-scheme-color, $inverted: false) {
   & {
-    #{$attribute}: $light-scheme-color;
+    #{$attribute}: if($inverted, $dark-scheme-color, $light-scheme-color);
     
     @media (prefers-color-scheme: dark) {
-      #{$attribute}: $dark-scheme-color;
+      #{$attribute}: if($inverted, $light-scheme-color, $dark-scheme-color);
     }
   }
 }
 
-@mixin color-attribute($attribute, $color-key, $alpha: 1) {
+@mixin color-attribute($attribute, $color-key, $inverted: false) {
+  $color-key: list.nth($color-alpha, 1);
+  $alpha: if(length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
+  
   @include _color-attribute(
     $attribute, 
     rgba(map.get($light-scheme-colors, $color-key), $alpha),
-    rgba(map.get($dark-scheme-colors, $color-key), $alpha)
-  );
-};
+    rgba(map.get($dark-scheme-colors, $color-key), $alpha),
+    $inverted
+  )
+}
+  
+@mixin color-attributes($attribute-color-alpha-map, $inverted: false) {
+  @each $attribute, $color-alpha in $attribute-color-alpha-map {
+    $alpha: if(length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
+    
+    @include color-attribute($attribute, list.nth($color-alpha, 1) $alpha, $inverted);
+  }
+}
 
 @mixin mixed-color-attribute($attribute, $color-key-from, $color-key-to, $at, $alpha: 1) {
   $percentage: clamp(0, $at, 100);
@@ -94,11 +107,5 @@ $dark-scheme-colors: (
       $percentage,
       $method: rgb
     ),
-  );
-};
-
-@mixin color-attributes($attribute-map, $alpha: 1) {
-  @each $attribute, $color-key in $attribute-map {
-    @include color-attribute($attribute, $color-key, $alpha);
-  }
-};
+  )
+}
