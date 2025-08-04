@@ -38,7 +38,7 @@ ${schemeColors('dark', groupedTokens['dark'])}
 
 @mixin color-attribute($attribute, $color-alpha, $inverted: false) {
   $color-key: list.nth($color-alpha, 1);
-  $alpha: if(length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
+  $alpha: if(list.length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
   
   @include _color-attribute(
     $attribute, 
@@ -50,7 +50,7 @@ ${schemeColors('dark', groupedTokens['dark'])}
   
 @mixin color-attributes($attribute-color-alpha-map, $inverted: false) {
   @each $attribute, $color-alpha in $attribute-color-alpha-map {
-    $alpha: if(length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
+    $alpha: if(list.length($color-alpha) > 1, list.nth($color-alpha, 2), 1);
     
     @include color-attribute($attribute, list.nth($color-alpha, 1) $alpha, $inverted);
   }
