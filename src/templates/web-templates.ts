@@ -123,16 +123,18 @@ const textStyleRule = (textStyle: TextStyleToken) => {
   const selector = isElement ? `${adaptedKey}, .${adaptedKey}` : `.${adaptedKey}` 
   
   let mixin = `@mixin ${textStyle.key}() {
-  font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};
-  font-weight: normal;
+  & {
+    font-family: '${textStyle.fontFamily}', ${selector.match(/serif/) !== null ? 'serif' : 'sans-serif'};
+    font-weight: normal;
 `
   
   if (!ignoresFontSize) {
-    mixin += `  font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
-    mixin += `  line-height: ${textStyle.fontSize <= 16 ? 1.5 : 1.25};\n`
+    mixin += `    font-size: ${UTILS.toEm(textStyle.fontSize)};\n`
+    mixin += `    line-height: ${textStyle.fontSize <= 16 ? 1.5 : 1.25};\n`
   }
   
-  mixin += `}
+  mixin += `  }
+}
 
 ${selector}, %${textStyle.key} {
   @include ${textStyle.key}();
