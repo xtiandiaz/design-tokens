@@ -50,10 +50,12 @@ html {
 }
 
 @mixin h1() {
-  font-family: 'Inter Medium', sans-serif;
-  font-weight: normal;
-  font-size: 3em;
-  line-height: 1.25;
+  & {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: normal;
+    font-size: 3em;
+    line-height: 1.25;
+  }
 }
 
 h1, .h1, %h1 {
@@ -61,10 +63,12 @@ h1, .h1, %h1 {
 }
 
 @mixin h2() {
-  font-family: 'Inter Medium', sans-serif;
-  font-weight: normal;
-  font-size: 2.5em;
-  line-height: 1.25;
+  & {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: normal;
+    font-size: 2.5em;
+    line-height: 1.25;
+  }
 }
 
 h2, .h2, %h2 {
@@ -72,10 +76,12 @@ h2, .h2, %h2 {
 }
 
 @mixin h3() {
-  font-family: 'Inter Medium', sans-serif;
-  font-weight: normal;
-  font-size: 2em;
-  line-height: 1.25;
+  & {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: normal;
+    font-size: 2em;
+    line-height: 1.25;
+  }
 }
 
 h3, .h3, %h3 {
@@ -83,10 +89,12 @@ h3, .h3, %h3 {
 }
 
 @mixin h4() {
-  font-family: 'Inter Medium', sans-serif;
-  font-weight: normal;
-  font-size: 1.75em;
-  line-height: 1.25;
+  & {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: normal;
+    font-size: 1.75em;
+    line-height: 1.25;
+  }
 }
 
 h4, .h4, %h4 {
@@ -94,10 +102,12 @@ h4, .h4, %h4 {
 }
 
 @mixin h5() {
-  font-family: 'Inter Medium', sans-serif;
-  font-weight: normal;
-  font-size: 1.5em;
-  line-height: 1.25;
+  & {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: normal;
+    font-size: 1.5em;
+    line-height: 1.25;
+  }
 }
 
 h5, .h5, %h5 {
@@ -105,10 +115,12 @@ h5, .h5, %h5 {
 }
 
 @mixin h6() {
-  font-family: 'Inter Medium', sans-serif;
-  font-weight: normal;
-  font-size: 1.25em;
-  line-height: 1.25;
+  & {
+    font-family: 'Inter Medium', sans-serif;
+    font-weight: normal;
+    font-size: 1.25em;
+    line-height: 1.25;
+  }
 }
 
 h6, .h6, %h6 {
@@ -116,10 +128,12 @@ h6, .h6, %h6 {
 }
 
 @mixin body() {
-  font-family: 'Inter Regular', sans-serif;
-  font-weight: normal;
-  font-size: 1em;
-  line-height: 1.5;
+  & {
+    font-family: 'Inter Regular', sans-serif;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.5;
+  }
 }
 
 body, .body, %body {
@@ -127,8 +141,10 @@ body, .body, %body {
 }
 
 @mixin serif() {
-  font-family: 'Libre Baskerville Regular', serif;
-  font-weight: normal;
+  & {
+    font-family: 'Libre Baskerville Regular', serif;
+    font-weight: normal;
+  }
 }
 
 .serif, %serif {
@@ -136,8 +152,10 @@ body, .body, %body {
 }
 
 @mixin handwritten() {
-  font-family: 'Homemade Apple Regular', sans-serif;
-  font-weight: normal;
+  & {
+    font-family: 'Homemade Apple Regular', sans-serif;
+    font-weight: normal;
+  }
 }
 
 .handwritten, %handwritten {
@@ -145,8 +163,10 @@ body, .body, %body {
 }
 
 @mixin italic() {
-  font-family: 'Inter Italic', sans-serif;
-  font-weight: normal;
+  & {
+    font-family: 'Inter Italic', sans-serif;
+    font-weight: normal;
+  }
 }
 
 .italic, %italic {
@@ -154,8 +174,10 @@ body, .body, %body {
 }
 
 @mixin italic-serif() {
-  font-family: 'Libre Baskerville Italic', serif;
-  font-weight: normal;
+  & {
+    font-family: 'Libre Baskerville Italic', serif;
+    font-weight: normal;
+  }
 }
 
 .italic.serif, %italic-serif {
@@ -163,8 +185,10 @@ body, .body, %body {
 }
 
 @mixin strong() {
-  font-family: 'Inter SemiBold', sans-serif;
-  font-weight: normal;
+  & {
+    font-family: 'Inter SemiBold', sans-serif;
+    font-weight: normal;
+  }
 }
 
 strong, .strong, %strong {
@@ -172,8 +196,10 @@ strong, .strong, %strong {
 }
 
 @mixin strong-italic() {
-  font-family: 'Inter SemiBold Italic', sans-serif;
-  font-weight: normal;
+  & {
+    font-family: 'Inter SemiBold Italic', sans-serif;
+    font-weight: normal;
+  }
 }
 
 strong.italic, .strong.italic, %strong-italic {
@@ -181,8 +207,10 @@ strong.italic, .strong.italic, %strong-italic {
 }
 
 @mixin strong-serif() {
-  font-family: 'Libre Baskerville Bold', serif;
-  font-weight: normal;
+  & {
+    font-family: 'Libre Baskerville Bold', serif;
+    font-weight: normal;
+  }
 }
 
 strong.serif, .strong.serif, %strong-serif {
@@ -190,10 +218,12 @@ strong.serif, .strong.serif, %strong-serif {
 }
 
 @mixin caption() {
-  font-family: 'Inter Regular', sans-serif;
-  font-weight: normal;
-  font-size: 0.8125em;
-  line-height: 1.5;
+  & {
+    font-family: 'Inter Regular', sans-serif;
+    font-weight: normal;
+    font-size: 0.8125em;
+    line-height: 1.5;
+  }
 }
 
 .caption, %caption {
