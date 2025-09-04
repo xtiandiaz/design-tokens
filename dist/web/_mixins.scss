@@ -2,6 +2,16 @@
 @use 'sass:map';
 @use './palette';
 
+@mixin box-shadow($offset-x, $offset-y, $blur, $color, $alpha: 1) {
+  & {
+    box-shadow: rgba(map.get(palette.$light-scheme-colors, $color), $alpha) $offset-x $offset-y $blur;
+    
+    @media (prefers-color-scheme: dark) {
+      box-shadow: rgba(map.get(palette.$dark-scheme-colors, $color), $alpha) $offset-x $offset-y $blur;
+    }
+  }
+}
+
 @mixin linear-gradient($angle, $color-stops...) {
   & {
     $light-scheme-colors: ();
@@ -34,19 +44,25 @@
 }
 
 @mixin min-size($value) {
-  min-height: $value;
-  min-width: $value;
+  & {
+    min-height: $value;
+    min-width: $value;
+  }
 }
 
 @mixin position($kind, $top: null, $right: null, $bottom: null, $left: null) {
-  bottom: $bottom;
-  left: $left;
-  position: $kind;
-  right: $right;
-  top: $top;
+  & {
+    bottom: $bottom;
+    left: $left;
+    position: $kind;
+    right: $right;
+    top: $top;
+  }
 }
 
 @mixin size($value) {
-  height: $value;
-  width: $value;
+  & {
+    height: $value;
+    width: $value;
+  }
 }
