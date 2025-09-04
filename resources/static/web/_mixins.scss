@@ -34,19 +34,25 @@
 }
 
 @mixin min-size($value) {
-  min-height: $value;
-  min-width: $value;
+  & {
+    min-height: $value;
+    min-width: $value;
+  }
 }
 
 @mixin position($kind, $top: null, $right: null, $bottom: null, $left: null) {
-  bottom: $bottom;
-  left: $left;
-  position: $kind;
-  right: $right;
-  top: $top;
+  & {
+    bottom: $bottom;
+    left: $left;
+    position: $kind;
+    right: $right;
+    top: $top;
+  }
 }
 
 @mixin size($value) {
-  height: $value;
-  width: $value;
+  & {
+    height: $value;
+    width: $value;
+  }
 }
